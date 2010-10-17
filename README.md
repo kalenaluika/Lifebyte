@@ -9,7 +9,7 @@ The mission is to help Denver metro area people with their computer needs.
 
 We are a Microsoft Authorized Refurbisher.
 
-We are staffed entirely by volunteers.
+We are staffed entirely by volunteers just like you.
 
 Current Work
 -------------
