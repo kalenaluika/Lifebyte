@@ -16,7 +16,7 @@ Current Work
 
 We plan a delivery day once a month. We try to deliver around 20 PC's.
 
-Twice a year we have a "PC Wash". Some group wash cars, we wash PC's by blowing out the dust, and running virus checks. This is our fundraiser to cover our costs. Our costs include the storage unit, Windows licenses, and recycling.
+Twice a year we have a "PC Wash". Some groups wash cars, we wash PC's by blowing out the dust, and running virus checks. This is our fundraiser to cover our costs. Our costs include the storage unit, Windows licenses, and recycling.
 
 We meet once a month just to keep the ministry on track and plan upcoming events.
 
