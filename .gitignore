@@ -5,7 +5,6 @@ Thumbs.db
 *.pdb
 *.user
 *.suo
-*.vsmdi
 *.testsettings
 [Bb]in
 [Dd]ebug*/
