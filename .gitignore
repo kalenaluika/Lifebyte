@@ -5,7 +5,6 @@ Thumbs.db
 *.pdb
 *.user
 *.suo
-*.testsettings
 [Bb]in
 [Dd]ebug*/
 obj/
