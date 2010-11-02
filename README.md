@@ -1,6 +1,23 @@
 [Lifebyte](http://lifebyte.org/) - Computer Ministry
 ================================
 
+Project Status
+--------------
+
+Week 1 - User Interface
+
+The goal of this week is to build all of the pages without models using plain old XHTML.
+
+Week 2 - Authentication and Models
+
+The goal of this week to build authentication. We might use OpenID. An example project that uses it is [SharpCommerce](http://github.com/nazjunaid/SharpCommerce).
+
+We will also build our models and replace the XHTML in week one with model templates.
+
+Week 3 - Database
+
+This final week we will persist the data to a database.
+
 History
 --------
 Lifebyte was founded in 2000 as an outreach ministry of [Colorado Community Church](http://www.coloradocommunity.org).
