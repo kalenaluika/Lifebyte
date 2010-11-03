@@ -46,7 +46,13 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\DonateControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\InventoryControllerTest.cs" />
+    <Compile Include="Controllers\PrivacyControllerTest.cs" />
+    <Compile Include="Controllers\RecipientsControllerTest.cs" />
+    <Compile Include="Controllers\RequestControllerTest.cs" />
+    <Compile Include="Controllers\VolunteerControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
