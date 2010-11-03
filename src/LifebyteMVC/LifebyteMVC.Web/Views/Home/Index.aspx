@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Index
+    Lifebyte - Computer Ministry
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>
-        Lifebyte<br />
-        Connecting Communities through Computers</h1>
+<h1>Welcome</h1>    
     <p>
         Whether you have computers you'd like to donate, time you'd like to share with us
         or provide financial support, you've come to the right page!

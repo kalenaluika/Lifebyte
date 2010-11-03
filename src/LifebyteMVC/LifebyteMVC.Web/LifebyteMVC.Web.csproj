@@ -78,8 +78,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Default.css" />
+    <Content Include="Content\images\aidmatrixlogo.gif" />
+    <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\lightbulb.jpg" />
+    <Content Include="Content\images\luminous.jpg" />
+    <Content Include="Content\images\marbanner.gif" />
+    <Content Include="Content\images\search.gif" />
+    <Content Include="Content\images\rss.gif" />
+    <Content Include="Content\images\bluebar.gif" />
+    <Content Include="Content\images\orangebar.gif" />
+    <Content Include="Content\images\spacer1.gif" />
+    <Content Include="Content\images\bluedot.gif" />
+    <Content Include="Content\images\spacer2.gif" />
+    <Content Include="Content\images\link.gif" />
+    <Content Include="Content\images\bubble.gif" />
+    <Content Include="Content\images\footer.gif" />
+    <Content Include="Content\images\twitter.png" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="lifebyte.xml" />
     <Content Include="Views\Donate\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Inventory\Index.aspx" />

@@ -1,16 +1,260 @@
 ﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="../../content/default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server">
-        
-        </asp:ContentPlaceHolder>
+    <!-- start header -->
+    <div id="header">
+        <div id="logo">
+            <h1>
+                <a href="/home/index">Lifbyte</a></h1>
+            <p>
+                <a href="/home/index">Computer Ministry</a></p>
+        </div>
+        <div id="rss">
+            <a href="/lifebyte.xml">Subscribe to RSS Feed</a></div>
+        <div id="search">
+            <form id="searchform" method="get" action="">
+            <fieldset>
+                <input type="text" name="s" id="s" size="15" value="" />
+                <input type="submit" id="x" value="Search" />
+            </fieldset>
+            </form>
+        </div>
     </div>
+    <!-- end header -->
+    <!-- star menu -->
+    <asp:ContentPlaceHolder ID="MenuPlaceHolder" runat="server">
+    <div id="menu">
+        <ul>
+            <li class="current_page_item"><a href="/home">Home</a></li>
+            <li><a href="/donate">Donate</a></li>            
+            <li><a href="/request">Request</a></li>
+            <li><a href="/volunteer">Volunteer</a></li>
+            <li><a href="/inventory">Inventory</a></li>
+            <li><a href="/recipients">Recipients</a></li>            
+        </ul>
+    </div>
+    </asp:ContentPlaceHolder>    
+    <!-- end menu -->
+    <!-- start page -->
+    <div id="page">
+        <!-- start content -->
+        <div id="content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <!-- end content -->
+        <!-- start sidebar -->
+        <div id="sidebar">
+            <ul>                
+                <li id="calendar">
+                    <h2>
+                        Calendar</h2>
+                    <div id="calendar_wrap">
+                        <table id="wp-calendar" summary="Calendar">
+                            <caption>
+                                August 2007
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th abbr="Monday" scope="col" title="Monday">
+                                        M
+                                    </th>
+                                    <th abbr="Tuesday" scope="col" title="Tuesday">
+                                        T
+                                    </th>
+                                    <th abbr="Wednesday" scope="col" title="Wednesday">
+                                        W
+                                    </th>
+                                    <th abbr="Thursday" scope="col" title="Thursday">
+                                        T
+                                    </th>
+                                    <th abbr="Friday" scope="col" title="Friday">
+                                        F
+                                    </th>
+                                    <th abbr="Saturday" scope="col" title="Saturday">
+                                        S
+                                    </th>
+                                    <th abbr="Sunday" scope="col" title="Sunday">
+                                        S
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td abbr="July" colspan="3" id="prev">
+                                        <a href="#">&laquo; Jul</a>
+                                    </td>
+                                    <td class="pad">
+                                        &nbsp;
+                                    </td>
+                                    <td abbr="September" colspan="3" id="next" class="pad">
+                                        <a href="#">Sep &raquo;</a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="pad">
+                                        &nbsp;
+                                    </td>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td>
+                                        3
+                                    </td>
+                                    <td>
+                                        4
+                                    </td>
+                                    <td>
+                                        5
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        6
+                                    </td>
+                                    <td>
+                                        7
+                                    </td>
+                                    <td>
+                                        8
+                                    </td>
+                                    <td>
+                                        9
+                                    </td>
+                                    <td>
+                                        10
+                                    </td>
+                                    <td>
+                                        11
+                                    </td>
+                                    <td>
+                                        12
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        13
+                                    </td>
+                                    <td>
+                                        14
+                                    </td>
+                                    <td>
+                                        15
+                                    </td>
+                                    <td>
+                                        16
+                                    </td>
+                                    <td>
+                                        17
+                                    </td>
+                                    <td>
+                                        18
+                                    </td>
+                                    <td>
+                                        19
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        20
+                                    </td>
+                                    <td id="today">
+                                        21
+                                    </td>
+                                    <td>
+                                        22
+                                    </td>
+                                    <td>
+                                        23
+                                    </td>
+                                    <td>
+                                        24
+                                    </td>
+                                    <td>
+                                        25
+                                    </td>
+                                    <td>
+                                        26
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        27
+                                    </td>
+                                    <td>
+                                        28
+                                    </td>
+                                    <td>
+                                        29
+                                    </td>
+                                    <td>
+                                        30
+                                    </td>
+                                    <td>
+                                        31
+                                    </td>
+                                    <td class="pad" colspan="2">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <li id="categories">
+                    <h2>
+                        Connect</h2>
+                    <ul>
+                        <li><a href="http://twitter.com/lifebyte"><img src="/Content/images/twitter.png" alt="Twitter" width="180" height="108" /></a></li>
+                        <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355"><img src="/Content/images/facebook.png" width="180" height="180" alt="Facebook" /></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h2>
+                       Sponsors</h2>
+                    <ul>
+                        <li><a href="http://www.techsoup.org/mar/marList_detail.aspx?ID=248856"><img src="/Content/images/marbanner.gif" width="180" height="87" alt="MAR" /></a></li>
+                        <li><a href="http://www.aidmatrix.com/"><img src="/Content/images/aidmatrixlogo.gif" width="180" height="56" alt="AidMatrix" /></a></li>
+                        <li><a href="http://www.luminousrecycling.com/wp/"><img src="/Content/images/luminous.jpg" width="179" height="114" alt="Luminous" /></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- end sidebar -->
+    </div>
+    <!-- end page -->
+    <!-- start footer -->
+    <div id="footer">
+        <p class="legal">
+           <a href="lifebyte.xml" title="Subscribe">
+                <img src="/content/images/rss.gif" alt="RSS" width="15" height="15" /></a> | Call us
+            at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a>
+            | Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a> |
+            Icons by <a href="http://famfamfam.com/">FAMFAMFAM</a>.
+        </p>
+        <p class="links">
+            <a href="http://validator.w3.org/check/referer" class="xhtml" title="This page validates as XHTML">
+                Valid
+                <abbr title="eXtensible HyperText Markup Language">
+                    XHTML</abbr></a> &nbsp;&bull;&nbsp; <a href="http://jigsaw.w3.org/css-validator/check/referer"
+                        class="css" title="This page validates as CSS">Valid
+                        <abbr title="Cascading Style Sheets">
+                            CSS</abbr></a>
+        </p>
+    </div>
+    <!-- end footer -->
 </body>
 </html>
