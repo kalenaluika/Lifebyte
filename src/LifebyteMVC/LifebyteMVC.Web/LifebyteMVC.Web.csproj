@@ -78,8 +78,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\base-min.css" />
+    <Content Include="Content\base.css" />
     <Content Include="Content\Default.css" />
     <Content Include="Content\images\aidmatrixlogo.gif" />
+    <Content Include="Content\images\computer.gif" />
     <Content Include="Content\images\facebook.png" />
     <Content Include="Content\images\lightbulb.jpg" />
     <Content Include="Content\images\luminous.jpg" />
@@ -95,12 +98,17 @@
     <Content Include="Content\images\bubble.gif" />
     <Content Include="Content\images\footer.gif" />
     <Content Include="Content\images\twitter.png" />
+    <Content Include="Content\reset-min.css" />
+    <Content Include="Content\reset.css" />
     <Content Include="Global.asax" />
     <Content Include="lifebyte.xml" />
     <Content Include="Views\Donate\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Inventory\Belarc.aspx" />
+    <Content Include="Views\Inventory\Edit.aspx" />
     <Content Include="Views\Inventory\Index.aspx" />
     <Content Include="Views\Privacy\Index.aspx" />
+    <Content Include="Views\Recipients\Edit.aspx" />
     <Content Include="Views\Recipients\Index.aspx" />
     <Content Include="Views\Request\Index.aspx" />
     <Content Include="Views\Volunteer\Index.aspx" />
@@ -130,6 +138,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lifebytelabels.rdf" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

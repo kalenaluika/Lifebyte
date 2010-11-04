@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Mvc;
 using LifebyteMVC.Web.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LifebyteMVC.Web.Test.Controllers
 {
@@ -14,6 +11,7 @@ namespace LifebyteMVC.Web.Test.Controllers
     [TestClass]
     public class InventoryControllerTest
     {
+        private InventoryController controller;
         private TestContext testContextInstance;
 
         /// <summary>
@@ -32,6 +30,24 @@ namespace LifebyteMVC.Web.Test.Controllers
             }
         }
 
+        /// <summary>
+        /// Use TestInitialize to run code before running each test 
+        /// </summary>
+        [TestInitialize()]
+        public void MyTestInitialize()
+        {
+            controller = new InventoryController();
+        }
+
+        /// <summary>
+        /// Use TestCleanup to run code after each test has run
+        /// </summary>
+        [TestCleanup()]
+        public void MyTestCleanup()
+        {
+            controller = null;
+        }
+
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
@@ -44,26 +60,33 @@ namespace LifebyteMVC.Web.Test.Controllers
         // [ClassCleanup()]
         // public static void MyClassCleanup() { }
         //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
         #endregion
 
         [TestMethod]
         public void InventoryController_Index_Test()
         {
-            //Arrange
-            InventoryController controller = new InventoryController();
-
             //Act
             ViewResult result = (ViewResult)controller.Index();
 
             //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void InventoryController_Edit_Test()
+        {
+            Guid inventoryID = Guid.NewGuid();
+            ViewResult result = (ViewResult)controller.Edit(inventoryID);
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void InventoryController_Belarc_Test()
+        {
+            Guid inventoryID = Guid.NewGuid();
+            ViewResult result = (ViewResult)controller.Belarc(inventoryID);
+
             Assert.IsNotNull(result);
         }
     }

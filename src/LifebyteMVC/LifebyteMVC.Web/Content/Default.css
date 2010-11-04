@@ -1,4 +1,5 @@
-
+@import url("reset-min.css");
+@import url("base-min.css");
 /*
 Design by Free CSS Templates
 http://www.freecsstemplates.org
@@ -38,7 +39,6 @@ h1, h1 a, h2, h2 a, h3, h3 a {
 }
 
 h1 {
-	letter-spacing: -3px;
 	font-size: 2.6em;
 }
 
@@ -92,8 +92,8 @@ img {
 
 #logo h1 {
 	height: 88px;
-	padding: 20px 90px 0 0;
-	background: url(images/lightbulb.jpg) no-repeat right bottom;
+	padding: 10px 94px 0 0;
+	background: url(images/computer.gif) no-repeat right bottom;
 	font-size: 4em;
 }
 
@@ -190,9 +190,7 @@ img {
 	text-decoration: underline;
 }
 
-#menu .current_page_item {
-}
-
+#menu .current_page_item, 
 #menu .current_page_item a {
 	color: #FFB700;
 	text-decoration: underline;
@@ -203,7 +201,7 @@ img {
 #page {
 	width: 890px;
 	margin: 0 auto;
-	padding: 30px 0;
+	padding: 30px 0 30px 0;
 }
 
 /* Content */
@@ -213,57 +211,6 @@ img {
 	width: 590px;
 }
 
-.post {
-	margin-bottom: 50px;
-}
-
-.post .title {
-}
-
-.post .title h2 {
-	font-size: 2.2em;
-}
-
-.post .title p {
-	margin: 0;
-	line-height: normal;
-	color: #BABABA;
-}
-
-.post .title p a {
-	color: #BABABA;
-}
-
-.post .entry {
-	padding-top: 30px;
-}
-
-.post .links {
-	width: 410px;
-	height: 29px;
-	margin: 0;
-	padding: 6px 0 0 20px;
-	background: #F3F3F3 url(images/spacer2.gif) no-repeat;
-}
-
-.post .links a {
-	padding: 0 23px;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-.post .links a:hover {
-	text-decoration: underline;
-}
-
-.post .links .more {
-	background: url(images/link.gif) no-repeat;
-}
-
-.post .links .comments {
-	background: url(images/bubble.gif) no-repeat;
-}
-
 /* Sidebar */
 
 #sidebar {
@@ -271,26 +218,15 @@ img {
 	width: 240px;
 }
 
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
 #sidebar li {
 	margin-bottom: 20px;
 	background: #F3F3F3 url(images/spacer1.gif) no-repeat left bottom;
+    list-style: none;	
 }
 
 #sidebar li ul {
 	padding: 15px 20px;
 	line-height: 200%;
-}
-
-#sidebar li li {
-	margin: 0;
-	padding-left: 15px;
-	background: url(images/bluedot.gif) no-repeat 0 11px;
 }
 
 #sidebar h2 {
@@ -301,48 +237,6 @@ img {
 	letter-spacing: -1px;
 	font-size: 1.6em;
 	color: #FFFFFF;
-}
-
-/* Calendar */
-
-#calendar_wrap {
-	padding: 15px 20px;
-}
-
-#calendar table {
-	width: 100%;
-	background: #FFFFFF;
-	border: 1px solid #DBDBDB;
-	text-align: center;
-}
-
-#calendar thead {
-	background: #DBDBDB;
-}
-
-#calendar tbody td {
-	background: #FFFFFF;
-	border: 1px solid #DBDBDB;
-}
-
-#calendar #prev {
-	text-align: left;
-}
-
-#calendar #next {
-	text-align: right;
-}
-
-#calendar tfoot a {
-	text-decoration: none;
-	font-weight: bold;
-}
-
-#calendar #today {
-	background: #FFF3A7;
-	border: 1px solid #FF7400;
-	font-weight: bold;
-	color: #FF7400
 }
 
 /* Footer */
