@@ -55,8 +55,7 @@
     <div>
         <label for="NotesTextBox">
             Notes:</label>
-        <textarea name="NotesTextBox" rows="5" cols="20" id="NotesTextBox">
-            </textarea>
+        <textarea name="NotesTextBox" rows="5" cols="20" id="NotesTextBox"></textarea>
     </div>
     <div>
         <label for="BelarcLiteral">

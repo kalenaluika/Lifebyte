@@ -17,7 +17,7 @@
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        Belarc Advisor Current Profile</h2>
+        Belarc Advisor Current Profile</h2>        
     <p>
         Computer Name: Lifebyte (in WORKGROUP)</p>
     <p>

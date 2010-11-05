@@ -19,6 +19,23 @@
     <h1>
         Lifebyte - Computer Donation</h1>
     <p>
+        You may drop off your donation at Colorado Community Church (for both sites)
+        any weekday between 8 a.m. - 5 p.m. of before and after services on the weekends.
+        Please ask the staff for a donation receipt.
+    </p>
+    <div style="float: left; width: 50%">
+        Aurora Campus<br />
+        2220 S. Chambers Rd.<br />
+        Aurora, CO 80014<br />
+        (303) 783-3838
+    </div>
+    <div style="float: left; width: 50%">
+        Englewood Campus<br />
+        3651 S. Colorado Blvd.<br />
+        Englewood, CO 80113<br />
+        (303) 783-3838
+    </div>
+    <p>
         We are always looking for computers and computer parts. If your computer was purchased
         in at least the year 2000, chances are we can use it. We accept computers, working
         or not, that are at least 500MHz or faster.
@@ -35,7 +52,7 @@
         We recommend <a href="http://www.luminousrecycling.com/wp/">Luminous Recycling</a>
         as a trusted partner.</p>
     <p>
-        Lifebyte has recycled over 5,422 pounds of computer equipment through Luminous.</p>
+        Lifebyte has recycled over 9,960 pounds (4 tons) of computer equipment through Luminous.</p>
     <p>
         Luminous Electronic Recycling<br />
         <a href="http://maps.google.com/maps?f=q&hl=en&geocode=&time=&date=&ttype=&q=11809+E.+51st+St.++Denver,+CO+80239&sll=37.0625,-95.677068&sspn=46.226656,60.380859&ie=UTF8&om=1&s=AARTsJpfX8ENQijPUsfA5gJ8Bwhw7_cymA&view=map">11809 E. 51st St.</a><br />
@@ -56,22 +73,5 @@
     <p>
         We take your data seriously. We use <a href="http://www.dban.org/">DBAN</a> to erase
         the hard drive before we refurbish it.
-    </p>
-    <p>
-        You may also drop off your donation at Colorado Community Church (for both sites)
-        any weekday between 8 a.m. - 5 p.m. of before and after services on the weekends.
-        Please ask the staff for a donation receipt.
-    </p>
-    <div style="float: left; width: 50%">
-        Aurora Campus<br />
-        2220 S. Chambers Rd.<br />
-        Aurora, CO 80014<br />
-        (303) 783-3838
-    </div>
-    <div style="float: left; width: 50%">
-        Englewood Campus<br />
-        3651 S. Colorado Blvd.<br />
-        Englewood, CO 80113<br />
-        (303) 783-3838
-    </div>
+    </p>   
 </asp:Content>

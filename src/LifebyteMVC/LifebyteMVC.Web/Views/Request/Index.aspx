@@ -19,7 +19,7 @@
     <h2>
         Welcome to the Request Page!</h2>
     <p>
-        If you live in the Denver area and are in need of a computer, please call us at
+        If you live in the Denver area, please call us at
         303-256-1224. A Lifebyte member will contact you as soon as possible. Please be
         patient, as sometimes request fulfillments can take over a month or two.
     </p>
