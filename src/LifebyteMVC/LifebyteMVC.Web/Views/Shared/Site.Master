@@ -109,6 +109,7 @@
     <!-- end footer -->
     <script type="text/javascript">
         $("#calendar_wrap").datepicker();
+        /* This is not complete
         $("table.ui-datepicker-calendar a").each(function () {
             $(this).click(function () {
                 $("#text_bubble").html("");
@@ -121,6 +122,7 @@
                 });
             }
         });
+        */
     </script>
 </body>
 </html>
