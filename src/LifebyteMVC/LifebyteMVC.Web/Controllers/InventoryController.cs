@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace LifebyteMVC.Web.Controllers
 {
+    [Authorize]
     public class InventoryController : Controller
     {
         public ActionResult Index()
