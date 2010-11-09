@@ -18,9 +18,9 @@
     <div id="header">
         <div id="logo">
             <h1>
-                <a href="/home/index">Lifbyte</a></h1>
+                <%: Html.ActionLink("Lifebyte", "Index", "Home") %></h1>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/home/index">Computer Ministry</a></p>
+                <%: Html.ActionLink("Computer Ministry", "Index", "Home")%></p>
         </div>
         <div id="rss">
             <a href="/lifebyte.xml">Subscribe to RSS Feed</a></div>
@@ -38,12 +38,12 @@
     <asp:ContentPlaceHolder ID="MenuPlaceHolder" runat="server">
     <div id="menu">
         <ul>
-            <li class="current_page_item"><a href="/home">Home</a></li>
-            <li><a href="/donate">Donate</a></li>            
-            <li><a href="/request">Request</a></li>
-            <li><a href="/volunteer">Volunteer</a></li>
-            <li><a href="/inventory">Inventory</a></li>
-            <li><a href="/recipients">Recipients</a></li>            
+            <li class="current_page_item"><%: Html.ActionLink("Home", "Index", "Home") %></li>
+            <li><%: Html.ActionLink("Donate", "Index", "Donate")%></li>
+            <li><%: Html.ActionLink("Request", "Index", "Request")%></li>
+            <li><%: Html.ActionLink("Volunteer", "Index", "Volunteer")%></li>
+            <li><%: Html.ActionLink("Inventory", "Index", "Inventory")%></li>
+            <li><%: Html.ActionLink("Recipients", "Index", "Recipients")%></li>           
         </ul>
     </div>
     </asp:ContentPlaceHolder>    
