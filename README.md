@@ -4,13 +4,12 @@
 Project Status
 --------------
 
-Week 1 - User Interface
-
-The goal of this week is to build all of the pages without models using plain old XHTML.
-
 Week 2 - Authentication and Models
 
-The goal of this week to build authentication. We might use OpenID. An example project that uses it is [SharpCommerce](http://github.com/nazjunaid/SharpCommerce).
+The goal of this week to build authentication. We are using OpenID. Example projects
+
+* [SharpCommerce](http://github.com/nazjunaid/SharpCommerce)
+* [DotNetOpenID](http://github.com/AArnott/dotnetopenid)
 
 We will also build our models and replace the XHTML in week one with model templates.
 
