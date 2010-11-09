@@ -6,12 +6,12 @@
 <asp:Content ID="MenuContent" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <div id="menu">
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/donate">Donate</a></li>
-            <li><a href="/request">Request</a></li>
-            <li><a href="/volunteer">Volunteer</a></li>
-            <li class="current_page_item"><a href="/inventory">Inventory</a></li>
-            <li><a href="/recipients">Recipients</a></li>
+            <li><%: Html.ActionLink("Home", "Index", "Home") %></li>
+            <li><%: Html.ActionLink("Donate", "Index", "Donate")%></li>
+            <li><%: Html.ActionLink("Request", "Index", "Request")%></li>
+            <li><%: Html.ActionLink("Volunteer", "Index", "Volunteer")%></li>
+            <li class="current_page_item"><%: Html.ActionLink("Inventory", "Index", "Inventory")%></li>
+            <li><%: Html.ActionLink("Recipients", "Index", "Recipients")%></li>
         </ul>
     </div>
 </asp:Content>
