@@ -11,8 +11,8 @@
 
     <div id="login_buttons">
         <img class="openid_large_btn_google"  src="/content/images/google.gif" alt="Google" title="Log in with Google" id="google_login"/>
-        <a href="http://me.yahoo.com/"><img class="openid_large_btn_yahoo" src="../../Content/images/yahoo.gif" alt="Yahoo" title="Log in with Yahoo!" id="yahoo_login"/></a>
-        <a href="http://openid.aol.com/"><img class="openid_large_btn_aol" src="../../Content/images/aol.gif" alt="AOL" title="Log in with AOL" id="aol_login" /></a>        
+        <img class="openid_large_btn_yahoo" src="../../Content/images/yahoo.gif" alt="Yahoo" title="Log in with Yahoo!" id="yahoo_login"/>
+        <img class="openid_large_btn_aol" src="../../Content/images/aol.gif" alt="AOL" title="Log in with AOL" id="aol_login" />        
     </div>
 	
     <form action="Authenticate?ReturnUrl=<%=HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]) %>" method="post" >
@@ -30,6 +30,14 @@
         openidTextbox.focus();
         $("#google_login").click(function () {
             openidTextbox.val("https://www.google.com/accounts/o8/id");
+            $("#submitButton").click();
+        });
+        $("#yahoo_login").click(function () {
+            openidTextbox.val("http://me.yahoo.com/");
+            $("#submitButton").click();
+        });
+        $("#aol_login").click(function () {
+            openidTextbox.val("http://openid.aol.com/");
             $("#submitButton").click();
         });
 	</script>
