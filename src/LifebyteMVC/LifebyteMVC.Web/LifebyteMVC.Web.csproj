@@ -86,11 +86,14 @@
     <Content Include="Content\base.css" />
     <Content Include="Content\Default.css" />
     <Content Include="Content\images\aidmatrixlogo.gif" />
+    <Content Include="Content\images\aol.gif" />
     <Content Include="Content\images\computer.gif" />
     <Content Include="Content\images\facebook.png" />
+    <Content Include="Content\images\google.gif" />
     <Content Include="Content\images\lightbulb.jpg" />
     <Content Include="Content\images\luminous.jpg" />
     <Content Include="Content\images\marbanner.gif" />
+    <Content Include="Content\images\openid.gif" />
     <Content Include="Content\images\search.gif" />
     <Content Include="Content\images\rss.gif" />
     <Content Include="Content\images\bluebar.gif" />
@@ -116,6 +119,7 @@
     <Content Include="Content\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\yahoo.gif" />
     <Content Include="Content\jquery-ui-1.8.6.custom.css" />
     <Content Include="Content\reset-min.css" />
     <Content Include="Content\reset.css" />
