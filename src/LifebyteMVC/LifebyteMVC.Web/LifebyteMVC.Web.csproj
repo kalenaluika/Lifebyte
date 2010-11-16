@@ -79,6 +79,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\InventoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,14 +161,18 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>
     <None Include="lifebytelabels.rdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LifebyteMVC.Core\LifebyteMVC.Core.csproj">
+      <Project>{F01E58EC-F4AE-4E30-B2C4-6604FFF8C2CA}</Project>
+      <Name>LifebyteMVC.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
