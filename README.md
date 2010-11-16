@@ -4,18 +4,9 @@
 Project Status
 --------------
 
-Week 2 - Authentication and Models
-
-The goal of this week to build authentication. We are using OpenID. Example projects
-
-* [SharpCommerce](http://github.com/nazjunaid/SharpCommerce)
-* [DotNetOpenID](http://github.com/AArnott/dotnetopenid)
-
-We will also build our models and replace the XHTML in week one with model templates.
-
 Week 3 - Database
 
-This final week we will persist the data to a database.
+In this week we will persist the data to a database.
 
 History
 --------
