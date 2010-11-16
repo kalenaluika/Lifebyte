@@ -8,11 +8,11 @@ namespace LifebyteMVC.Core
     public class ScheduleType
     {
         
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
 
         /// <summary>
         /// This is either pickup or delivery
         /// </summary>
-        public string FullName { get; set; } 
+        public virtual string FullName { get; set; } 
     }
 }

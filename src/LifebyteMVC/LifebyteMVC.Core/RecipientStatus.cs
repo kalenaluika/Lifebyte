@@ -10,16 +10,16 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// The ID of the recipient status
         /// </summary>
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
 
         /// <summary>
         /// The status of the recipient
         /// </summary>
-        public string Status { get; set; }
+        public virtual string Status { get; set; }
 
         /// <summary>
         /// The description of the status
         /// </summary>
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
     }
 }

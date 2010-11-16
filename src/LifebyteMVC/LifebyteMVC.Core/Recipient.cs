@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace LifebyteMVC.Core
 {
@@ -10,79 +11,88 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// (the unique ID of the recipient)
         /// </summary>
-        public Guid ID { get; set; } 
+        public virtual Guid ID { get; private set; } 
 
-        public string FirstName { get; set; }
+        public virtual string FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public virtual string LastName { get; set; }
 
-        public string Address { get; set; }
+        public virtual string Address { get; set; }
 
-        public string City { get; set; }
+        public virtual string City { get; set; }
 
-        public string State { get; set; }
+        public virtual string State { get; set; }
 
-        public string Zip { get; set; }
+        public virtual string Zip { get; set; }
 
         /// <summary>
         /// (a primary contact number and a secondary one)
         /// </summary>
-        public string Phone { get; set; }
+        public virtual string Phone { get; set; }
  
         /// <summary>
         /// (notes that the volunteer entered about the recipient)
         /// </summary>
-        public string Notes { get; set; }
+        public virtual string Notes { get; set; }
 
         /// <summary>
         /// (either new, needs computer, needs repair, completed, scheduled)
         /// </summary>
-        public RecipientStatus RecipientStatus { get; set; }
+        public virtual RecipientStatus RecipientStatus { get; set; }
 
         /// <summary>
         /// (the date the recipient was scheduled to receive the equipment)
         /// </summary>
-        public DateTime ScheduleDate { get; set; }
+        public virtual DateTime ScheduleDate { get; set; }
 
         /// <summary>
         ///  (either delivery or pick-up)
         /// </summary>        
-        public ScheduleType ScheduleType { get; set; }
+        public virtual ScheduleType ScheduleType { get; set; }
 
         /// <summary>
         ///  (the organization that is receiving the donation if applicable)
         /// </summary>        
-        public string Organization { get; set; }
+        public virtual string Organization { get; set; }
 
         /// <summary>
         ///  (the e-mail address of the recipient)
         /// </summary>        
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
 
         /// <summary>
         ///  (the date the recipient contacted us. We try to help people in the order that they contacted us.)
         /// </summary>
-        public DateTime ContactDate { get; set; }
+        public virtual DateTime ContactDate { get; set; }
 
         /// <summary>
         ///  (the date the record was created)
         /// </summary>        
-        public DateTime CreateDate { get; set; }
+        public virtual DateTime CreateDate { get; set; }
 
         /// <summary>
         /// (the volunteer who created the record)
         /// </summary>
-        public Volunteer CreatedByVolunteer { get; set; }
+        public virtual Volunteer CreatedByVolunteer { get; set; }
 
         /// <summary>
         /// (the date the record was last modified)
         /// </summary>
-        public DateTime LastModifiedDate { get; set; } 
+        public virtual DateTime LastModifiedDate { get; set; } 
 
         /// <summary>
         /// (the volunteer who last modified the record)
         /// </summary>
-        public Volunteer LastModifiedByVolunteer { get; set; } 
+        public virtual Volunteer LastModifiedByVolunteer { get; set; }
 
+        /// <summary>
+        /// The inventory items that a recipient has received.
+        /// </summary>
+        public virtual IList<Inventory> InventoryItems { get; set; }
+
+        public Recipient()
+        {
+            InventoryItems = new List<Inventory>();
+        }
     }
 }

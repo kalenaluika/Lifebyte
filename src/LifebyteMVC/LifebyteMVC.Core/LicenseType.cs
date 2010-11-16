@@ -10,11 +10,11 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// The ID of the license status
         /// </summary>
-        public int ID { get; set; }
+        public virtual int ID { get; set; }
 
         /// <summary>
         /// The type of the license item
         /// </summary>
-        public string FullName { get; set; }       
+        public virtual string FullName { get; set; }       
     }
 }
