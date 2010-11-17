@@ -10,7 +10,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// The ID of the recipient status
         /// </summary>
-        public virtual int ID { get; set; }
+        public virtual int Id { get; set; }
 
         /// <summary>
         /// The status of the recipient
@@ -21,5 +21,15 @@ namespace LifebyteMVC.Core
         /// The description of the status
         /// </summary>
         public virtual string Description { get; set; }
+
+        /// <summary>
+        /// A list of recipients with a given status.
+        /// </summary>
+        public IList<Recipient> Recipients { get; set; }
+
+        public RecipientStatus()
+        {
+            Recipients = new List<Recipient>();
+        }
     }
 }

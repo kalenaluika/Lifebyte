@@ -7,7 +7,7 @@ namespace LifebyteMVC.Core
 {
     public class WindowsLicense
     {
-        public virtual string ID { get; private set; }
+        public virtual string Id { get; private set; }
 
         public virtual LicenseType LicenseType { get; set; }
 

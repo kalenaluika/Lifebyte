@@ -10,7 +10,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// (uniquely identifies the inventory item)
         /// </summary>
-        public virtual Guid ID { get; private set; }
+        public virtual Guid Id { get; private set; }
 
         /// <summary>
         /// (the recipient of the item)

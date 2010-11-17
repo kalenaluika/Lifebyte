@@ -16,10 +16,10 @@ namespace LifebyteMVC.Web.Models
             {
                 return new List<InventoryStatus> 
                 {
-                    new InventoryStatus { Status ="Build", Description="the computer is being built", ID=1},
-                    new InventoryStatus { Status ="Delivered", Description="the computer has been delivered", ID=2},
-                    new InventoryStatus { Status ="Ready for Delivery", Description="the computer is ready for delivery", ID=3},
-                    new InventoryStatus { Status ="Repair", Description="the computer is being repaired", ID=4}
+                    new InventoryStatus { Status ="Build", Description="the computer is being built", Id=1},
+                    new InventoryStatus { Status ="Delivered", Description="the computer has been delivered", Id=2},
+                    new InventoryStatus { Status ="Ready for Delivery", Description="the computer is ready for delivery", Id=3},
+                    new InventoryStatus { Status ="Repair", Description="the computer is being repaired", Id=4}
                 };
             }
         }

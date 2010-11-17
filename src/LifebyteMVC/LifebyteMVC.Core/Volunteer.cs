@@ -7,7 +7,7 @@ namespace LifebyteMVC.Core
 {
     public class Volunteer
     {
-        public virtual string VolunteerID { get; set; }
+        public virtual Guid Id { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
         public virtual string Company { get; set; }

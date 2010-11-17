@@ -11,7 +11,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// (the unique ID of the recipient)
         /// </summary>
-        public virtual Guid ID { get; private set; } 
+        public virtual Guid Id { get; private set; } 
 
         public virtual string FirstName { get; set; }
 
