@@ -15,7 +15,7 @@ namespace LifebyteMVC.Data
         {
             components = new List<Type>
             {
-                typeof(InventoryStatus),
+                typeof(ComputerStatus),
                 typeof(LicenseType),
                 typeof(RecipientStatus),
                 typeof(ScheduleType)

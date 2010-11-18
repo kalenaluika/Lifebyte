@@ -6,6 +6,7 @@ Thumbs.db
 *.user
 *.suo
 *.hbm.xml
+ddl.txt
 [Bb]in
 [Dd]ebug*/
 obj/

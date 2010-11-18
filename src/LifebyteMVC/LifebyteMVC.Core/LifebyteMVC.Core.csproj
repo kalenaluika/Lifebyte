@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inventory.cs" />
-    <Compile Include="InventoryStatus.cs" />
+    <Compile Include="Computer.cs" />
+    <Compile Include="ComputerStatus.cs" />
     <Compile Include="LicenseType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipient.cs" />

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LifebyteMVC.Data;
-using LifebyteMVC.Core;
-using NHibernate;
+﻿using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using FluentNHibernate.Automapping;
+using LifebyteMVC.Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using System.IO;
+using System.Linq;
 
 namespace LifebyteMVC.Data.Test
 {
@@ -79,19 +75,19 @@ namespace LifebyteMVC.Data.Test
         [TestMethod]
         public void AutomappingConfiguration_ShouldMap_Test()
         {
-            Assert.IsTrue(automapConfig.ShouldMap(typeof(Inventory)));
+            Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
         }
 
         [TestMethod]
         public void AutomappingConfiguration_IsComponent_Test()
         {
-            Assert.IsTrue(automapConfig.IsComponent(typeof(InventoryStatus)));
+            Assert.IsTrue(automapConfig.IsComponent(typeof(ComputerStatus)));
         }
 
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files.
         /// </summary>
-        [TestMethod, Ignore]
+        [TestMethod]
         public void AutomappingConfiguration_Mapping_File_Export_Test() 
         { 
             var test = Fluently.Configure()
@@ -105,14 +101,23 @@ namespace LifebyteMVC.Data.Test
 
          private AutoPersistenceModel CreateAutomappings()        
          {            
-             return AutoMap.AssemblyOf<Inventory>(new AutomappingConfiguration())
+             return AutoMap.AssemblyOf<Computer>(new AutomappingConfiguration())
                  .Conventions.Add<CascadeConvention>();        
          }
 
          private void BuildSchema(Configuration config)        
          {
+             //string[] ddl = config.GenerateSchemaCreationScript(NHibernate.Dialect.MsSql2008Dialect.GetDialect());
+
+             //using (StreamWriter sw = new StreamWriter(exportPath + @"\ddl.txt", false))
+             //{
+             //    ddl.ToList().ForEach(d => sw.WriteLine(d));                 
+             //}
+
              new SchemaExport(config)
-                 .Create(false, true);
+                .SetOutputFile(exportPath + @"\ddl.txt")
+                .Create(false, true);
+             
          }
     }
 }

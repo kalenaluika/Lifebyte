@@ -6,20 +6,20 @@ using LifebyteMVC.Core;
 
 namespace LifebyteMVC.Web.Models
 {
-    public class InventoryViewModel
+    public class ComputerViewModel
     {
-        public Inventory Inventory { get; set; }
+        public Computer Computer { get; set; }
 
-        public List<InventoryStatus> InventoryStatuses
+        public List<ComputerStatus> ComputerStatuses
         {
             get
             {
-                return new List<InventoryStatus> 
+                return new List<ComputerStatus> 
                 {
-                    new InventoryStatus { Status ="Build", Description="the computer is being built", Id=1},
-                    new InventoryStatus { Status ="Delivered", Description="the computer has been delivered", Id=2},
-                    new InventoryStatus { Status ="Ready for Delivery", Description="the computer is ready for delivery", Id=3},
-                    new InventoryStatus { Status ="Repair", Description="the computer is being repaired", Id=4}
+                    new ComputerStatus { Status ="Build", Description="the computer is being built", Id=1},
+                    new ComputerStatus { Status ="Delivered", Description="the computer has been delivered", Id=2},
+                    new ComputerStatus { Status ="Ready for Delivery", Description="the computer is ready for delivery", Id=3},
+                    new ComputerStatus { Status ="Repair", Description="the computer is being repaired", Id=4}
                 };
             }
         }

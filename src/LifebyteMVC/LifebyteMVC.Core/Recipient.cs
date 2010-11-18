@@ -88,11 +88,11 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// The inventory items that a recipient has received.
         /// </summary>
-        public virtual IList<Inventory> InventoryItems { get; set; }
+        public virtual IList<Computer> InventoryItems { get; set; }
 
         public Recipient()
         {
-            InventoryItems = new List<Inventory>();
+            InventoryItems = new List<Computer>();
         }
     }
 }

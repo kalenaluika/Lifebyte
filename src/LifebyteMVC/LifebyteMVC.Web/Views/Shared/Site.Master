@@ -9,10 +9,10 @@
     <link href="../../content/default.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/jquery-ui-1.8.6.custom.css" rel="stylesheet" type="text/css" />
     <script src="../../Scripts/jquery-1.4.2-vsdoc.js" type="text/javascript"></script>
-    <script src="../../Scripts/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>    
-    <link rel="meta" href="http://www.lifebyte.org/labels.rdf" type="application/rdf+xml" title="ICRA labels" />
+    <script src="../../Scripts/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
+    <link rel="meta" href="http://www.lifebyte.org/labels.rdf" type="application/rdf+xml"
+        title="ICRA labels" />
     <meta http-equiv="pics-Label" content="(pics-1.1 &quot;http://www.icra.org/pics/vocabularyv03/&quot; l gen true for &quot;http://lifebyte.org&quot; r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 0) gen true for &quot;http://www.lifebyte.org&quot; r (n 0 s 0 v 0 l 0 oa 0 ob 0 oc 0 od 0 oe 0 of 0 og 0 oh 0 c 0))" />
-    
 </head>
 <body>
     <!-- start header -->
@@ -20,7 +20,8 @@
         <div id="logo">
             <h1>
                 <%: Html.ActionLink("Lifebyte", "Index", "Home") %></h1>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;
                 <%: Html.ActionLink("Computer Ministry", "Index", "Home")%></p>
         </div>
         <div id="rss">
@@ -37,17 +38,23 @@
     <!-- end header -->
     <!-- star menu -->
     <asp:ContentPlaceHolder ID="MenuPlaceHolder" runat="server">
-    <div id="menu">
-        <ul>
-            <li class="current_page_item"><%: Html.ActionLink("Home", "Index", "Home") %></li>
-            <li><%: Html.ActionLink("Donate", "Index", "Donate")%></li>
-            <li><%: Html.ActionLink("Request", "Index", "Request")%></li>
-            <li><%: Html.ActionLink("Volunteer", "Index", "Volunteer")%></li>
-            <li><%: Html.ActionLink("Inventory", "Index", "Inventory")%></li>
-            <li><%: Html.ActionLink("Recipients", "Index", "Recipients")%></li>           
-        </ul>
-    </div>
-    </asp:ContentPlaceHolder>    
+        <div id="menu">
+            <ul>
+                <li class="current_page_item">
+                    <%: Html.ActionLink("Home", "Index", "Home") %></li>
+                <li>
+                    <%: Html.ActionLink("Donate", "Index", "Donate")%></li>
+                <li>
+                    <%: Html.ActionLink("Request", "Index", "Request")%></li>
+                <li>
+                    <%: Html.ActionLink("Volunteer", "Index", "Volunteer")%></li>
+                <li>
+                    <%: Html.ActionLink("Inventory", "Index", "Inventory")%></li>
+                <li>
+                    <%: Html.ActionLink("Recipients", "Index", "Recipients")%></li>
+            </ul>
+        </div>
+    </asp:ContentPlaceHolder>
     <!-- end menu -->
     <!-- start page -->
     <div id="page">
@@ -59,9 +66,9 @@
         <!-- end content -->
         <!-- start sidebar -->
         <div id="sidebar">
-            <ul>                
-                <li id="calendar">                    
-                    <div id="calendar_wrap">                        
+            <ul>
+                <li id="calendar">
+                    <div id="calendar_wrap">
                     </div>
                     <div id="text_bubble">
                     </div>
@@ -70,17 +77,22 @@
                     <h2>
                         Connect</h2>
                     <ul>
-                        <li><a href="http://twitter.com/lifebyte"><img src="/Content/images/twitter.png" alt="Twitter" width="180" height="108" /></a></li>
-                        <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355"><img src="/Content/images/facebook.png" width="180" height="180" alt="Facebook" /></a></li>
+                        <li><a href="http://twitter.com/lifebyte">
+                            <img src="/Content/images/twitter.png" alt="Twitter" width="180" height="108" /></a></li>
+                        <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355">
+                            <img src="/Content/images/facebook.png" width="180" height="180" alt="Facebook" /></a></li>
                     </ul>
                 </li>
                 <li>
                     <h2>
-                       Sponsors</h2>
+                        Sponsors</h2>
                     <ul>
-                        <li><a href="http://www.techsoup.org/mar/marList_detail.aspx?ID=248856"><img src="/Content/images/marbanner.gif" width="180" height="87" alt="MAR" /></a></li>
-                        <li><a href="http://www.aidmatrix.com/"><img src="/Content/images/aidmatrixlogo.gif" width="180" height="56" alt="AidMatrix" /></a></li>
-                        <li><a href="http://www.luminousrecycling.com/wp/"><img src="/Content/images/luminous.jpg" width="179" height="114" alt="Luminous" /></a></li>
+                        <li><a href="http://www.techsoup.org/mar/marList_detail.aspx?ID=248856">
+                            <img src="/Content/images/marbanner.gif" width="180" height="87" alt="MAR" /></a></li>
+                        <li><a href="http://www.aidmatrix.com/">
+                            <img src="/Content/images/aidmatrixlogo.gif" width="180" height="56" alt="AidMatrix" /></a></li>
+                        <li><a href="http://www.luminousrecycling.com/wp/">
+                            <img src="/Content/images/luminous.jpg" width="179" height="114" alt="Luminous" /></a></li>
                     </ul>
                 </li>
             </ul>
@@ -91,9 +103,9 @@
     <!-- start footer -->
     <div id="footer">
         <p class="legal">
-           <a href="lifebyte.xml" title="Subscribe">
-                <img src="/content/images/rss.gif" alt="RSS" width="15" height="15" /></a> | Call us
-            at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a>
+            <a href="/lifebyte.xml" title="Subscribe">
+                <img src="/content/images/rss.gif" alt="RSS" width="15" height="15" /></a> |
+            Call us at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a>
             | Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a> |
             Icons by <a href="http://famfamfam.com/">FAMFAMFAM</a>.
         </p>
@@ -109,7 +121,31 @@
     </div>
     <!-- end footer -->
     <script type="text/javascript">
-        $("#calendar_wrap").datepicker();
+        var currentYear;
+        var currentMonth;
+        var calendar = $("#calendar_wrap").datepicker({
+            onChangeMonthYear: function (year, month, inst) {
+                console.log(month);
+                currentMonth = month;
+                console.log(year);
+                currentYear = year;
+            }
+        });
+
+        currentMonth = $(".ui-datepicker-month").html();
+        console.log(currentMonth);
+        currentYear = $(".ui-datepicker-year").html();
+        console.log(currentYear);
+
+
+        $("table.ui-datepicker-calendar a").each(function () {
+            if ($(this).html() === "7") {
+                $(this).addClass("ui-state-active");
+            };
+        });
+
+        
+
         /* This is not complete
         $("table.ui-datepicker-calendar a").each(function () {
             $(this).click(function () {

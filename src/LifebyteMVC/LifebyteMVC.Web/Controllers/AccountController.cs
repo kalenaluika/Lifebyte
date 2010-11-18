@@ -8,6 +8,7 @@ using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.Messaging;
 using System.Web.Security;
 using System.Web.Routing;
+using LifebyteMVC.Core;
 
 namespace LifebyteMVC.Web.Controllers
 {
@@ -22,7 +23,7 @@ namespace LifebyteMVC.Web.Controllers
 
         public ActionResult Index()
         {
-            return RedirectToAction("LogOn");
+            return RedirectToAction("LogOn");            
         }
 
         public ActionResult Authenticate(string returnUrl) {
