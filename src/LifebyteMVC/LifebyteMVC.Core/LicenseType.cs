@@ -20,7 +20,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// A list of Windows licenses with a given type.
         /// </summary>
-        public IList<WindowsLicense> WindowsLicenses { get; set; }
+        public virtual IList<WindowsLicense> WindowsLicenses { get; set; }
 
         public LicenseType()
         {

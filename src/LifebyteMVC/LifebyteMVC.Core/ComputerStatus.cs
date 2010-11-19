@@ -25,7 +25,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// A list of inventory items with a given status.
         /// </summary>
-        public IList<Computer> Computers { get; set; }
+        public virtual IList<Computer> Computers { get; set; }
 
         public ComputerStatus()
         {

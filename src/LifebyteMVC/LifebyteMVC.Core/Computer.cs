@@ -5,11 +5,13 @@ using System.Text;
 
 namespace LifebyteMVC.Core
 {
+    
     public class Computer
     {
         /// <summary>
         /// (uniquely identifies the computer)
         /// </summary>
+        
         public virtual Guid Id { get; private set; }
 
         /// <summary>

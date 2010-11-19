@@ -29,7 +29,7 @@ namespace LifebyteMVC.Data
 
         public override bool IsComponent(Type type)
         {
-            return components.Contains(type);
+            return false; //components.Contains(type);
         }
     }
 }

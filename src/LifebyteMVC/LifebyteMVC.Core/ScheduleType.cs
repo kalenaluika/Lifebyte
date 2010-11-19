@@ -18,7 +18,7 @@ namespace LifebyteMVC.Core
         /// <summary>
         /// A list of recipients with a given status.
         /// </summary>
-        public IList<Recipient> Recipients { get; set; }
+        public virtual IList<Recipient> Recipients { get; set; }
 
         public ScheduleType()
         {

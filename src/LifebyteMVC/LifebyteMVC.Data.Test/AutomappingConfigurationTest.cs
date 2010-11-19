@@ -78,7 +78,7 @@ namespace LifebyteMVC.Data.Test
             Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AutomappingConfiguration_IsComponent_Test()
         {
             Assert.IsTrue(automapConfig.IsComponent(typeof(ComputerStatus)));
@@ -91,7 +91,7 @@ namespace LifebyteMVC.Data.Test
         public void AutomappingConfiguration_Mapping_File_Export_Test() 
         { 
             var test = Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.InMemory())
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString("server=windows7-imac\\sqlexpress;database=LifebyteDB;trusted_connection=true;"))
                 .Mappings(m => m.AutoMappings
                     .Add(CreateAutomappings)
                     .ExportTo(exportPath))
@@ -116,7 +116,7 @@ namespace LifebyteMVC.Data.Test
 
              new SchemaExport(config)
                 .SetOutputFile(exportPath + @"\ddl.txt")
-                .Create(false, true);
+                .Create(false, false);
              
          }
     }
