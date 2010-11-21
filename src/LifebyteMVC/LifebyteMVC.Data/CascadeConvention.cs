@@ -4,9 +4,7 @@ using FluentNHibernate.Conventions.Instances;
 namespace LifebyteMVC.Data
 {
     /// <summary>    
-    /// This is a convention that will be applied to all entities in your application. What this particular    
-    /// convention does is to specify that many-to-one, one-to-many, and many-to-many relationships will all    
-    /// have their Cascade option set to All.    
+    /// This is a convention that will be applied to all entities.
     /// </summary>    
     public class CascadeConvention : IReferenceConvention, IHasManyConvention, IHasManyToManyConvention
     {

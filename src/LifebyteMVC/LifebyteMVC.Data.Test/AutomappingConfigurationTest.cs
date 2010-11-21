@@ -3,10 +3,9 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using LifebyteMVC.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using System.IO;
-using System.Linq;
 
 namespace LifebyteMVC.Data.Test
 {
@@ -19,6 +18,7 @@ namespace LifebyteMVC.Data.Test
         private AutomappingConfiguration automapConfig;
         private TestContext testContextInstance;
         private string exportPath;
+        private string connectionString;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -46,6 +46,7 @@ namespace LifebyteMVC.Data.Test
             string localPath = System.Environment.CurrentDirectory;
             localPath = localPath.Substring(0, localPath.IndexOf("LifebyteMVC") + 11);
             exportPath = localPath + @"\LifebyteMVC.Data.Test";
+            connectionString = "server=localhost;database=LifebyteDB;trusted_connection=true;";
         }
 
         /// <summary>
@@ -56,6 +57,7 @@ namespace LifebyteMVC.Data.Test
         {
             automapConfig = null;
             exportPath = null;
+            connectionString = null;
         }
 
         #region Additional test attributes
@@ -72,52 +74,68 @@ namespace LifebyteMVC.Data.Test
         //
         #endregion
 
+        /// <summary>
+        /// The Computer entity should be mapped.
+        /// </summary>
         [TestMethod]
         public void AutomappingConfiguration_ShouldMap_Test()
         {
             Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
         }
 
-        [TestMethod, Ignore]
-        public void AutomappingConfiguration_IsComponent_Test()
-        {
-            Assert.IsTrue(automapConfig.IsComponent(typeof(ComputerStatus)));
-        }
-
         /// <summary>
-        /// Unignore to generate the hbm.xml mapping files.
+        /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
         [TestMethod]
-        public void AutomappingConfiguration_Mapping_File_Export_Test() 
-        { 
+        public void AutomappingConfiguration_Mapping_File_Export_Test()
+        {
             var test = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString("server=windows7-imac\\sqlexpress;database=LifebyteDB;trusted_connection=true;"))
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
                 .Mappings(m => m.AutoMappings
                     .Add(CreateAutomappings)
                     .ExportTo(exportPath))
                 .ExposeConfiguration(BuildSchema)
-                .BuildSessionFactory(); 
+                .BuildSessionFactory();
+
+            test.Close();
         }
 
-         private AutoPersistenceModel CreateAutomappings()        
-         {            
-             return AutoMap.AssemblyOf<Computer>(new AutomappingConfiguration())
-                 .Conventions.Add<CascadeConvention>();        
-         }
+        /// <summary>    
+        /// Matches the automapping to the database.
+        /// </summary>
+        /// <remarks>http://ayende.com/Blog/archive/2006/08/09/NHibernateMappingCreatingSanityChecks.aspx</remarks>
+        [TestMethod]
+        public void AutomappingConfiguration_Mapping_Confirmation_Test()
+        {
+            var nHibernateSession = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
+                .Mappings(m => m.AutoMappings
+                    .Add(CreateAutomappings))
+                .BuildSessionFactory();
 
-         private void BuildSchema(Configuration config)        
-         {
-             //string[] ddl = config.GenerateSchemaCreationScript(NHibernate.Dialect.MsSql2008Dialect.GetDialect());
+            using (ISession session = nHibernateSession.OpenSession())
+            {
+                var allClassMetadata = session.SessionFactory.GetAllClassMetadata();
 
-             //using (StreamWriter sw = new StreamWriter(exportPath + @"\ddl.txt", false))
-             //{
-             //    ddl.ToList().ForEach(d => sw.WriteLine(d));                 
-             //}
+                foreach (var entry in allClassMetadata)
+                {
+                    session.CreateCriteria(entry.Value.GetMappedClass(EntityMode.Poco))
+                         .SetMaxResults(0).List();
+                }
+            }
+        }
 
-             new SchemaExport(config)
-                .SetOutputFile(exportPath + @"\ddl.txt")
-                .Create(false, false);
-             
-         }
+        private AutoPersistenceModel CreateAutomappings()
+        {
+            return AutoMap.AssemblyOf<Computer>(new AutomappingConfiguration())
+                .Conventions.Add<CascadeConvention>();
+        }
+
+        private void BuildSchema(Configuration config)
+        {
+            new SchemaExport(config)
+               .SetOutputFile(exportPath + @"\ddl.txt")
+               .Create(false, false);
+        }
     }
 }
