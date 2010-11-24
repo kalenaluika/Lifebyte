@@ -4,7 +4,9 @@
 Project Status
 --------------
 
-The code is not ready to be released yet. Please take a look at the issues list.
+The code is still in its early stages. We need perform CRUD on data, authenticate and authorize the volunteers, and code refactoring.
+
+Please take a look at the issues list.
 
 History
 --------
@@ -43,4 +45,4 @@ There are several teams that you can join.
 Thank You
 ----------
 
-We really appreciate your interest in out ministry. We hope we can be a blessing to you.
+We really appreciate your interest in our ministry. We hope we can be a blessing to you.
