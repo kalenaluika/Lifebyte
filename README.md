@@ -4,9 +4,7 @@
 Project Status
 --------------
 
-Week 3 - Database
-
-In this week we will persist the data to a database.
+The code is not ready to be released yet. Please take a look at the issues list.
 
 History
 --------
