@@ -4,7 +4,7 @@
 Project Status
 --------------
 
-The code is still in its early stages. We need perform CRUD on data, authenticate and authorize the volunteers, and code refactoring.
+The code is still in its early stages.
 
 Please take a look at the issues list.
 
