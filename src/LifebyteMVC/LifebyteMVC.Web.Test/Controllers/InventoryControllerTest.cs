@@ -85,7 +85,7 @@ namespace LifebyteMVC.Web.Test.Controllers
         public void InventoryController_Belarc_Test()
         {
             Guid inventoryID = Guid.NewGuid();
-            ViewResult result = (ViewResult)controller.Belarc(inventoryID);
+            ViewResult result = (ViewResult)controller.Manifest(inventoryID);
 
             Assert.IsNotNull(result);
         }

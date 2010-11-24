@@ -121,15 +121,17 @@
     </div>
     <!-- end footer -->
     <script type="text/javascript">
+        $("#calendar_wrap").datepicker();
+        /* This is not complete
         var currentYear;
         var currentMonth;
         var calendar = $("#calendar_wrap").datepicker({
-            onChangeMonthYear: function (year, month, inst) {
-                console.log(month);
-                currentMonth = month;
-                console.log(year);
-                currentYear = year;
-            }
+        onChangeMonthYear: function (year, month, inst) {
+        console.log(month);
+        currentMonth = month;
+        console.log(year);
+        currentYear = year;
+        }
         });
 
         currentMonth = $(".ui-datepicker-month").html();
@@ -139,25 +141,9 @@
 
 
         $("table.ui-datepicker-calendar a").each(function () {
-            if ($(this).html() === "7") {
-                $(this).addClass("ui-state-active");
-            };
-        });
-
-        
-
-        /* This is not complete
-        $("table.ui-datepicker-calendar a").each(function () {
-            $(this).click(function () {
-                $("#text_bubble").html("");
-            })
-            if ($(this).html() === "7") {                
-                $(this).click(function () {
-                    $("#text_bubble").html("hello");  
-                }).addClass("ui-state-active").attr("title", function () {
-                    return "hello";
-                });
-            }
+        if ($(this).html() === "7") {
+        $(this).addClass("ui-state-active");
+        };
         });
         */
     </script>

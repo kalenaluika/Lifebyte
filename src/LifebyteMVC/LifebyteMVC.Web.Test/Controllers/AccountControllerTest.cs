@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LifebyteMVC.Web.Controllers;
 using System.Web.Mvc;
 using System.Web.Routing;
+using LifebyteMVC.Web.Models;
 
 namespace LifebyteMVC.Web.Test.Controllers
 {
@@ -67,27 +68,24 @@ namespace LifebyteMVC.Web.Test.Controllers
         //
         #endregion
 
+        /// <summary>
+        /// These tests are not working.
+        /// </summary>
         [TestMethod, Ignore]
-        public void AccountController_LogOn_Test()
+        public void AccountController_Index_Test()
         {
-            ViewResult result = (ViewResult)controller.LogOn();
-            
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod, Ignore]
-        public void AccountController_Index_Redirects_To_LogOn_Test()
-        {
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Index();
+            ViewResult result = (ViewResult)controller.Index();
 
             Assert.IsNotNull(result);
         }
 
-        //TODO:  Moq Http Context and Authentication
         [TestMethod, Ignore]
-        public void AccountController_Authenticate_Test()
+        public void AccountController_Index_Post_Test()
         {
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Authenticate(string.Empty);
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.Index(new SignInViewModel
+                {
+                    OpenIdUrl = "test"
+                });
 
             Assert.IsNotNull(result);
         }

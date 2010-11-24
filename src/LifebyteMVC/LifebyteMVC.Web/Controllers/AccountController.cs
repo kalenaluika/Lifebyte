@@ -1,54 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
-using DotNetOpenAuth.OpenId.RelyingParty;
-using DotNetOpenAuth.OpenId;
-using DotNetOpenAuth.Messaging;
+﻿using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.Routing;
-using LifebyteMVC.Core;
+using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OpenId;
+using DotNetOpenAuth.OpenId.RelyingParty;
+using LifebyteMVC.Web.Models;
 
+// TODO Test this before release!
 namespace LifebyteMVC.Web.Controllers
 {
+    /// <summary>
+    /// We use Open ID as the way to authenticate a volunteer.
+    /// </summary>
     public class AccountController : Controller
     {
         private static OpenIdRelyingParty openid = new OpenIdRelyingParty();
-
-        public ActionResult LogOn()
+        
+        /// <summary>
+        /// This view contains the fields needed to sign into the site.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Index()
+        /// <summary>
+        /// This is the post action to the index view.
+        /// This action will set session variables and make a 
+        /// get call to the Authenticate action result.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Index(SignInViewModel model)
         {
-            return RedirectToAction("LogOn");            
+            Session["OpenIdUrl"] = model.OpenIdUrl;
+            return Redirect("Authenticate/?returnUrl=" + model.ReturnUrl);
         }
 
+        /// <summary>
+        /// This is the post from the Index view.
+        /// It is also the get request from the provider.
+        /// </summary>
+        /// <param name="returnUrl">The URL to return the volunteer to after a 
+        /// successful sign in.</param>
+        /// <returns></returns>
         public ActionResult Authenticate(string returnUrl) {
-			var response = openid.GetResponse();
+            SignInViewModel model = new SignInViewModel
+            {
+                ReturnUrl = returnUrl
+            };
+
+            if (!ModelState.IsValid || Session["OpenIdUrl"] == null)
+            {
+                return View("Index", model);
+            }
+
+            model.OpenIdUrl = Session["OpenIdUrl"].ToString();
+
+            var response = openid.GetResponse();
 
             if (response == null)
             {
                 // Stage 2: user submitting Identifier
                 Identifier id;
-                if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+                if (Identifier.TryParse(model.OpenIdUrl, out id))
                 {
                     try
                     {
-                        return openid.CreateRequest(Request.Form["openid_identifier"]).RedirectingResponse.AsActionResult();
+                        return openid.CreateRequest(model.OpenIdUrl)
+                            .RedirectingResponse.AsActionResult();
                     }
                     catch (ProtocolException ex)
                     {
-                        ViewData["Message"] = ex.Message;
-                        return View("LogOn");
+                        ModelState.AddModelError("ProtocolException", ex.Message);
                     }
                 }
                 else
                 {
-                    ViewData["Message"] = "Invalid identifier";
-                    return View("LogOn");
+                    ModelState.AddModelError("OpenIdUrl", "Invalid identifier");
                 }
             }
             else
@@ -59,23 +88,24 @@ namespace LifebyteMVC.Web.Controllers
                     case AuthenticationStatus.Authenticated:
                         Session["FriendlyIdentifier"] = response.FriendlyIdentifierForDisplay;
                         FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
-                        if (!string.IsNullOrEmpty(returnUrl))
+                        if (!string.IsNullOrEmpty(model.ReturnUrl))
                         {
-                            return Redirect(returnUrl);
+                            return Redirect(model.ReturnUrl);
                         }
                         else
                         {
                             return RedirectToAction("Index", "Home");
                         }
                     case AuthenticationStatus.Canceled:
-                        ViewData["Message"] = "Canceled at provider";
-                        return View("LogOn");
+                        ModelState.AddModelError("OpenIdUrl", "The sign in was canceled.");
+                        break;
                     case AuthenticationStatus.Failed:
-                        ViewData["Message"] = response.Exception.Message;
-                        return View("LogOn");
+                        ModelState.AddModelError("OpenIdUrl", response.Exception.Message);
+                        break;
                 }
             }
-            return new EmptyResult();
+
+            return View("Index", model);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace LifebyteMVC.Core
 {
     public class WindowsLicense
@@ -12,14 +8,20 @@ namespace LifebyteMVC.Core
         public virtual LicenseType LicenseType { get; set; }
 
         /// <summary>
-        /// (the date the license was reported to Microsoft)
+        /// The date the license was reported to Microsoft.
         /// </summary>
         public virtual string ReportDate { get; set; }
 
         /// <summary>
-        /// ( a code used for internal reporting. Example: 2009.12.21.36)
+        /// A code used for internal reporting.
         /// </summary>
+        /// <example>2009.12.21.36</example>
         public virtual string LocationID { get; set; }
 
+        /// <summary>
+        /// We do not delete from the website. We only set records to be inactive and 
+        /// filter them out of search results.
+        /// </summary>
+        public virtual bool Active { get; set; }
     }
 }

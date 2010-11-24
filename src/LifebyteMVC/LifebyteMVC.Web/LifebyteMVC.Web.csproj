@@ -80,6 +80,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\InventoryViewModel.cs" />
+    <Compile Include="Models\SignInViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +133,7 @@
     <Content Include="Scripts\jquery-1.4.2.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />
-    <Content Include="Views\Account\LogOn.aspx" />
+    <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Donate\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Inventory\Belarc.aspx" />

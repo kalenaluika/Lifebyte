@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 
 namespace LifebyteMVC.Core
 {
     public class Recipient
     {
-        /// <summary>
-        /// (the unique ID of the recipient)
-        /// </summary>
-        public virtual Guid Id { get; private set; } 
+        public virtual Guid Id { get; private set; }
 
         public virtual string FirstName { get; set; }
 
         public virtual string LastName { get; set; }
+
+        public virtual string Organization { get; set; }
 
         public virtual string Address { get; set; }
 
@@ -25,74 +21,65 @@ namespace LifebyteMVC.Core
 
         public virtual string Zip { get; set; }
 
-        /// <summary>
-        /// (a primary contact number and a secondary one)
-        /// </summary>
+        public virtual string Email { get; set; }
+
         public virtual string Phone { get; set; }
- 
+
+        public virtual RecipientStatus RecipientStatus { get; set; }
+
         /// <summary>
-        /// (notes that the volunteer entered about the recipient)
+        /// Notes that the volunteer entered about the recipient.
         /// </summary>
         public virtual string Notes { get; set; }
 
         /// <summary>
-        /// (either new, needs computer, needs repair, completed, scheduled)
-        /// </summary>
-        public virtual RecipientStatus RecipientStatus { get; set; }
-
-        /// <summary>
-        /// (the date the recipient was scheduled to receive the equipment)
-        /// </summary>
-        public virtual DateTime ScheduleDate { get; set; }
-
-        /// <summary>
-        ///  (either delivery or pick-up)
-        /// </summary>        
-        public virtual ScheduleType ScheduleType { get; set; }
-
-        /// <summary>
-        ///  (the organization that is receiving the donation if applicable)
-        /// </summary>        
-        public virtual string Organization { get; set; }
-
-        /// <summary>
-        ///  (the e-mail address of the recipient)
-        /// </summary>        
-        public virtual string Email { get; set; }
-
-        /// <summary>
-        ///  (the date the recipient contacted us. We try to help people in the order that they contacted us.)
+        /// The date the recipient contacted us. 
+        /// We try to help people in the order that they contacted us.
         /// </summary>
         public virtual DateTime ContactDate { get; set; }
 
         /// <summary>
-        ///  (the date the record was created)
+        /// The date the recipient was scheduled to receive the computer.
+        /// </summary>
+        public virtual DateTime ScheduleDate { get; set; }
+
+        public virtual ScheduleType ScheduleType { get; set; }
+
+        /// <summary>
+        /// The date the record was created.
         /// </summary>        
         public virtual DateTime CreateDate { get; set; }
 
         /// <summary>
-        /// (the volunteer who created the record)
+        /// The volunteer who created the record.
         /// </summary>
         public virtual Volunteer CreatedByVolunteer { get; set; }
 
         /// <summary>
-        /// (the date the record was last modified)
+        /// The date the record was last modified.
         /// </summary>
-        public virtual DateTime LastModifiedDate { get; set; } 
+        public virtual DateTime LastModifiedDate { get; set; }
 
         /// <summary>
-        /// (the volunteer who last modified the record)
+        /// The volunteer who last modified the record.
         /// </summary>
         public virtual Volunteer LastModifiedByVolunteer { get; set; }
 
         /// <summary>
-        /// The inventory items that a recipient has received.
+        /// The computers that a recipient has received.
+        /// This is needed by the ORM to link to a computer.
         /// </summary>
-        public virtual IList<Computer> InventoryItems { get; set; }
+        public virtual IList<Computer> Computers { get; set; }
+
+        /// <summary>
+        /// We do not delete from the website. We only set records to be inactive and 
+        /// filter them out of search results.
+        /// </summary>
+        public virtual bool Active { get; set; }
 
         public Recipient()
         {
-            InventoryItems = new List<Computer>();
+            Computers = new List<Computer>();
         }
     }
 }

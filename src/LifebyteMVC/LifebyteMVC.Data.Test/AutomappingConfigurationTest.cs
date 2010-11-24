@@ -10,7 +10,8 @@ using NHibernate.Tool.hbm2ddl;
 namespace LifebyteMVC.Data.Test
 {
     /// <summary>
-    /// Tests for AutomappingConfiguration
+    /// Tests for AutomappingConfiguration.
+    /// These tests generate extra files such as HBM.XML and DDL files if enabled.
     /// </summary>
     [TestClass]
     public class AutomappingConfigurationTest
@@ -37,20 +38,21 @@ namespace LifebyteMVC.Data.Test
         }
 
         /// <summary>
-        /// Use TestInitialize to run code before running each test 
+        /// Use TestInitialize to run code before running each test.
         /// </summary>
         [TestInitialize()]
         public void MyTestInitialize()
         {
             automapConfig = new AutomappingConfiguration();
-            string localPath = System.Environment.CurrentDirectory;
-            localPath = localPath.Substring(0, localPath.IndexOf("LifebyteMVC") + 11);
-            exportPath = localPath + @"\LifebyteMVC.Data.Test";
+            exportPath = getExportPath();
+
+            // This string might vary depending on your computer.
+            // If you change this, be sure to set it back.
             connectionString = "server=localhost;database=LifebyteDB;trusted_connection=true;";
         }
 
         /// <summary>
-        /// Use TestCleanup to run code after each test has run
+        /// Use TestCleanup to run code after each test has run.
         /// </summary>
         [TestCleanup()]
         public void MyTestCleanup()
@@ -86,7 +88,7 @@ namespace LifebyteMVC.Data.Test
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
-        [TestMethod]
+        [TestMethod, Ignore]
         public void AutomappingConfiguration_Mapping_File_Export_Test()
         {
             var test = Fluently.Configure()
@@ -136,6 +138,16 @@ namespace LifebyteMVC.Data.Test
             new SchemaExport(config)
                .SetOutputFile(exportPath + @"\ddl.txt")
                .Create(false, false);
+        }
+
+        private string getExportPath()
+        {
+            string localPath = System.Environment.CurrentDirectory;
+            string folderName = "LifebyteMVC";
+            int length = localPath.IndexOf(folderName) + folderName.Length;
+            localPath = localPath.Substring(0, length);
+
+            return localPath + @"\LifebyteMVC.Data.Test";
         }
     }
 }
