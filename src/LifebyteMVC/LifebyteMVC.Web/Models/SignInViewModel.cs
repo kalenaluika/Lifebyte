@@ -1,4 +1,5 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+
 namespace LifebyteMVC.Web.Models
 {
     public class SignInViewModel
@@ -11,6 +12,7 @@ namespace LifebyteMVC.Web.Models
         /// <summary>
         /// The URL of the Open ID provider.
         /// </summary>
+        [Required(ErrorMessage="An Open ID URL is required.")]
         public string OpenIdUrl { get; set; }
     }
 }

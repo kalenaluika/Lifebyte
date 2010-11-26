@@ -17,10 +17,10 @@
     </div>
 	
     <p>If you do not see your Open ID provider in the list above, let us know. We can add them.</p>
-    <p>In the meantime, please enter your Open ID provider's URL in the textbox below.</p>
+    <p>In the meantime, you can enter your Open ID provider's URL in the textbox below.</p>
     <p>
-    <label for="openIdUrl">Open ID:</label>
-    <%: Html.TextBox("OpenIDUrl") %>
+    <label for="openIdUrl">* Open ID:</label>
+    <%: Html.TextBox("OpenIdUrl", Model.OpenIdUrl) %>
     </p>
     <p>
 	<input id="submitButton" type="submit" value="Sign In" />
@@ -31,7 +31,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
     <script type="text/javascript">
-        var openidTextbox = $("#OpenIDUrl");
+        var openidTextbox = $("#OpenIdUrl");
         openidTextbox.focus();
 
         var submitButton = $("#submitButton");

@@ -133,6 +133,7 @@
     <Content Include="Scripts\jquery-1.4.2.js" />
     <Content Include="Scripts\jquery-1.4.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.6.custom.min.js" />
+    <Content Include="Scripts\jquery-validation-summary-1.0.0.js" />
     <Content Include="Views\Account\Index.aspx" />
     <Content Include="Views\Donate\Index.aspx" />
     <Content Include="Views\Home\Index.aspx" />

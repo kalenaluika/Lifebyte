@@ -51,7 +51,7 @@ namespace LifebyteMVC.Web.Test.Controllers
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void PrivacyController_Index_Test()
         {
             //Arrange
             PrivacyController controller = new PrivacyController();

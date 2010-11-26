@@ -71,21 +71,29 @@ namespace LifebyteMVC.Web.Test.Controllers
         /// <summary>
         /// These tests are not working.
         /// </summary>
-        [TestMethod, Ignore]
+        [TestMethod]
         public void AccountController_Index_Test()
         {
             ViewResult result = (ViewResult)controller.Index();
+            
+            Assert.IsInstanceOfType(result.ViewData.Model, typeof(SignInViewModel));
+        }
+
+        [TestMethod]
+        public void AccountController_Index_Post_Test()
+        {
+            RedirectResult result = (RedirectResult)controller.Index(new SignInViewModel
+                {
+                    OpenIdUrl = "test"
+                });
 
             Assert.IsNotNull(result);
         }
 
-        [TestMethod, Ignore]
-        public void AccountController_Index_Post_Test()
+        [TestMethod]
+        public void AccountController_Index_Post_Invalid_Model_Test()
         {
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Index(new SignInViewModel
-                {
-                    OpenIdUrl = "test"
-                });
+            RedirectResult result = (RedirectResult)controller.Index(new SignInViewModel());
 
             Assert.IsNotNull(result);
         }

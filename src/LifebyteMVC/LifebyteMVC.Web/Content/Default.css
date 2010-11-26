@@ -7,6 +7,9 @@ http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
 
+/* General HTML Rules
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
+
 body
 {
     margin: 0;
@@ -100,7 +103,8 @@ label
     font-weight: bold;
 }
 
-/* Header */
+/* Header 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #header
 {
@@ -140,7 +144,8 @@ label
     font-weight: bold;
 }
 
-/* RSS */
+/* RSS 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #rss
 {
@@ -161,7 +166,8 @@ label
     text-decoration: underline;
 }
 
-/* Search */
+/* Search 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #search
 {
@@ -192,7 +198,8 @@ label
     display: none;
 }
 
-/* Menu */
+/* Menu 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #menu
 {
@@ -236,7 +243,8 @@ label
     text-decoration: underline;
 }
 
-/* Page */
+/* Page 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #page
 {
@@ -245,7 +253,8 @@ label
     padding: 30px 0 30px 0;
 }
 
-/* Content */
+/* Content 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #content
 {
@@ -253,7 +262,8 @@ label
     width: 590px;
 }
 
-/* Sidebar */
+/* Sidebar 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #sidebar
 {
@@ -283,7 +293,8 @@ label
     color: #FFFFFF;
 }
 
-/* Footer */
+/* Footer 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #footer
 {
@@ -307,7 +318,8 @@ label
     text-decoration: none;
 }
 
-/* Sign In */
+/* Sign In 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
 #google
 {
@@ -337,4 +349,17 @@ label
     border-style: solid;
     border-width: 2px;
     cursor: pointer;
+}
+
+/* Forms 
+~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
+
+.ui-state-error
+{  
+    padding: 5px 5px 0 5px;
+}
+
+.ui-state-error ul li
+{
+    list-style: none;
 }

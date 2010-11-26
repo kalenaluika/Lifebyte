@@ -12,16 +12,14 @@ namespace LifebyteMVC.Web.Controllers
     /// We use Open ID as the way to authenticate a volunteer.
     /// </summary>
     public class AccountController : Controller
-    {
-        private static OpenIdRelyingParty openid = new OpenIdRelyingParty();
-        
+    {   
         /// <summary>
         /// This view contains the fields needed to sign into the site.
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            return View(new SignInViewModel());
         }
 
         /// <summary>
@@ -33,8 +31,13 @@ namespace LifebyteMVC.Web.Controllers
         [HttpPost]
         public ActionResult Index(SignInViewModel model)
         {
-            Session["OpenIdUrl"] = model.OpenIdUrl;
-            return Redirect("Authenticate/?returnUrl=" + model.ReturnUrl);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            return Redirect(string.Format("Authenticate/?returnUrl={0}&openIdUrl={1}",
+                model.ReturnUrl, model.OpenIdUrl));
         }
 
         /// <summary>
@@ -44,23 +47,21 @@ namespace LifebyteMVC.Web.Controllers
         /// <param name="returnUrl">The URL to return the volunteer to after a 
         /// successful sign in.</param>
         /// <returns></returns>
-        public ActionResult Authenticate(string returnUrl) {
+        public ActionResult Authenticate(string returnUrl, string openIdUrl)
+        {
             SignInViewModel model = new SignInViewModel
             {
                 ReturnUrl = returnUrl
             };
 
-            if (!ModelState.IsValid || Session["OpenIdUrl"] == null)
-            {
-                return View("Index", model);
-            }
-
-            model.OpenIdUrl = Session["OpenIdUrl"].ToString();
+            OpenIdRelyingParty openid = new OpenIdRelyingParty();
 
             var response = openid.GetResponse();
 
             if (response == null)
             {
+                model.OpenIdUrl = openIdUrl;                
+
                 // Stage 2: user submitting Identifier
                 Identifier id;
                 if (Identifier.TryParse(model.OpenIdUrl, out id))
@@ -77,7 +78,7 @@ namespace LifebyteMVC.Web.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("OpenIdUrl", "Invalid identifier");
+                    ModelState.AddModelError("OpenIdUrl", "Invalid Open ID URL");
                 }
             }
             else
