@@ -24,12 +24,10 @@
             <p>
                 <%: Html.ActionLink("Computer Ministry", "Index", "Home", new { id="homepageLink" })%></p>
         </div>
-        <div id="rss">
-            <a href="/lifebyte.xml">Subscribe to RSS Feed</a></div>
         <div id="profile">
             <% if (Request.IsAuthenticated)
                { %>
-            Welcome <strong><%: Page.User.Identity.Name%></strong>!
+            Welcome <strong><%: Page.User.Identity.Name%></strong>!<br />
             <%: Html.ActionLink("Sign Out", "SignOut", "Account")%>
             |
             <%: Html.ActionLink("Edit Profile", "Index", "Profile")%>

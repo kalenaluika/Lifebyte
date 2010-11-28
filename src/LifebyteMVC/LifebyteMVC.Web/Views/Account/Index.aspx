@@ -16,10 +16,10 @@
         <img id="aol" src="/Content/images/aol.gif" alt="AOL" title="Sign in with AOL" />        
     </div>
 	
-    <p>If you do not see your Open ID provider in the list above, let us know. We can add them.</p>
-    <p>In the meantime, you can enter your Open ID provider's URL in the textbox below.</p>
+    <p>If you do not see your OpenID provider in the list above, let us know. We can add them.</p>
+    <p>In the meantime, you can enter your OpenID provider's URL in the textbox below.</p>
     <p>
-    <label for="openIdUrl">* Open ID:</label>
+    <label for="openIdUrl">* OpenID URL:</label>
     <%: Html.TextBox("OpenIdUrl", Model.OpenIdUrl) %>
     </p>
     <p>

@@ -82,6 +82,7 @@ namespace LifebyteMVC.Web.Controllers
 
             if (ModelState.IsValid)
             {
+                // The Authenticate method will add model state errors.
                 var volunteer = model.Authenticate(ModelState);
 
                 // Guard against an authenticated volunteer who is not in the database yet.
