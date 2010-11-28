@@ -24,16 +24,13 @@ namespace LifebyteMVC.Core
 
         public virtual string Email { get; set; }
 
-        /// <summary>
-        /// Open ID providers send a unique ID to us. 
-        /// We will use this value to find the volunteer's record.
-        /// </summary>
-        public virtual string OpenIdentifier { get; set; }
+        public virtual DateTime LastSignInDate { get; set; }
 
         /// <summary>
-        /// The Open ID URL the volunteer used in order to authenticate.
+        /// The Open ID provider information.
+        /// We will use this value to find the volunteer's record.
         /// </summary>
-        public virtual string OpenIdUrl { get; set; }
+        public virtual string ClaimedIdentifier { get; set; }
 
         /// <summary>
         /// We do not delete from the website. We only set records to be inactive and 

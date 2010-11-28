@@ -16,7 +16,6 @@ namespace LifebyteMVC.Data.Test
     [TestClass]
     public class AutomappingConfigurationTest
     {
-        private AutomappingConfiguration automapConfig;
         private TestContext testContextInstance;
         private string exportPath;
         private string connectionString;
@@ -43,7 +42,6 @@ namespace LifebyteMVC.Data.Test
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            automapConfig = new AutomappingConfiguration();
             exportPath = getExportPath();
 
             // This string might vary depending on your computer.
@@ -57,7 +55,6 @@ namespace LifebyteMVC.Data.Test
         [TestCleanup()]
         public void MyTestCleanup()
         {
-            automapConfig = null;
             exportPath = null;
             connectionString = null;
         }
@@ -82,8 +79,10 @@ namespace LifebyteMVC.Data.Test
         [TestMethod]
         public void AutomappingConfiguration_ShouldMap_Test()
         {
+            var automapConfig = new AutomappingConfiguration();
+
             Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
-        }        
+        }
 
         /// <summary>    
         /// Matches the automapping to the database.
@@ -93,13 +92,12 @@ namespace LifebyteMVC.Data.Test
         [TestMethod]
         public void AutomappingConfiguration_Mapping_Confirmation_Test()
         {
-            var nHibernateSession = Fluently.Configure()
+            var sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
-                .Mappings(m => m.AutoMappings
-                    .Add(CreateAutomappings))
+                .Mappings(m => m.AutoMappings.Add(CreateAutomappings))
                 .BuildSessionFactory();
 
-            using (ISession session = nHibernateSession.OpenSession())
+            using (ISession session = sessionFactory.OpenSession())
             {
                 var allClassMetadata = session.SessionFactory.GetAllClassMetadata();
 
@@ -117,15 +115,13 @@ namespace LifebyteMVC.Data.Test
         [TestMethod, Ignore]
         public void AutomappingConfiguration_Mapping_File_Export_Test()
         {
-            var test = Fluently.Configure()
+            Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
                 .Mappings(m => m.AutoMappings
                     .Add(CreateAutomappings)
                     .ExportTo(exportPath))
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();
-
-            test.Close();
         }
 
         private AutoPersistenceModel CreateAutomappings()

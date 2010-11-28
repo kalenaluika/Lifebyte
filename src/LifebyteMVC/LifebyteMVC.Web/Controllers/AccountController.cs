@@ -4,6 +4,7 @@ using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using LifebyteMVC.Web.Models;
+using LifebyteMVC.Core;
 
 // TODO Test this before release!
 namespace LifebyteMVC.Web.Controllers
@@ -12,7 +13,7 @@ namespace LifebyteMVC.Web.Controllers
     /// We use Open ID as the way to authenticate a volunteer.
     /// </summary>
     public class AccountController : Controller
-    {   
+    {
         /// <summary>
         /// This view contains the fields needed to sign into the site.
         /// </summary>
@@ -49,20 +50,17 @@ namespace LifebyteMVC.Web.Controllers
         /// <returns></returns>
         public ActionResult Authenticate(string returnUrl, string openIdUrl)
         {
+            var openid = new OpenIdRelyingParty();
+
             SignInViewModel model = new SignInViewModel
             {
-                ReturnUrl = returnUrl
+                AuthenticationResponse = openid.GetResponse(),
+                OpenIdUrl = openIdUrl,
+                ReturnUrl = returnUrl ?? "/home/index",
             };
 
-            OpenIdRelyingParty openid = new OpenIdRelyingParty();
-
-            var response = openid.GetResponse();
-
-            if (response == null)
+            if (model.AuthenticationResponse == null)
             {
-                model.OpenIdUrl = openIdUrl;                
-
-                // Stage 2: user submitting Identifier
                 Identifier id;
                 if (Identifier.TryParse(model.OpenIdUrl, out id))
                 {
@@ -80,30 +78,20 @@ namespace LifebyteMVC.Web.Controllers
                 {
                     ModelState.AddModelError("OpenIdUrl", "Invalid Open ID URL");
                 }
-            }
-            else
-            {
-                // Stage 3: OpenID Provider sending assertion response
-                switch (response.Status)
-                {
-                    case AuthenticationStatus.Authenticated:
-                        Session["FriendlyIdentifier"] = response.FriendlyIdentifierForDisplay;
-                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+            }            
 
-                        if (!string.IsNullOrEmpty(model.ReturnUrl))
-                        {
-                            return Redirect(model.ReturnUrl);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    case AuthenticationStatus.Canceled:
-                        ModelState.AddModelError("OpenIdUrl", "The sign in was canceled.");
-                        break;
-                    case AuthenticationStatus.Failed:
-                        ModelState.AddModelError("OpenIdUrl", response.Exception.Message);
-                        break;
+            if (ModelState.IsValid)
+            {
+                var volunteer = model.Authenticate(ModelState);
+
+                // Guard against an authenticated volunteer who is not in the database yet.
+                if (volunteer == null && ModelState.IsValid)
+                {
+                    return RedirectToAction("Index", "Profile");
+                }
+                else if (ModelState.IsValid)
+                {
+                    return Redirect(model.ReturnUrl);
                 }
             }
 
