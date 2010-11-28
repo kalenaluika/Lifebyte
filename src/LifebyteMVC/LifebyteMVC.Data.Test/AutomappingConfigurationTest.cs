@@ -83,27 +83,11 @@ namespace LifebyteMVC.Data.Test
         public void AutomappingConfiguration_ShouldMap_Test()
         {
             Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
-        }
-
-        /// <summary>
-        /// Unignore to generate the hbm.xml mapping files and DDL script.
-        /// </summary>
-        [TestMethod, Ignore]
-        public void AutomappingConfiguration_Mapping_File_Export_Test()
-        {
-            var test = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
-                .Mappings(m => m.AutoMappings
-                    .Add(CreateAutomappings)
-                    .ExportTo(exportPath))
-                .ExposeConfiguration(BuildSchema)
-                .BuildSessionFactory();
-
-            test.Close();
-        }
+        }        
 
         /// <summary>    
         /// Matches the automapping to the database.
+        /// If this fails, unignore the test below to generate the DDL script.
         /// </summary>
         /// <remarks>http://ayende.com/Blog/archive/2006/08/09/NHibernateMappingCreatingSanityChecks.aspx</remarks>
         [TestMethod]
@@ -125,6 +109,23 @@ namespace LifebyteMVC.Data.Test
                          .SetMaxResults(0).List();
                 }
             }
+        }
+
+        /// <summary>
+        /// Unignore to generate the hbm.xml mapping files and DDL script.
+        /// </summary>
+        [TestMethod, Ignore]
+        public void AutomappingConfiguration_Mapping_File_Export_Test()
+        {
+            var test = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
+                .Mappings(m => m.AutoMappings
+                    .Add(CreateAutomappings)
+                    .ExportTo(exportPath))
+                .ExposeConfiguration(BuildSchema)
+                .BuildSessionFactory();
+
+            test.Close();
         }
 
         private AutoPersistenceModel CreateAutomappings()

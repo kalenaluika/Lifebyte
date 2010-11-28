@@ -13,7 +13,7 @@
     <RootNamespace>LifebyteMVC.Web</RootNamespace>
     <AssemblyName>LifebyteMVC.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -73,6 +73,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
@@ -80,6 +81,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\InventoryViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\SignInViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,6 +143,7 @@
     <Content Include="Views\Inventory\Edit.aspx" />
     <Content Include="Views\Inventory\Index.aspx" />
     <Content Include="Views\Privacy\Index.aspx" />
+    <Content Include="Views\Profile\Index.aspx" />
     <Content Include="Views\Recipients\Edit.aspx" />
     <Content Include="Views\Recipients\Index.aspx" />
     <Content Include="Views\Request\Index.aspx" />

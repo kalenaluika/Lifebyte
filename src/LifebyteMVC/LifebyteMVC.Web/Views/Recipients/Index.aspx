@@ -18,6 +18,14 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
     <h1>
         Lifebyte Recipients</h1>
+        <div id="search">
+            <form id="searchform" method="get" action="">
+            <fieldset>
+                <input type="text" name="s" id="s" size="15" value="" />
+                <input type="submit" id="x" value="Search" />
+            </fieldset>
+            </form>
+        </div>
     <table cellspacing="5" cellpadding="5" rules="all" border="0" id="RecipientDataGrid"
         style="border-width: 0px; width: 100%;">
         <tr class="HeaderRow" align="center">

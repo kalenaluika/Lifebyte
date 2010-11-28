@@ -144,6 +144,11 @@ label
     font-weight: bold;
 }
 
+#homepageLink
+{
+    padding-left: 20px;
+}
+
 /* RSS 
 ~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v~v */
 
@@ -164,6 +169,13 @@ label
 #rss a:hover
 {
     text-decoration: underline;
+}
+
+#profile
+{
+    float: right;
+    width: 200px;
+    text-align: right;
 }
 
 /* Search 

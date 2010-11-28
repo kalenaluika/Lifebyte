@@ -24,8 +24,8 @@ namespace LifebyteMVC.Web.Controllers
 
         /// <summary>
         /// This is the post action to the index view.
-        /// This action will set session variables and make a 
-        /// get call to the Authenticate action result.
+        /// This action will validate the model and redirect to the Authenticate action result 
+        /// passing in the query string parameters.
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -36,7 +36,7 @@ namespace LifebyteMVC.Web.Controllers
                 return View(model);
             }
 
-            return Redirect(string.Format("Authenticate/?returnUrl={0}&openIdUrl={1}",
+            return Redirect(string.Format("/Account/Authenticate/?returnUrl={0}&openIdUrl={1}",
                 model.ReturnUrl, model.OpenIdUrl));
         }
 
@@ -89,6 +89,7 @@ namespace LifebyteMVC.Web.Controllers
                     case AuthenticationStatus.Authenticated:
                         Session["FriendlyIdentifier"] = response.FriendlyIdentifierForDisplay;
                         FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
+
                         if (!string.IsNullOrEmpty(model.ReturnUrl))
                         {
                             return Redirect(model.ReturnUrl);
@@ -107,6 +108,17 @@ namespace LifebyteMVC.Web.Controllers
             }
 
             return View("Index", model);
+        }
+
+        /// <summary>
+        /// Signs out the volunteer and redirects back to the home page.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

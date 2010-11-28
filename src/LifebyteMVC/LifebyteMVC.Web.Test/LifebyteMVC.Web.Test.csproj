@@ -53,6 +53,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\InventoryControllerTest.cs" />
     <Compile Include="Controllers\PrivacyControllerTest.cs" />
+    <Compile Include="Controllers\ProfileControllerTest.cs" />
     <Compile Include="Controllers\RecipientsControllerTest.cs" />
     <Compile Include="Controllers\RequestControllerTest.cs" />
     <Compile Include="Controllers\VolunteerControllerTest.cs" />

@@ -22,18 +22,22 @@
             <h1>
                 <%: Html.ActionLink("Lifebyte", "Index", "Home") %></h1>
             <p>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <%: Html.ActionLink("Computer Ministry", "Index", "Home")%></p>
+                <%: Html.ActionLink("Computer Ministry", "Index", "Home", new { id="homepageLink" })%></p>
         </div>
         <div id="rss">
             <a href="/lifebyte.xml">Subscribe to RSS Feed</a></div>
-        <div id="search">
-            <form id="searchform" method="get" action="">
-            <fieldset>
-                <input type="text" name="s" id="s" size="15" value="" />
-                <input type="submit" id="x" value="Search" />
-            </fieldset>
-            </form>
+        <div id="profile">
+            <% if (Request.IsAuthenticated)
+               { %>
+            Welcome <strong><%: Page.User.Identity.Name%></strong>!
+            <%: Html.ActionLink("Sign Out", "SignOut", "Account")%>
+            |
+            <%: Html.ActionLink("Edit Profile", "Index", "Profile")%>
+            <% }
+               else
+               { %>
+            <%: Html.ActionLink("Sign In", "Index", "Account")%>
+            <% } %>
         </div>
     </div>
     <!-- end header -->
