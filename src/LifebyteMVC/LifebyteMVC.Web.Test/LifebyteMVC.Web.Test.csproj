@@ -60,7 +60,6 @@
     <Compile Include="Controllers\RecipientsControllerTest.cs" />
     <Compile Include="Controllers\RequestControllerTest.cs" />
     <Compile Include="Controllers\VolunteerControllerTest.cs" />
-    <Compile Include="Models\Repositories\VolunteerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

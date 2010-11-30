@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LifebyteMVC.Core;
-using LifebyteMVC.Web.Models.Repositories;
+using LifebyteMVC.Data.Repositories;
 
-namespace LifebyteMVC.Web.Test.Models.Repositories
+namespace LifebyteMVC.Data.Test.Repositories
 {
     /// <summary>
     /// Tests for the VolunteerRepository

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using LifebyteMVC.Core;
-using LifebyteMVC.Web.Models.Repositories;
+using LifebyteMVC.Data.Repositories;
 
 namespace LifebyteMVC.Web.Models
 {

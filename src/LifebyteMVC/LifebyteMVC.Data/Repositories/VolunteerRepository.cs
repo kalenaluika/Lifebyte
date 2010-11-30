@@ -1,19 +1,17 @@
 ﻿using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using LifebyteMVC.Core;
-using LifebyteMVC.Data;
-using LifebyteMVC.Web.Properties;
 using NHibernate.Criterion;
 
-namespace LifebyteMVC.Web.Models.Repositories
+namespace LifebyteMVC.Data.Repositories
 {
     public class VolunteerRepository
     {
         public Volunteer GetVolunteerByClaimedIdentifier(string claimedIdentifier)
         {
-            var sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(Settings.Default.LifebyteDB))
+            var cfg = new NHibernate.Cfg.Configuration();
+            cfg.Configure();
+            var sessionFactory = Fluently.Configure(cfg)                
                 .Mappings(m => m.AutoMappings
                     .Add(CreateAutomappings))
                 .BuildSessionFactory();
