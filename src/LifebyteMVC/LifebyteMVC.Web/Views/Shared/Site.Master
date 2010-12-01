@@ -25,17 +25,7 @@
                 <%: Html.ActionLink("Computer Ministry", "Index", "Home", new { id="homepageLink" })%></p>
         </div>
         <div id="profile">
-            <% if (Request.IsAuthenticated)
-               { %>
-            Welcome <strong><%: Page.User.Identity.Name%></strong>!<br />
-            <%: Html.ActionLink("Sign Out", "SignOut", "Account")%>
-            |
-            <%: Html.ActionLink("Edit Profile", "Index", "Profile")%>
-            <% }
-               else
-               { %>
-            <%: Html.ActionLink("Sign In", "Index", "Account")%>
-            <% } %>
+            <%Html.RenderPartial("LoginStatus");%>
         </div>
     </div>
     <!-- end header -->

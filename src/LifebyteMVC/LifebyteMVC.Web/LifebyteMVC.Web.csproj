@@ -161,6 +161,7 @@
     <Content Include="Views\Recipients\Edit.aspx" />
     <Content Include="Views\Recipients\Index.aspx" />
     <Content Include="Views\Request\Index.aspx" />
+    <Content Include="Views\Shared\LoginStatus.ascx" />
     <Content Include="Views\Volunteer\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
