@@ -25,7 +25,7 @@
                 <%: Html.ActionLink("Computer Ministry", "Index", "Home", new { id="homepageLink" })%></p>
         </div>
         <div id="profile">
-            <%Html.RenderPartial("LoginStatus");%>
+            <% Html.RenderPartial("LoginStatus"); %>
         </div>
     </div>
     <!-- end header -->

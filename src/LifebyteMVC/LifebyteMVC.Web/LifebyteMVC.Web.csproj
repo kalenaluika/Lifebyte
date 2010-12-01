@@ -36,13 +36,7 @@
     <Reference Include="DotNetOpenAuth">
       <HintPath>..\..\..\lib\DotNetOpenAuth\DotNetOpenAuth.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\..\lib\FluentNHibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate">
-      <HintPath>..\..\..\lib\FluentNHibernate\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\lib\FluentNHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
