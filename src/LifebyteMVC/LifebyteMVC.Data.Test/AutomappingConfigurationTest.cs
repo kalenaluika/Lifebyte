@@ -46,7 +46,7 @@ namespace LifebyteMVC.Data.Test
 
             // This string might vary depending on your computer.
             // If you change this, be sure to set it back.
-            connectionString = "server=localhost;database=LifebyteDB;trusted_connection=true;";
+            connectionString = "server=windows7-imac\\sqlexpress;database=LifebyteDB;trusted_connection=true;";
         }
 
         /// <summary>

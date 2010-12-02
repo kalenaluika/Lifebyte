@@ -16,9 +16,11 @@
     </div>
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+<%using (Html.BeginForm())
+  { %>
     <h1>
         Edit Your Profile</h1>
-      <%: Html.EditorForModel() %>
+      <%: Html.EditorForModel()%>
     <div>
         <label>
             &nbsp;</label>
@@ -31,4 +33,5 @@
     <div>
         <input type="submit" name="DeleteButton" value="Delete" id="DeleteButton" />
     </div>
+<%} %>
 </asp:Content>

@@ -87,7 +87,7 @@ namespace LifebyteMVC.Web.Controllers
 
                 // Guard against an authenticated volunteer who is not in the database yet.
                 if (volunteer == null && ModelState.IsValid)
-                {
+                {   
                     return RedirectToAction("Index", "Profile");
                 }
                 else if (ModelState.IsValid)

@@ -4,6 +4,7 @@ using System.Web.Security;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using LifebyteMVC.Core;
 using LifebyteMVC.Data.Repositories;
+using System.Web;
 
 namespace LifebyteMVC.Web.Models
 {
@@ -33,6 +34,7 @@ namespace LifebyteMVC.Web.Models
         public Volunteer Authenticate(ModelStateDictionary modelState)
         {
             Volunteer volunteer = null;
+            //HttpCookie cookie = null;
 
             // Guard against a canceled response.
             if (AuthenticationResponse.Status == AuthenticationStatus.Canceled)
@@ -58,12 +60,18 @@ namespace LifebyteMVC.Web.Models
                 if (volunteer == null)
                 {
                     FormsAuthentication.SetAuthCookie("", false);
+                    //TODO: encrypt cookie and add Id user data
+                    //cookie = FormsAuthentication.GetAuthCookie("", false);
+                    //FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
+                    //FormsAuthenticationTicket newticket = new FormsAuthenticationTicket(ticket.Version, ticket.Name,
+                    //    ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, "Id|" + AuthenticationResponse.ClaimedIdentifier);
+                    //cookie.Value = FormsAuthentication.Encrypt(newticket);
+                    //HttpContext.Current.Response.Cookies.Add(cookie);
                     return volunteer;
                 }
 
                 string volunteerName = MvcHtmlString.Create(volunteer.FirstName + " " + volunteer.LastName).ToHtmlString();
-                FormsAuthentication.SetAuthCookie(volunteerName, false);
-
+                FormsAuthentication.SetAuthCookie(volunteerName, false);                
                 return volunteer;
             }
 
