@@ -43,19 +43,21 @@ namespace LifebyteMVC.Web.Controllers
             }
 
             var volunteer = new Volunteer();
-            UpdateModel(volunteer);
 
-            volunteer.LastSignInDate = DateTime.Now;
-            volunteer.Active = true;
-            //volunteer.Id = Guid.NewGuid();
-            
-            //var cookie = FormsAuthentication.GetAuthCookie("",false);
+            if (TryUpdateModel(volunteer))
+            {
+                volunteer.LastSignInDate = DateTime.Now;
+                volunteer.Active = true;
+                //volunteer.Id = Guid.NewGuid();
 
-            //TODO:  get this to work
-            //volunteer.ClaimedIdentifier = cookie.Values["Id"].ToString();
-            volunteerRepository.Save(volunteer);
+                //var cookie = FormsAuthentication.GetAuthCookie("",false);
+
+                //TODO:  get this to work
+                //volunteer.ClaimedIdentifier = cookie.Values["Id"].ToString();
+                volunteerRepository.Save(volunteer);
+            }
+
             return View(model);
-            
         }
     }
 }

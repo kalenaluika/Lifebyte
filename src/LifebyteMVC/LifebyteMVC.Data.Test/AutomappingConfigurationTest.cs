@@ -7,6 +7,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using LifebyteMVC.Core.Model;
+using LifebyteMVC.Data.Overrides;
 
 namespace LifebyteMVC.Data.Test
 {
@@ -128,7 +129,9 @@ namespace LifebyteMVC.Data.Test
         private AutoPersistenceModel CreateAutomappings()
         {
             return AutoMap.AssemblyOf<Computer>(new AutomappingConfiguration())
-                .Conventions.Add<CascadeConvention>();
+                .Conventions.Add<CascadeConvention>()
+                .UseOverridesFromAssemblyOf<ComputerMappingOverride>()
+                .Conventions.AddFromAssemblyOf<DefaultStringLengthConvention>();
         }
 
         private void BuildSchema(Configuration config)
