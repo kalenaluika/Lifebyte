@@ -1,13 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Web.Mvc;
 using LifebyteMVC.Web.Controllers;
-using System.Web.Mvc;
-using System.Web.Routing;
 using LifebyteMVC.Web.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LifebyteMVC.Web.Test.Controllers
 {

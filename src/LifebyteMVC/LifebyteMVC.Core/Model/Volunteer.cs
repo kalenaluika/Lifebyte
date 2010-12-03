@@ -1,9 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
+using LifebyteMVC.Core.Interfaces;
 
-namespace LifebyteMVC.Core
+namespace LifebyteMVC.Core.Model
 {
-    public class Volunteer
+    public class Volunteer : ICoreEntity
     {
         public virtual Guid Id { get; set; }
         

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LifebyteMVC.Core;
 using LifebyteMVC.Data.Repositories;
+using LifebyteMVC.Core.Model;
 
 namespace LifebyteMVC.Data.Test.Repositories
 {
@@ -50,7 +51,10 @@ namespace LifebyteMVC.Data.Test.Repositories
         //
         #endregion
 
-        [TestMethod]
+        /// <summary>
+        /// This is an integration test that queries the database.
+        /// </summary>
+        [TestMethod, Ignore]
         public void VolunteerRepository_GetVolunteerByClaimedIdentifier_Test()
         {
             string claimedIdentifier = "https://www.google.com/accounts/o8/id?id=AAaAaaaaaa-1aaaAaaaAAaAAAaaAaAaA111AA1";

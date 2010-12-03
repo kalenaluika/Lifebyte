@@ -49,7 +49,7 @@
     <Compile Include="AutomappingConfiguration.cs" />
     <Compile Include="CascadeConvention.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BaseRespository.cs" />
+    <Compile Include="Repositories\Respository.cs" />
     <Compile Include="Repositories\ComputerRespository.cs" />
     <Compile Include="Repositories\VolunteerRepository.cs" />
     <Compile Include="SessionManager.cs" />

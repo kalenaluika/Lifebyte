@@ -1,8 +1,8 @@
-﻿using LifebyteMVC.Core;
+﻿using LifebyteMVC.Core.Model;
 
 namespace LifebyteMVC.Data.Repositories
 {
-    public class ComputerRespository : BaseRespository<Computer>
+    public class ComputerRespository : Respository<Computer>
     {
     }
 }

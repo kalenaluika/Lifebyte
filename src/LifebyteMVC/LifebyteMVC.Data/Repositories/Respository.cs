@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using LifebyteMVC.Core.Interfaces;
 using NHibernate;
-using System.Data.SqlClient;
 
 namespace LifebyteMVC.Data.Repositories
 {
@@ -12,7 +9,7 @@ namespace LifebyteMVC.Data.Repositories
     /// and common methods.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BaseRespository<T>
+    public abstract class Respository<T> where T : ICoreEntity
     {
         private ISession session;
         public ISession Session
@@ -23,12 +20,12 @@ namespace LifebyteMVC.Data.Repositories
             }
         }
 
-        public BaseRespository()
+        public Respository()
         {
             session = SessionManager.SessionFactory.OpenSession();
         }
 
-        public BaseRespository(ISession session)
+        public Respository(ISession session)
         {
             this.session = session;
         }

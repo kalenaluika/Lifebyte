@@ -40,15 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Computer.cs" />
-    <Compile Include="ComputerStatus.cs" />
-    <Compile Include="LicenseType.cs" />
+    <Compile Include="Interfaces\ICoreEntity.cs" />
+    <Compile Include="Model\Computer.cs" />
+    <Compile Include="Model\ComputerStatus.cs" />
+    <Compile Include="Model\LicenseType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipient.cs" />
-    <Compile Include="RecipientStatus.cs" />
-    <Compile Include="ScheduleType.cs" />
-    <Compile Include="Volunteer.cs" />
-    <Compile Include="WindowsLicense.cs" />
+    <Compile Include="Model\Recipient.cs" />
+    <Compile Include="Model\RecipientStatus.cs" />
+    <Compile Include="Model\ScheduleType.cs" />
+    <Compile Include="Model\Volunteer.cs" />
+    <Compile Include="Model\WindowsLicense.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

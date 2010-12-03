@@ -5,6 +5,7 @@ using DotNetOpenAuth.OpenId.RelyingParty;
 using LifebyteMVC.Core;
 using LifebyteMVC.Data.Repositories;
 using System.Web;
+using LifebyteMVC.Core.Model;
 
 namespace LifebyteMVC.Web.Models
 {

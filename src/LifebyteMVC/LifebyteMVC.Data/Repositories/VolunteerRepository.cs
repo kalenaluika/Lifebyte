@@ -1,9 +1,10 @@
-﻿using LifebyteMVC.Core;
+﻿using LifebyteMVC.Core.Interfaces;
+using LifebyteMVC.Core.Model;
 using NHibernate.Criterion;
 
 namespace LifebyteMVC.Data.Repositories
 {
-    public class VolunteerRepository : BaseRespository<Volunteer>
+    public class VolunteerRepository : Respository<Volunteer>
     {
         public Volunteer GetVolunteerByClaimedIdentifier(string claimedIdentifier)
         {

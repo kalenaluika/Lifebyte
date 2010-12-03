@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using LifebyteMVC.Core.Interfaces;
 
-namespace LifebyteMVC.Core
+namespace LifebyteMVC.Core.Model
 {
-    public class LicenseType
+    public class LicenseType : ICoreEntity
     {
         public virtual int Id { get; set; }
 

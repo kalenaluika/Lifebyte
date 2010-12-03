@@ -4,11 +4,25 @@ using LifebyteMVC.Data.Repositories;
 using LifebyteMVC.Core;
 using System;
 using System.Web.Security;
+using LifebyteMVC.Core.Model;
+using LifebyteMVC.Core.Interfaces;
 
 namespace LifebyteMVC.Web.Controllers
 {
     public class ProfileController : Controller
     {
+        private VolunteerRepository volunteerRepository;
+
+        public ProfileController()
+        {
+            volunteerRepository = new VolunteerRepository();
+        }
+
+        public ProfileController(VolunteerRepository fake)
+        {
+            volunteerRepository = fake;
+        }
+
         /// <summary>
         /// The index view allows the authenticated volunteer to 
         /// edit their profile.
@@ -27,7 +41,7 @@ namespace LifebyteMVC.Web.Controllers
             {
                 return View(model);
             }
-            var volunteerRepository = new VolunteerRepository();
+
             var volunteer = new Volunteer();
             UpdateModel(volunteer);
 

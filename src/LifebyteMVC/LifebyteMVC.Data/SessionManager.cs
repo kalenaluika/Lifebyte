@@ -1,8 +1,8 @@
-﻿
-using NHibernate;
+﻿using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
-using FluentNHibernate.Automapping;
-using LifebyteMVC.Core;
+using LifebyteMVC.Core.Model;
+using NHibernate;
+
 namespace LifebyteMVC.Data
 {
     /// <summary>

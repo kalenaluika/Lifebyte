@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using LifebyteMVC.Core.Interfaces;
 
-namespace LifebyteMVC.Core
+namespace LifebyteMVC.Core.Model
 {
-    public class Recipient
+    public class Recipient : ICoreEntity
     {
         public virtual Guid Id { get; private set; }
 

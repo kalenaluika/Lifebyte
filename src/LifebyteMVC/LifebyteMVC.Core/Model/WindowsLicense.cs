@@ -1,7 +1,8 @@
-﻿
-namespace LifebyteMVC.Core
+﻿using LifebyteMVC.Core.Interfaces;
+
+namespace LifebyteMVC.Core.Model
 {
-    public class WindowsLicense
+    public class WindowsLicense : ICoreEntity
     {
         public virtual string Id { get; private set; }
 

@@ -1,8 +1,9 @@
 ﻿using System;
+using LifebyteMVC.Core.Interfaces;
 
-namespace LifebyteMVC.Core
+namespace LifebyteMVC.Core.Model
 {
-    public class Computer
+    public class Computer : ICoreEntity
     {
         public virtual Guid Id { get; private set; }
 
