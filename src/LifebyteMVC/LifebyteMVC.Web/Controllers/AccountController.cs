@@ -38,7 +38,7 @@ namespace LifebyteMVC.Web.Controllers
             }
 
             return Redirect(string.Format("/Account/Authenticate/?returnUrl={0}&openIdUrl={1}",
-                model.ReturnUrl, model.OpenIdUrl));
+                Server.UrlEncode(model.ReturnUrl), Server.UrlEncode(model.OpenIdUrl)));
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace LifebyteMVC.Web.Controllers
             SignInViewModel model = new SignInViewModel
             {
                 AuthenticationResponse = openid.GetResponse(),
-                OpenIdUrl = openIdUrl,
-                ReturnUrl = returnUrl ?? "/home/index",
+                OpenIdUrl = openIdUrl != null ? Server.UrlDecode(openIdUrl) : null,
+                ReturnUrl = returnUrl != null ? Server.UrlDecode(returnUrl) : "/home/index",
             };
 
             if (model.AuthenticationResponse == null)

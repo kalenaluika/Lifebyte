@@ -18,9 +18,9 @@ namespace LifebyteMVC.Web.Controllers
             volunteerRepository = new VolunteerRepository();
         }
 
-        public ProfileController(VolunteerRepository fake)
+        public ProfileController(VolunteerRepository volunteerRepository)
         {
-            volunteerRepository = fake;
+            this.volunteerRepository = volunteerRepository;
         }
 
         /// <summary>
@@ -28,10 +28,15 @@ namespace LifebyteMVC.Web.Controllers
         /// edit their profile.
         /// </summary>
         /// <returns></returns>
-        
         public ActionResult Index()
         {
-            return View(new ProfileViewModel());
+            // TODO Create a volunteer. Index is for viewing.
+            FormsIdentity identity = (FormsIdentity)User.Identity;
+            var volunteer = volunteerRepository.Get(new Guid(identity.Ticket.UserData));
+            ViewData.Model = volunteer;
+            var model = new ProfileViewModel();
+            TryUpdateModel<ProfileViewModel>(model);
+            return View(model);
         }
 
         [HttpPost]

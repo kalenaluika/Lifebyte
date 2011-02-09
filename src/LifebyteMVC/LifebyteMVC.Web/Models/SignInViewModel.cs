@@ -6,15 +6,38 @@ using LifebyteMVC.Core;
 using LifebyteMVC.Data.Repositories;
 using System.Web;
 using LifebyteMVC.Core.Model;
+using System;
 
 namespace LifebyteMVC.Web.Models
 {
     public class SignInViewModel
     {
+        private string returnUrl;
+
         /// <summary>
         /// The URL to return the volunteer to after a successful sign in.
         /// </summary>
-        public string ReturnUrl { get; set; }
+        public string ReturnUrl
+        {
+            get
+            {
+                // Source: NerdDinner account controller
+                // Make sure we only follow relative returnUrl parameters to protect against 
+                // having an open redirector
+                Uri returnUri;
+                if (!String.IsNullOrEmpty(returnUrl)
+                    && Uri.TryCreate(returnUrl, UriKind.Relative, out returnUri))
+                {
+                    return returnUrl;
+                }
+
+                return "/home/index";
+            }
+            set
+            {
+                returnUrl = value;
+            }
+        }
 
         /// <summary>
         /// The URL of the Open ID provider.
@@ -35,7 +58,6 @@ namespace LifebyteMVC.Web.Models
         public Volunteer Authenticate(ModelStateDictionary modelState)
         {
             Volunteer volunteer = null;
-            //HttpCookie cookie = null;
 
             // Guard against a canceled response.
             if (AuthenticationResponse.Status == AuthenticationStatus.Canceled)
@@ -60,25 +82,38 @@ namespace LifebyteMVC.Web.Models
                 // in the database yet.
                 if (volunteer == null)
                 {
-                    FormsAuthentication.SetAuthCookie("", false);
-                    //TODO: encrypt cookie and add Id user data
-                    //cookie = FormsAuthentication.GetAuthCookie("", false);
-                    //FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-                    //FormsAuthenticationTicket newticket = new FormsAuthenticationTicket(ticket.Version, ticket.Name,
-                    //    ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, "Id|" + AuthenticationResponse.ClaimedIdentifier);
-                    //cookie.Value = FormsAuthentication.Encrypt(newticket);
-                    //HttpContext.Current.Response.Cookies.Add(cookie);
+                    HttpContext.Current.Response.Cookies.Set(CreateCookie("New Volunteer",
+                        AuthenticationResponse.ClaimedIdentifier));
                     return volunteer;
                 }
 
                 string volunteerName = MvcHtmlString.Create(volunteer.FirstName + " " + volunteer.LastName).ToHtmlString();
-                FormsAuthentication.SetAuthCookie(volunteerName, false);                
+                HttpContext.Current.Response.Cookies.Set(CreateCookie(volunteerName.Trim(),
+                    AuthenticationResponse.ClaimedIdentifier));
+
                 return volunteer;
             }
 
             // TODO Log how we ended up here.
             modelState.AddModelError("OpenIdUrl", "An unknown error occurred.");
             return volunteer;
+        }
+
+        private HttpCookie CreateCookie(string name, string userData)
+        {
+            var cookie = FormsAuthentication.GetAuthCookie(FormsAuthentication.FormsCookieName, false);
+            cookie.Value = FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
+                        1,
+                        name,
+                        DateTime.Now,
+                        DateTime.Now.AddTicks(FormsAuthentication.Timeout.Ticks),
+                        false,
+                        userData,
+                        FormsAuthentication.FormsCookiePath));
+            cookie.Expires = DateTime.Now.AddTicks(FormsAuthentication.Timeout.Ticks);
+            cookie.HttpOnly = true;
+
+            return cookie;
         }
     }
 }
