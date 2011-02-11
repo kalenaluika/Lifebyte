@@ -1,13 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html>
 <html lang="en-US">
- <head>
-  <title>Sample page</title>
- </head>
- <body>
-  <h1>Sample page</h1>
-  <p>This is a <a href="demo.html">simple</a> sample.</p>
-  <!-- this is a comment -->
-  Dan was here!
- </body>
+<head>
+    <title>Sample page</title>
+    <style type="text/css">
+        /* Declare HTML Rules first! */
+        h1
+        {
+            color: Red; 
+            font-size: 48px;           
+        }
+        
+        h1 span
+        {
+            color: Orange; 
+            font-size: 48px;           
+        }
+        
+        /* Classes later */
+        .green
+        {
+            color: Green;
+        }
+        
+        /* Selects an ID */
+        #blue
+        {
+            color: Green;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Sample pages</h1>
+    <h1 class="green">
+        More Sample pages</h1>
+    <h1 id="blue">
+        More <span>Sample</span> pages</h1>
+    <p>
+        This is a <a href="demo.html">simple</a> sample.</p>
+    <!-- this is a comment -->
+    Dan was here! Cascading Stylesheets
+</body>
 </html>
