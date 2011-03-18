@@ -11,7 +11,7 @@ namespace Lifebyte.Web.Controllers
         /// The Index is the home page.
         /// </summary>
         /// <returns></returns>
-        public ViewResult Index()
+        public ActionResult Index()
         {
             return View();
         }

@@ -58,9 +58,9 @@ namespace Lifebyte.Web.Test.Controllers
         public void HomeController_Index_ReturnsView()
         {
             HomeController controller = new HomeController();
-            ViewResult result = controller.Index();
+            ActionResult result = controller.Index();
 
-            Assert.Inconclusive("The view CSHTML does not exist.");
+            Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
     }
 }
