@@ -4,9 +4,13 @@
 Project Status
 --------------
 
-The code is still in its early stages.
+We worked on the project for a month inside [LifebyteMVC](https://github.com/StewShack/Lifebyte/tree/master/src/LifebyteMVC) and made decent progress.
 
-Please take a look at the issues list.
+Three volunteers that were new to Web Development joined the team. We created a folder called [LifebyteHtml](https://github.com/StewShack/Lifebyte/tree/master/src/LifebyteHtml) as a way to learn HTML, CSS, and jQuery.
+
+Current development is taking place under [LifebyteMVC3](https://github.com/StewShack/Lifebyte/tree/master/src/LifebyteMVC3).
+
+We welcome your input. The goal of the project is to upgrade the existing Lifebyte website to MVC 3.
 
 History
 --------

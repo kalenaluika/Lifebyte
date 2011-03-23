@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifebyte.Web", "Lifebyte.Web\Lifebyte.Web.csproj", "{9C774C58-14E5-43C0-921B-AE666238533F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lifebyte.Web.Test", "Lifebyte.Web.Test\Lifebyte.Web.Test.csproj", "{9763FAB4-0412-4C01-8DD7-AD6E9DE99680}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98D61CD6-114F-4DA5-9811-358F8C3B5F1E}"
+	ProjectSection(SolutionItems) = preProject
+		LifebyteMVC3.vsmdi = LifebyteMVC3.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = LifebyteMVC3.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C774C58-14E5-43C0-921B-AE666238533F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C774C58-14E5-43C0-921B-AE666238533F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C774C58-14E5-43C0-921B-AE666238533F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C774C58-14E5-43C0-921B-AE666238533F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9763FAB4-0412-4C01-8DD7-AD6E9DE99680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9763FAB4-0412-4C01-8DD7-AD6E9DE99680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9763FAB4-0412-4C01-8DD7-AD6E9DE99680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9763FAB4-0412-4C01-8DD7-AD6E9DE99680}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
