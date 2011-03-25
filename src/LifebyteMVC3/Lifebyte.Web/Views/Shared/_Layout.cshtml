@@ -4,14 +4,120 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssbase/base-min.css" /> -->
+    <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
+    <link href="../../Content/themes/sunny/jquery-ui-1.8.9.custom.css" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-1.7.min.js")"></script>
 </head>
 <body>
-    @RenderBody()
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <h1>
+                    <a href="#">Lifebyte </a>
+                </h1>
+                <p>
+                    Computer Minstry of <b><big>Colorado Community Church </big></b>
+                </p>
+            </div>
+            <div id="search">
+                <form method="get" action="">
+                <fieldset>
+                    <input type="text" name="s" id="search-text" size="15" value="Search Lifebyte website here..." />
+                    <input type="submit" id="search-submit" value="GO" />
+                </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- end #header -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="menu">
+                        <ul>
+                            <li class="current_page_item"><a href="#">Home</a></li>
+                            <!--li><a href="#">Blog</a></li-->
+                            <li><a href="#">Teams</a></li>
+                            <!--li><a href="#">Photos</a></li-->
+                            <li><a href="http://www.youtube.com/user/stewshack#p/u">Links</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <!--li> <a href="http://www.w3.org/TR/1999/REC-html401-19991224/index/elements.html"> Knowledge Base </a></li-->
+                            <!--li> <a href ="#"> Downloads </a></li-->
+                            <li><a href="e-wasterlink.htm">E-Waste </a></li>
+                            <li><a href="#">Volunteering</a></li>
+                        </ul>
+                    </div>
+                    <!-- end #menu -->
+                    <div id="content">
+                        @RenderBody()
+                    </div>
+                    <div id="sidebar">
+                        <ul>
+                            <li>
+                                <h2>
+                                    Calendar</h2>
+                                <div id="calendar">
+                                </div>
+                            </li>
+                            <li>
+                                <h2>
+                                    Upcoming Events</h2>
+                                <ul>
+                                    <li><a href="#">March 3<sup>rd</sup> Meeting</a></li>
+                                    <li><a href="#">March 19<sup>th</sup> Delivery Day</a></li>
+                                </ul>
+                            </li>
+                            <li style="background-color: Green;">
+                                <h2>
+                                    Stats</h2>
+                                <ul>
+                                    <li><a href="#">16,527 pounds (8 tons) recycled</a></li>
+                                    <li><a href="#">66 Computers ready for delivery</a></li>
+                                    <li><a href="#">29 People waiting for a computer</a></li>
+                                    <li><a href="#">629 people helped</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h2>
+                                    Partners</h2>
+                                <ul>
+                                    <li><a href="https://www.msregrefurb.com/RRPSite/OnlineDirectory.aspx">Microsoft</a></li>
+                                    <li><a href="http://www.aidmatrix.com/">Aidmatrix</a></li>
+                                    <li><a href="http://twitter.com/lifebyte">Twitter</a></li>
+                                    <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355">Facebook</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">
+                        &nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+        <div id="footer-wrapper">
+            <div id="footer">
+                <p>
+                    Copyright (c) 2011 lifebyte.org. All rights reserved. Design by <a href="http://www.lifebyte.org/">
+                        Lifebyte IT Team</a>.</p>
+            </div>
+        </div>
+        <!-- end #footer -->
+    </div>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.5.js"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.js"></script>
-    <script type="text/javascript"> window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")">\x3C/script>')</script>
+    <script type="text/javascript">        window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")">\x3C/script>')</script>
+    <script type="text/javascript">
+        $("#calendar").datepicker();
+        $("#search-text").focus(function () {
+            $(this).val('');
+        });
+    </script>
 </body>
 </html>
