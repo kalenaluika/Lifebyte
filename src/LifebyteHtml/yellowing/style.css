@@ -125,14 +125,14 @@ img.aligncenter {
 #search {
 	float: right;
 	width: 280px;
-	height: 100px;
+	height: 50px;
 	padding: 0;
 }
 
 #search form {
 	height: 41px;
 	margin: 0;
-	padding: 100px 0 0 30px;
+	padding: 10px 0 0 30px;
 }
 
 #search fieldset {
