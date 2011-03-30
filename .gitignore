@@ -12,3 +12,5 @@ ddl.txt
 obj/
 [Rr]elease*/
 [Tt]est[Rr]esult*/
+_ReSharper*
+*.resharper.user

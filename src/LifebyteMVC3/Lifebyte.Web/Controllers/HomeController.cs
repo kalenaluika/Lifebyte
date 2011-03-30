@@ -12,7 +12,7 @@ namespace Lifebyte.Web.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
-        {
+        {            
             return View();
         }
     }
