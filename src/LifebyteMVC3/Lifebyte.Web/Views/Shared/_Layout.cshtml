@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />
     <!-- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssbase/base-min.css" /> -->
     <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
-    <link href="../../Content/themes/sunny/jquery-ui-1.8.9.custom.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/themes/sunny/jquery-ui-1.8.9.custom.css" rel="stylesheet"
+        type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-1.7.min.js")"></script>
 </head>
@@ -22,15 +23,13 @@
                     <a href="#">Lifebyte </a>
                 </h1>
                 <p>
-                    Computer Minstry of <b><big>Colorado Community Church </big></b>
+                    Computer Minstry of <b>Colorado Community Church</b>
                 </p>
             </div>
             <div id="search">
                 <form method="get" action="">
-                <fieldset>
                     <input type="text" name="s" id="search-text" size="15" value="Search Lifebyte website here..." />
                     <input type="submit" id="search-submit" value="GO" />
-                </fieldset>
                 </form>
             </div>
         </div>
@@ -42,14 +41,17 @@
                         <ul>
                             <li class="current_page_item"><a href="#">Home</a></li>
                             <!--li><a href="#">Blog</a></li-->
-                            <li><a href="#">Teams</a></li>
+                            <!--li><a href="#">Teams</a></li-->
                             <!--li><a href="#">Photos</a></li-->
-                            <li><a href="http://www.youtube.com/user/stewshack#p/u">Links</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <!--li><a href="#">Links</a></li-->
+                            <!--li><a href="#">Contact</a></li-->
                             <!--li> <a href="http://www.w3.org/TR/1999/REC-html401-19991224/index/elements.html"> Knowledge Base </a></li-->
                             <!--li> <a href ="#"> Downloads </a></li-->
-                            <li><a href="e-wasterlink.htm">E-Waste </a></li>
-                            <li><a href="#">Volunteering</a></li>
+                            <!--li><a href="e-wasterlink.htm">E-Waste </a></li-->
+                            <!--li><a href="#">Volunteering</a></li-->
+                            <li><a href="#" title="Request a Computer">Request</a></li>
+                            <li><a href="#" title="Donate to Us">Donate</a></li>
+                            <li><a href="#" title="Volunteer with Us">Volunteer</a></li>
                         </ul>
                     </div>
                     <!-- end #menu -->
@@ -110,14 +112,17 @@
         </div>
         <!-- end #footer -->
     </div>
+    
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.5.js"></script>
+    <!--
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.js"></script>
-    <script type="text/javascript">        window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")">\x3C/script>')</script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")">\x3C/script>')</script>
     <script type="text/javascript">
         $("#calendar").datepicker();
         $("#search-text").focus(function () {
             $(this).val('');
         });
     </script>
+    -->
 </body>
 </html>
