@@ -1,28 +1,17 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Web.Mvc;
 using Lifebyte.Web.Controllers;
-using System.Web.Mvc;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Lifebyte.Web.Test.Controllers
 {
-    /// <summary>
-    /// Summary description for DonateControllerTest
-    /// </summary>
     [TestClass]
     public class DonateControllerTest
     {
-        
-
-        
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext
-        { get; set;}
+        public TestContext TestContext { get; set; }
 
         #region Additional test attributes
         //
@@ -50,10 +39,9 @@ namespace Lifebyte.Web.Test.Controllers
         public void DonateController_Index_GoToPage()
         {
             var controller = new DonateController();
-            ActionResult result = controller.index();
+            ActionResult result = controller.Index();
 
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-           
         }
     }
 }

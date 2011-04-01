@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -12,7 +8,7 @@ namespace Lifebyte.Web.Controllers
         /// Page for Donating to lifebyte
         /// </summary>
         /// <returns></returns>
-        public ActionResult index()
+        public ActionResult Index()
         {
             return View();
         }
