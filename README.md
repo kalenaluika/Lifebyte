@@ -12,31 +12,24 @@ Current development is taking place under [LifebyteMVC3](https://github.com/Stew
 
 We welcome your input. The goal of the project is to upgrade the existing Lifebyte website to MVC 3.
 
-History
+Ideals
 --------
-Lifebyte was founded in 2000 as an outreach ministry of [Colorado Community Church](http://www.coloradocommunity.org).
+* [Test Driven Development](http://www.testdriven.com/)
 
-The mission is to help Denver metro area people with their computer needs.
+* [Domain Driven Design](http://www.domaindrivendesign.org/)
 
-We are a Microsoft Authorized Refurbisher.
+* [Extreme Programming](http://www.extremeprogramming.org/)
 
-We are staffed entirely by volunteers just like you.
-
-Current Work
--------------
-
-We plan a delivery day once a month. We try to deliver around 20 PC's.
-
-Twice a year we have a "PC Wash". Some groups wash cars, we wash PC's by blowing out the dust, and running virus checks. This is our fundraiser to cover our costs. Our costs include the storage unit, Windows licenses, and recycling.
-
-We meet once a month just to keep the ministry on track and plan upcoming events.
+* [Kanban](http://kanbantool.com/)
 
 We Need You
 ------------
 
-E-mail us at [webmaster@lifebyte.org](mailto:webmaster@lifebyte.org) or call our voice mail at 303-256-1224.
+Fork the project and join us Tuesdays and Thursdays from 8:30 PM - 10:30 PM Mountain Time.
 
-There are several teams that you can join. 
+E-mail us at [webmaster@lifebyte.org](mailto:webmaster@lifebyte.org) or call our voice mail at 303-256-1224 to join.
+
+We have several teams: 
 
 * Donations - The donations team collects the donations. Anything we cannot use is recycled through our partner [Luminous Recycling](http://www.luminousrecycling.com/wp/).
 
