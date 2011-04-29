@@ -2,10 +2,11 @@
 
 namespace Lifebyte.Web.Controllers
 {
-    public class HomeController : Controller
+    [AuthorizeAttribute]
+    public class ProfileController : Controller
     {
         /// <summary>
-        /// The Index is the home page.
+        /// This page allows volunteers to view their profile.
         /// </summary>
         /// <returns></returns>
         public ActionResult Index()
