@@ -5,6 +5,7 @@ using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.ViewModels;
 using Moq;
 using NUnit.Framework;
+using System.Security.Principal;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -61,6 +62,9 @@ namespace Lifebyte.Web.Tests.Controllers
 
             httpContextMock.Setup(h => h.Cache)
                 .Returns(HttpRuntime.Cache);
+
+            httpContextMock.Setup(h => h.User)
+                .Returns(new Mock<IPrincipal>().Object);
 
             var accountController = new AccountController();
 
