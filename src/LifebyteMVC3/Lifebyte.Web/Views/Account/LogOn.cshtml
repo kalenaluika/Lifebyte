@@ -1,6 +1,14 @@
-﻿@{
+﻿@model Lifebyte.Web.Models.ViewModels.LogOnViewModel
+@{
     ViewBag.Title = "LogOn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>LogOn</h2>
+@using (Html.BeginForm())
+{
+@Html.EditorForModel()
+<div>
+    <input type="submit" value="Sign In" />
+</div>
+}

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Lifebyte.Web.Models.ViewModels;
+using System.Web.Security;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -13,7 +14,19 @@ namespace Lifebyte.Web.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel model, string returnUrl)
         {
-            return Redirect(returnUrl);
+            if (ModelState.IsValid)
+            {
+                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                return Redirect(returnUrl);
+            }
+
+            return View();
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return View();
         }
     }
 }
