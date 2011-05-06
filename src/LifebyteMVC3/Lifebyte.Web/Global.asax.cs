@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Lifebyte.Web.Models.Services;
+using Castle.Windsor;
+using Castle.MicroKernel.Registration;
+using Lifebyte.Web.Models.Core.Interfaces;
 
 namespace Lifebyte.Web
 {
@@ -31,10 +35,15 @@ namespace Lifebyte.Web
 
         protected void Application_Start()
         {
+            var container = new WindsorContainer();
+            container.Register(Component.For<IFormsAuthenticationService>().ImplementedBy(typeof(FormsAuthenticationService)).LifeStyle.PerWebRequest);
+
+            DependencyResolver.SetResolver(new DependencyResolverService(container));
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            RegisterRoutes(RouteTable.Routes);            
         }
     }
 }

@@ -1,11 +1,9 @@
-﻿using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System.Web.Mvc;
 using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.ViewModels;
-using Moq;
 using NUnit.Framework;
-using System.Security.Principal;
+using Moq;
+using Lifebyte.Web.Models.Core.Interfaces;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -15,7 +13,7 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void AccountController_Constructor_Is_Valid()
         {
-            var accountController = new AccountController();
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
 
             Assert.IsInstanceOf<Controller>(accountController);
         }
@@ -23,7 +21,7 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void AccountController_LogOff_Returns_View()
         {
-            var accountController = new AccountController();
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
 
             ActionResult result = accountController.LogOff();
 
@@ -31,46 +29,23 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_LogOn_Post_Invalid_User_Returns_View()
+        public void AccountController_LogOn_Post_Invalid_ModelState_Returns_View()
         {
-            //var accountController = new AccountController();
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
 
-            //var model = new LogOnViewModel();
+            accountController.ModelState.AddModelError("test", "error");
 
-            //ActionResult result = accountController.LogOn(model, "home/index");
+            var model = new LogOnViewModel();
 
-            //Assert.IsInstanceOf<ViewResult>(result);
-            Assert.Inconclusive("Cannot make the ModelState.IsValid = false");
+            ActionResult result = accountController.LogOn(model, "home/index");
+
+            Assert.IsInstanceOf<ViewResult>(result);
         }
 
         [Test]
         public void AccountController_LogOn_Post_Valid_User_Redirects()
         {
-            var httpContextMock = new Mock<HttpContextBase>();
-
-            httpContextMock.Setup(h => h.Request)
-                .Returns(new Mock<HttpRequestBase>().Object);
-
-            httpContextMock.Setup(h => h.Response)
-                .Returns(new Mock<HttpResponseBase>().Object);
-
-            httpContextMock.Setup(h => h.Session)
-                .Returns(new Mock<HttpSessionStateBase>().Object);
-
-            httpContextMock.Setup(h => h.Server)
-                .Returns(new Mock<HttpServerUtilityBase>().Object);
-
-            httpContextMock.Setup(h => h.Cache)
-                .Returns(HttpRuntime.Cache);
-
-            httpContextMock.Setup(h => h.User)
-                .Returns(new Mock<IPrincipal>().Object);
-
-            var accountController = new AccountController();
-
-            accountController.ControllerContext = new ControllerContext(httpContextMock.Object,
-                                                                        new RouteData(), 
-                                                                        accountController);
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
 
             var model = new LogOnViewModel
                             {
@@ -87,7 +62,7 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void AccountController_LogOn_Returns_View()
         {
-            var accountController = new AccountController();
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
 
             ActionResult result = accountController.LogOn();
 

@@ -1,11 +1,18 @@
 ﻿using System.Web.Mvc;
 using Lifebyte.Web.Models.ViewModels;
-using System.Web.Security;
+using Lifebyte.Web.Models.Core.Interfaces;
 
 namespace Lifebyte.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private IFormsAuthenticationService formsAuthenticationService;
+
+        public AccountController(IFormsAuthenticationService formsAuthenticationService)
+        {
+            this.formsAuthenticationService = formsAuthenticationService;
+        }
+
         public ActionResult LogOn()
         {
             return View();
@@ -14,9 +21,11 @@ namespace Lifebyte.Web.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel model, string returnUrl)
         {
+            returnUrl = returnUrl ?? "~/";
+
             if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+                formsAuthenticationService.SetAuthCookie(model.Username, model.RememberMe);
                 return Redirect(returnUrl);
             }
 
@@ -25,7 +34,7 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult LogOff()
         {
-            FormsAuthentication.SignOut();
+            formsAuthenticationService.SignOut();
             return View();
         }
     }
