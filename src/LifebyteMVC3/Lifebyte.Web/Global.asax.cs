@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Lifebyte.Web.Models.Services;
-using Castle.Windsor;
 using Castle.MicroKernel.Registration;
-using Lifebyte.Web.Models.Core.Interfaces;
-using Lifebyte.Web.Controllers;
+using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Lifebyte.Web.Controllers;
+using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Services;
+using System.Web;
 
 namespace Lifebyte.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {

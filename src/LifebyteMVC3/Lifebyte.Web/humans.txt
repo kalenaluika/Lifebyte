@@ -4,41 +4,20 @@
 /* Thanks Boilerplate! */
 
 /* TEAM */
-  <your title>: <your name>
-  Site: 
-  Twitter: 
-  Location: 
+  Developer: Dan Stewart
+  Site: http://www.stewshack.com
+  Twitter: http://twitter.com/lifebyte
+  Location: Denver, CO
 
 /* THANKS */
-  Names (& URL): 
+  Names (& URL): Jon Lindel
+	Karen
+	Kumar
+
+Tutorials:
+http://docs.castleproject.org/(X(1)S(20s4gpm5kbspac5511qulyag))/Windsor.Windsor-tutorial-part-four-putting-it-all-together.ashx
 
 /* SITE */
   Standards: HTML5, CSS3
   Components: Modernizr, jQuery
-  Software:
-  
-
-                                    
-                               -o/-                       
-                               +oo//-                     
-                              :ooo+//:                    
-                             -ooooo///-                   
-                             /oooooo//:                   
-                            :ooooooo+//-                  
-                           -+oooooooo///-                 
-           -://////////////+oooooooooo++////////////::    
-            :+ooooooooooooooooooooooooooooooooooooo+:::-  
-              -/+ooooooooooooooooooooooooooooooo+/::////:-
-                -:+oooooooooooooooooooooooooooo/::///////:-
-                  --/+ooooooooooooooooooooo+::://////:-   
-                     -:+ooooooooooooooooo+:://////:--     
-                       /ooooooooooooooooo+//////:-        
-                      -ooooooooooooooooooo////-           
-                      /ooooooooo+oooooooooo//:            
-                     :ooooooo+/::/+oooooooo+//-           
-                    -oooooo/::///////+oooooo///-          
-                    /ooo+::://////:---:/+oooo//:          
-                   -o+/::///////:-      -:/+o+//-         
-                   :-:///////:-            -:/://         
-                     -////:-                 --//:        
-                       --                       -:        
+  Software: Visual Studio 2010
