@@ -5,10 +5,11 @@
 }
 
 <h2>LogOn</h2>
+
 @using (Html.BeginForm())
 {
-@Html.EditorForModel()
-<div>
-    <input type="submit" value="Sign In" />
-</div>
+    @Html.EditorForModel()
+    <div>
+        <input type="submit" value="Sign In" />
+    </div>
 }
