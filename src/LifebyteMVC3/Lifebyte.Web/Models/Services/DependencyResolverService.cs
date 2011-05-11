@@ -1,34 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using Castle.Windsor;
+using System.Web.Routing;
+using Castle.MicroKernel;
+
+//http://docs.castleproject.org/(X(1)S(20s4gpm5kbspac5511qulyag))/Windsor.Windsor-tutorial-part-four-putting-it-all-together.ashx
 
 namespace Lifebyte.Web.Models.Services
 {
-    public class DependencyResolverService : IDependencyResolver
+    public class DependencyResolverService : DefaultControllerFactory
     {
-        private readonly IWindsorContainer container;
+        private readonly IKernel kernel;
 
-        public DependencyResolverService(IWindsorContainer container)
+        public DependencyResolverService(IKernel kernel)
         {
-            this.container = container;
+            this.kernel = kernel;
         }
 
-        #region IDependencyResolver Members
-
-        public object GetService(Type serviceType)
+        public override void ReleaseController(IController controller)
         {
-            return container.Kernel.HasComponent(serviceType) ? container.Resolve(serviceType) : null;
+            kernel.ReleaseComponent(controller);
         }
 
-        public IEnumerable<object> GetServices(Type serviceType)
+        protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
-            return container.Kernel.HasComponent(serviceType)
-                       ? container.ResolveAll(serviceType).Cast<object>()
-                       : new object[] {};
+            if (controllerType == null)
+            {
+                throw new HttpException(404, string.Format("The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
+            }
+            return (IController)kernel.Resolve(controllerType);
         }
-
-        #endregion
     }
+
 }
