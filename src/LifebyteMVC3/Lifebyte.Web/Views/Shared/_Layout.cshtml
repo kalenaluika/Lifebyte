@@ -7,11 +7,9 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssbase/base-min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />    
     <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
-    <link href="../../Content/themes/sunny/jquery-ui-1.8.9.custom.css" rel="stylesheet"
-        type="text/css" />
+    <link href="@Url.Content("~/Content/themes/sunny/jquery-ui-1.8.9.custom.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-1.7.min.js")"></script>
 </head>
@@ -21,10 +19,10 @@
         <div id="header">
             <div id="logo">
                 <h1>
-                    <a href="#">Lifebyte </a>
+                    @Html.ActionLink("Lifebyte", "Index", "Home")
                 </h1>
                 <p>
-                    Computer Minstry of <b>Colorado Community Church</b>
+                    Computer Minstry of <strong>Colorado Community Church</strong>
                 </p>
             </div>
             <div id="search">
@@ -40,19 +38,10 @@
                 <div id="page-bgbtm">
                     <div id="menu">
                         <ul>
-                            <li class="current_page_item"><a href="#">Home</a></li>
-                            <!--li><a href="#">Blog</a></li-->
-                            <!--li><a href="#">Teams</a></li-->
-                            <!--li><a href="#">Photos</a></li-->
-                            <!--li><a href="#">Links</a></li-->
-                            <!--li><a href="#">Contact</a></li-->
-                            <!--li> <a href="http://www.w3.org/TR/1999/REC-html401-19991224/index/elements.html"> Knowledge Base </a></li-->
-                            <!--li> <a href ="#"> Downloads </a></li-->
-                            <!--li><a href="e-wasterlink.htm">E-Waste </a></li-->
-                            <!--li><a href="#">Volunteering</a></li-->
-                            <li><a href="#" title="Request a Computer">Request</a></li>
-                            <li><a href="#" title="Donate to Us">Donate</a></li>
-                            <li><a href="#" title="Volunteer with Us">Volunteer</a></li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Request", "Index", "Request", null, new { title="Request a Computer" })</a></li>
+                            <li>@Html.ActionLink("Donate", "Index", "Donate")</li>
+                            <li>@Html.ActionLink("Volunteer", "Index", "Volunteer")</li>
                         </ul>
                     </div>
                     <!-- end #menu -->
@@ -62,22 +51,19 @@
                     <div id="sidebar">
                         <ul>
                             <li>
-                                <h2>
-                                    Calendar</h2>
+                                <h2>Calendar</h2>
                                 <div id="calendar">
                                 </div>
                             </li>
                             <li>
-                                <h2>
-                                    Upcoming Events</h2>
+                                <h2>Upcoming Events</h2>
                                 <ul>
                                     <li><a href="#">March 3<sup>rd</sup> Meeting</a></li>
                                     <li><a href="#">March 19<sup>th</sup> Delivery Day</a></li>
                                 </ul>
                             </li>
-                            <li style="background-color: Green;">
-                                <h2>
-                                    Stats</h2>
+                            <li>
+                                <h2>Stats</h2>
                                 <ul>
                                     <li><a href="#">16,527 pounds (8 tons) recycled</a></li>
                                     <li><a href="#">66 Computers ready for delivery</a></li>
@@ -106,9 +92,7 @@
         <!-- end #page -->
         <div id="footer-wrapper">
             <div id="footer">
-                <p>
-                    Copyright (c) 2011 lifebyte.org. All rights reserved. Design by <a href="http://www.lifebyte.org/">
-                        Lifebyte IT Team</a>.</p>
+                <p>Call us at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a> | Design by <a href="http://www.freecsstemplates.org">Free CSS Templates</a></p>
             </div>
         </div>
         <!-- end #footer -->
