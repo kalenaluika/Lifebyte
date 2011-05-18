@@ -1,13 +1,13 @@
 ﻿using System.Web.Mvc;
-using Lifebyte.Web.Models.ViewModels;
-using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.Core.Entities;
+using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.ViewModels;
 
 namespace Lifebyte.Web.Controllers
 {
     public class AccountController : Controller
     {
-        private IFormsAuthenticationService formsAuthenticationService;
+        private readonly IFormsAuthenticationService formsAuthenticationService;
 
         public AccountController(IFormsAuthenticationService formsAuthenticationService)
         {

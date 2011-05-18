@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using Lifebyte.Web.Controllers;
-using Lifebyte.Web.Models.ViewModels;
-using NUnit.Framework;
-using Moq;
-using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.Core.Entities;
+using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.ViewModels;
+using Moq;
+using NUnit.Framework;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -78,7 +78,7 @@ namespace Lifebyte.Web.Tests.Controllers
             ActionResult result = accountController.Register();
 
             Assert.IsInstanceOf<ViewResult>(result);
-            ViewResult view = (ViewResult)result;
+            var view = (ViewResult) result;
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<Volunteer>(view.ViewData.Model);
         }
