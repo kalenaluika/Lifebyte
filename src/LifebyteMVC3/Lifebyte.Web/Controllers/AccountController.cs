@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Lifebyte.Web.Models.ViewModels;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Core.Entities;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -36,6 +37,11 @@ namespace Lifebyte.Web.Controllers
         {
             formsAuthenticationService.SignOut();
             return View();
+        }
+
+        public ActionResult Register()
+        {
+            return View(new Volunteer());
         }
     }
 }

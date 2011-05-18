@@ -4,6 +4,7 @@ using Lifebyte.Web.Models.ViewModels;
 using NUnit.Framework;
 using Moq;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Core.Entities;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -67,6 +68,19 @@ namespace Lifebyte.Web.Tests.Controllers
             ActionResult result = accountController.LogOn();
 
             Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void AccountController_Register_Returns_View()
+        {
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
+
+            ActionResult result = accountController.Register();
+
+            Assert.IsInstanceOf<ViewResult>(result);
+            ViewResult view = (ViewResult)result;
+            Assert.IsNotNull(view.ViewData.Model);
+            Assert.IsInstanceOf<Volunteer>(view.ViewData.Model);
         }
     }
 }
