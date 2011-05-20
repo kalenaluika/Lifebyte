@@ -82,5 +82,46 @@ namespace Lifebyte.Web.Tests.Controllers
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<Volunteer>(view.ViewData.Model);
         }
+
+        [Test]
+        public void AccountController_Register_Save_Returns_Redirect_Fail()
+        {
+            // arrange
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
+
+            accountController.ModelState.AddModelError("testRequired", "dummy required field missing");
+
+            var fakeVolunteer = new Volunteer{                
+                                               FirstName="Firstname", LastName="LNameTest", Username="TestUser", Password="p@SSw0rd"
+                                             };
+             
+
+            ActionResult result = accountController.Register(fakeVolunteer);
+
+            Assert.IsInstanceOf<ViewResult>(result);
+
+        }
+
+        [Test]
+        public void AccountController_Register_Save_Returns_Redirect_Success()
+        {
+            // arrange
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);        
+            var fakeVolunteer = new Volunteer
+            {
+                FirstName = "Firstname",
+                LastName = "LNameTest",
+                Username = "TestUser",
+                Password = "p@SSw0rd",
+                PrimaryPhone ="333-444-5555", Email="user@email.com"
+
+            };
+
+
+            ActionResult result = accountController.Register(fakeVolunteer);
+
+            Assert.IsInstanceOf<RedirectResult>(result);
+
+        }
     }
 }

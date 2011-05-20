@@ -43,5 +43,12 @@ namespace Lifebyte.Web.Controllers
         {
             return View(new Volunteer());
         }
+
+        [HttpPost]
+        public ActionResult Register(Volunteer volunteer)
+        {
+            if (ModelState.IsValid) return new RedirectResult("Welcome");
+            return View(volunteer);
+        }
     }
 }
