@@ -91,37 +91,39 @@ namespace Lifebyte.Web.Tests.Controllers
 
             accountController.ModelState.AddModelError("testRequired", "dummy required field missing");
 
-            var fakeVolunteer = new Volunteer{                
-                                               FirstName="Firstname", LastName="LNameTest", Username="TestUser", Password="p@SSw0rd"
-                                             };
-             
+            var fakeVolunteer = new Volunteer
+                                    {
+                                        FirstName = "Firstname",
+                                        LastName = "LNameTest",
+                                        Username = "TestUser",
+                                        Password = "p@SSw0rd"
+                                    };
+
 
             ActionResult result = accountController.Register(fakeVolunteer);
 
             Assert.IsInstanceOf<ViewResult>(result);
-
         }
 
         [Test]
         public void AccountController_Register_Save_Returns_Redirect_Success()
         {
             // arrange
-            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);        
+            var accountController = new AccountController(new Mock<IFormsAuthenticationService>().Object);
             var fakeVolunteer = new Volunteer
-            {
-                FirstName = "Firstname",
-                LastName = "LNameTest",
-                Username = "TestUser",
-                Password = "p@SSw0rd",
-                PrimaryPhone ="333-444-5555", Email="user@email.com"
-
-            };
+                                    {
+                                        FirstName = "Firstname",
+                                        LastName = "LNameTest",
+                                        Username = "TestUser",
+                                        Password = "p@SSw0rd",
+                                        PrimaryPhone = "3334445555",
+                                        Email = "user@email.com"
+                                    };
 
 
             ActionResult result = accountController.Register(fakeVolunteer);
 
             Assert.IsInstanceOf<RedirectResult>(result);
-
         }
     }
 }
