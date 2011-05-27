@@ -87,7 +87,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
+    <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
+    <Compile Include="Models\Core\Interfaces\IRepository.cs" />
+    <Compile Include="Models\Data\Repository.cs" />
     <Compile Include="Models\Services\DataService.cs" />
     <Compile Include="Models\Services\DependencyResolverService.cs" />
     <Compile Include="Models\Services\FormsAuthenticationService.cs" />
@@ -157,6 +160,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="hibernate.cfg.xml" />
     <Content Include="humans.txt" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\jquery-1.6.1-vsdoc.js" />
@@ -205,9 +209,7 @@
   <ItemGroup>
     <Content Include="Views\Request\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>

@@ -1,15 +1,23 @@
-﻿using Lifebyte.Web.Models.Core.Entities;
-using Lifebyte.Web.Models.Core.Interfaces;
+﻿using Lifebyte.Web.Models.Core.Interfaces;
 
 namespace Lifebyte.Web.Models.Services
 {
-    public class DataService : IDataService
+    public class DataService<T> : IDataService<T> where T : ICoreEntity
     {
-        public void Save(Volunteer volunteer)
+        private readonly IRepository<T> repository;
+
+        public DataService(IRepository<T> repository)
         {
-            // http://jameskovacs.com/2011/01/21/loquacious-configuration-in-nhibernate-3/
-            // TODO Work on saving to the database.
-            throw new NotImplementedException();
+            this.repository = repository;
         }
+
+        #region IDataService<T> Members
+
+        public void Save(T entity)
+        {             
+            repository.Save(entity);
+        }
+
+        #endregion
     }
 }

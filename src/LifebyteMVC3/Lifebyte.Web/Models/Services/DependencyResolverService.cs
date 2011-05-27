@@ -7,6 +7,7 @@ using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Data;
 
 //http://docs.castleproject.org/(X(1)S(20s4gpm5kbspac5511qulyag))/Windsor.Windsor-tutorial-part-four-putting-it-all-together.ashx
 
@@ -36,8 +37,11 @@ namespace Lifebyte.Web.Models.Services
                 .Register(Component.For<IFormsAuthenticationService>()
                               .ImplementedBy(typeof (FormsAuthenticationService))
                               .LifeStyle.Transient)
-                .Register(Component.For<IDataService>()
-                              .ImplementedBy(typeof (DataService))
+                .Register(Component.For(typeof (IDataService<>))
+                              .ImplementedBy(typeof (DataService<>))
+                              .LifeStyle.Transient)
+                .Register(Component.For(typeof(IRepository<>))
+                              .ImplementedBy(typeof(Repository<>))
                               .LifeStyle.Transient);
         }
     }

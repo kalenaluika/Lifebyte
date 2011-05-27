@@ -1,9 +1,7 @@
-﻿using Lifebyte.Web.Models.Core.Entities;
-
-namespace Lifebyte.Web.Models.Core.Interfaces
+﻿namespace Lifebyte.Web.Models.Core.Interfaces
 {
-    public interface IDataService
+    public interface IDataService<T> where T : ICoreEntity
     {
-        void Save(Volunteer volunteer);
+        void Save(T entity);
     }
 }

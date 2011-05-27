@@ -8,7 +8,7 @@ namespace Lifebyte.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IFormsAuthenticationService formsAuthenticationService;
-        private readonly IDataService dataService;
+        private readonly IDataService<Volunteer> volunteerDataService;
 
         /// <summary>
         /// Creates a new instance of the AccountController. This controller is 
@@ -16,12 +16,12 @@ namespace Lifebyte.Web.Controllers
         /// and logging out.
         /// </summary>
         /// <param name="formsAuthenticationService">This service authenticates the volunteer.</param>
-        /// <param name="dataService">This service handles volunteer database functions.</param>
-        public AccountController(IFormsAuthenticationService formsAuthenticationService, 
-            IDataService dataService)
+        /// <param name="volunteerDataService">This service handles volunteer database functions.</param>
+        public AccountController(IFormsAuthenticationService formsAuthenticationService,
+            IDataService<Volunteer> volunteerDataService)
         {
             this.formsAuthenticationService = formsAuthenticationService;
-            this.dataService = dataService;
+            this.volunteerDataService = volunteerDataService;
         }
 
         public ActionResult LogOn()
@@ -62,7 +62,7 @@ namespace Lifebyte.Web.Controllers
                 return View(volunteer);
             }
 
-            dataService.Save(volunteer);
+            volunteerDataService.Save(volunteer);
 
             return new RedirectResult("Welcome");
         }

@@ -16,7 +16,7 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             Assert.IsInstanceOf<Controller>(accountController);
         }
@@ -26,7 +26,7 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             ActionResult result = accountController.LogOff();
 
@@ -38,7 +38,7 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             accountController.ModelState.AddModelError("test", "error");
 
@@ -54,7 +54,7 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             var model = new LogOnViewModel
                             {
@@ -74,7 +74,7 @@ namespace Lifebyte.Web.Tests.Controllers
             // TODO check the data service to see if the login is valid.
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             ActionResult result = accountController.LogOn();
 
@@ -87,7 +87,7 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             ActionResult result = accountController.Register();
 
@@ -103,7 +103,7 @@ namespace Lifebyte.Web.Tests.Controllers
             // arrange
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService>().Object);
+                new Mock<IDataService<Volunteer>>().Object);
 
             accountController.ModelState.AddModelError("testRequired", "dummy required field missing");
 
@@ -138,7 +138,7 @@ namespace Lifebyte.Web.Tests.Controllers
                 Email = "user@email.com"
             };
 
-            var dataService = new Mock<IDataService>();
+            var dataService = new Mock<IDataService<Volunteer>>();
 
             dataService.Setup(d => d.Save(fakeVolunteer)).Verifiable("Save was not called.");
 

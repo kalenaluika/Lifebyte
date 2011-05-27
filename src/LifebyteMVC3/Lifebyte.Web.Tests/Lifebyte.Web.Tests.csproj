@@ -63,6 +63,7 @@
     <Compile Include="Controllers\ProfileControllerTest.cs" />
     <Compile Include="Controllers\RequestControllerTest.cs" />
     <Compile Include="Controllers\VolunteerControllerTest.cs" />
+    <Compile Include="Models\Services\DataServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
