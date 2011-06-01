@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\elmah.corelibrary.1.2\lib\Elmah.dll</HintPath>
     </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.2.0.712\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -90,6 +93,9 @@
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
     <Compile Include="Models\Core\Interfaces\IRepository.cs" />
+    <Compile Include="Models\Data\AutomappingConfiguration.cs" />
+    <Compile Include="Models\Data\CascadeConvention.cs" />
+    <Compile Include="Models\Data\Overrides\DefaultStringLengthConvention.cs" />
     <Compile Include="Models\Data\Repository.cs" />
     <Compile Include="Models\Services\DataService.cs" />
     <Compile Include="Models\Services\DependencyResolverService.cs" />
@@ -160,7 +166,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="hibernate.cfg.xml" />
+    <Content Include="nhibernate.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="humans.txt" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\jquery-1.6.1-vsdoc.js" />
