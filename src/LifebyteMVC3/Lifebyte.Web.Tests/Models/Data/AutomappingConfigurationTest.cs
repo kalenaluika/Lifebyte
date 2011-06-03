@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using FluentNHibernate.Automapping;
+﻿using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Lifebyte.Web.Models.Core.Entities;
@@ -9,7 +8,6 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 using NUnit.Framework;
-using Environment = System.Environment;
 
 namespace Lifebyte.Web.Tests.Models.Data
 {
@@ -46,14 +44,14 @@ namespace Lifebyte.Web.Tests.Models.Data
         private void BuildSchema(Configuration config)
         {
             new SchemaExport(config)
-                .SetOutputFile(exportPath + @"\ddl.txt")
+                .SetOutputFile(exportPath + @"\ddl.sql")
                 .Create(false, false);
         }
 
         private string getExportPath()
         {
-            string localPath = Environment.CurrentDirectory;
-            string folderName = "LifebyteMVC3";
+            string localPath = System.Environment.CurrentDirectory;
+            const string folderName = "LifebyteMVC3";
             int length = localPath.IndexOf(folderName) + folderName.Length;
             localPath = localPath.Substring(0, length);
 

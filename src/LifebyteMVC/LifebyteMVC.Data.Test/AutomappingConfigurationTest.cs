@@ -114,7 +114,7 @@ namespace LifebyteMVC.Data.Test
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
-        [TestMethod, Ignore]
+        [TestMethod]
         public void AutomappingConfiguration_Mapping_File_Export_Test()
         {
             Fluently.Configure()

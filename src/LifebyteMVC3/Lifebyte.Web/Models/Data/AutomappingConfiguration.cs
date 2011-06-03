@@ -13,7 +13,7 @@ namespace Lifebyte.Web.Models.Data
         /// <returns>True if the given type is mapped to the database.</returns>
         public override bool ShouldMap(Type type)
         {
-            return type.Namespace == "LifebyteMVC.Models.Core.Entites";
+            return type.Namespace == "Lifebyte.Web.Models.Core.Entities";
         }
     }
 }
