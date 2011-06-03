@@ -6,9 +6,11 @@ namespace Lifebyte.Web.Models.Data
     {
         public void Save(T entity)
         {
-            // http://jameskovacs.com/2011/01/21/loquacious-configuration-in-nhibernate-3/
-            // TODO Work on saving to the database.
-            throw new System.NotImplementedException();
+            var session = MvcApplication.CurrentSession;
+            var transaction = session.BeginTransaction();
+            transaction.Begin();
+            session.SaveOrUpdate(entity);
+            transaction.Commit();
         }
     }
 }
