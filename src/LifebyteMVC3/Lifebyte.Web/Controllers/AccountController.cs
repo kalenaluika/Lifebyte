@@ -2,6 +2,7 @@
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.ViewModels;
+using System;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -62,6 +63,9 @@ namespace Lifebyte.Web.Controllers
                 return View(volunteer);
             }
 
+            volunteer.Active = true;
+            volunteer.Id = Guid.NewGuid();
+            volunteer.LastSignInDate = DateTime.Now;
             volunteerDataService.Save(volunteer);
 
             return new RedirectResult("Welcome");
