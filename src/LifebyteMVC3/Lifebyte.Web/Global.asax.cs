@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 using Lifebyte.Web.Models.Services;
+using Lifebyte.Web.Models.Data;
 
 namespace Lifebyte.Web
 {
@@ -18,6 +19,11 @@ namespace Lifebyte.Web
             RegisterGlobalFilters(GlobalFilters.Filters);
 
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        protected void Application_End()
+        {
+            NHibernateHelper.CloseSessionFactory();
         }
 
         /// <summary>

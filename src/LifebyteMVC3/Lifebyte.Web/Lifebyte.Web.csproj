@@ -98,6 +98,7 @@
     <Compile Include="Models\Core\Interfaces\IRepository.cs" />
     <Compile Include="Models\Data\AutomappingConfiguration.cs" />
     <Compile Include="Models\Data\CascadeConvention.cs" />
+    <Compile Include="Models\Data\NHibernateHelper.cs" />
     <Compile Include="Models\Data\Overrides\DefaultStringLengthConvention.cs" />
     <Compile Include="Models\Data\Repository.cs" />
     <Compile Include="Models\Services\DataService.cs" />
