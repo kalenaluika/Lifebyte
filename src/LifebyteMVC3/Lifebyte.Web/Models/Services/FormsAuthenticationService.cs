@@ -5,14 +5,20 @@ namespace Lifebyte.Web.Models.Services
 {
     public class FormsAuthenticationService : IFormsAuthenticationService
     {
-        public void SetAuthCookie(string userName, bool createPersistentCookie)
+        private void SetAuthCookie(string username, bool createPersistentCookie)
         {
-            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+            FormsAuthentication.SetAuthCookie(username, createPersistentCookie);
+        }
+
+        public bool SignIn(string username, string password, bool createPersistentCookie)
+        {
+            SetAuthCookie(username, createPersistentCookie);
+            return true;
         }
 
         public void SignOut()
         {
             FormsAuthentication.SignOut();
-        }
+        }        
     }
 }

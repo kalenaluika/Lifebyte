@@ -9,7 +9,7 @@ namespace Lifebyte.Web.Tests.Controllers
     public class ProfileControllerTest
     {
         [Test]
-        public void ProfileController_Constructor_Is_Valid()
+        public void Constructor_IsValid()
         {
             var profileController = new ProfileController();
 
@@ -17,7 +17,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void ProfileController_Class_Is_Authorized()
+        public void Class_Is_Authorized()
         {
             Assert.IsTrue(typeof(ProfileController)
                 .GetCustomAttributes(false)
@@ -25,7 +25,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void ProfileController_Index_Returns_View()
+        public void Index_ReturnsView()
         {
             var profileController = new ProfileController();
 

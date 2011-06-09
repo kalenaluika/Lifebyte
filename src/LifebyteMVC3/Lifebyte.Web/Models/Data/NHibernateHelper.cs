@@ -10,6 +10,7 @@ using NHibernate.Cfg;
 namespace Lifebyte.Web.Models.Data
 {
     /// <summary>
+    /// This code was adapted to us Fluent NHibernate and a custom config file.
     /// http://nhforge.org/doc/nh/en/index.html
     /// </summary>
     public class NHibernateHelper

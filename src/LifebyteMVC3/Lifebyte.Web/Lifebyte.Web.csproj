@@ -100,6 +100,7 @@
     <Compile Include="Models\Data\CascadeConvention.cs" />
     <Compile Include="Models\Data\NHibernateHelper.cs" />
     <Compile Include="Models\Data\Overrides\DefaultStringLengthConvention.cs" />
+    <Compile Include="Models\Data\Overrides\VolunteerMappingOverride.cs" />
     <Compile Include="Models\Data\Repository.cs" />
     <Compile Include="Models\Services\DataService.cs" />
     <Compile Include="Models\Services\DependencyResolverService.cs" />
@@ -222,7 +223,9 @@
   <ItemGroup>
     <Content Include="Views\Request\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Models\ViewModels\README.md" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
@@ -230,7 +233,6 @@
     <Content Include="Views\Account\LogOn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\ViewModels\README.md" />
     <Content Include="Views\Shared\_LogOnPartialView.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />

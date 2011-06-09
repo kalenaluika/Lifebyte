@@ -31,31 +31,7 @@ namespace Lifebyte.Web.Tests.Models.Data
 
             // This string might vary depending on your computer.
             // If you change this, be sure to set it back.
-            connectionString = "server=localhost;database=LifebyteDB;trusted_connection=true;";
-        }
-
-        private AutoPersistenceModel CreateAutomappings()
-        {
-            return AutoMap.AssemblyOf<Volunteer>(new AutomappingConfiguration())
-                .Conventions.Add<CascadeConvention>()
-                .Conventions.AddFromAssemblyOf<DefaultStringLengthConvention>();
-        }
-
-        private void BuildSchema(Configuration config)
-        {
-            new SchemaExport(config)
-                .SetOutputFile(exportPath + @"\ddl.sql")
-                .Create(false, false);
-        }
-
-        private string getExportPath()
-        {
-            string localPath = System.Environment.CurrentDirectory;
-            const string folderName = "LifebyteMVC3";
-            int length = localPath.IndexOf(folderName) + folderName.Length;
-            localPath = localPath.Substring(0, length);
-
-            return localPath + @"\Lifebyte.Web.Tests";
+            connectionString = "server=localhost;database=LifebyteDevDB;trusted_connection=true;";
         }
 
         /// <summary>    
@@ -64,7 +40,7 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// </summary>
         /// <remarks>http://ayende.com/Blog/archive/2006/08/09/NHibernateMappingCreatingSanityChecks.aspx</remarks>
         [Test]
-        public void AutomappingConfiguration_Mapping_Confirmation_Test()
+        public void AutomappingConfiguration_Mapping_Confirmation()
         {
             ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
@@ -86,8 +62,8 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
-        [Test]
-        public void AutomappingConfiguration_Mapping_File_Export_Test()
+        [Test, Ignore]
+        public void Generate_Mapping_File_Export()
         {
             Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString))
@@ -102,11 +78,36 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// The Volunteer entity should be mapped.
         /// </summary>
         [Test]
-        public void AutomappingConfiguration_ShouldMap_Test()
+        public void Volunteer_ShouldMap_Test()
         {
             var automapConfig = new AutomappingConfiguration();
 
             Assert.IsTrue(automapConfig.ShouldMap(typeof (Volunteer)));
+        }
+
+        private AutoPersistenceModel CreateAutomappings()
+        {
+            return AutoMap.AssemblyOf<Volunteer>(new AutomappingConfiguration())
+                .Conventions.Add<CascadeConvention>()
+                .UseOverridesFromAssemblyOf<VolunteerMappingOverride>()
+                .Conventions.AddFromAssemblyOf<DefaultStringLengthConvention>();
+        }
+
+        private void BuildSchema(Configuration config)
+        {
+            new SchemaExport(config)
+                .SetOutputFile(exportPath + @"\ddl.sql")
+                .Create(false, false);
+        }
+
+        private string getExportPath()
+        {
+            string localPath = System.Environment.CurrentDirectory;
+            const string folderName = "LifebyteMVC3";
+            int length = localPath.IndexOf(folderName) + folderName.Length;
+            localPath = localPath.Substring(0, length);
+
+            return localPath + @"\Lifebyte.Web.Tests";
         }
     }
 }

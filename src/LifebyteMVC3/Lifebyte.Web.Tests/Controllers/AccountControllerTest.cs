@@ -12,7 +12,7 @@ namespace Lifebyte.Web.Tests.Controllers
     public class AccountControllerTest
     {
         [Test]
-        public void AccountController_Constructor_Is_Valid()
+        public void Constructor_Is_Valid()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
@@ -22,7 +22,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_LogOff_Returns_View()
+        public void LogOff_Returns_View()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
@@ -34,7 +34,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_LogOn_Post_Invalid_ModelState_Returns_View()
+        public void LogOnPost_InvalidModelState_ReturnsView()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
@@ -50,12 +50,8 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_LogOn_Post_Valid_User_Redirects()
+        public void LogOnPost_ValidUser_Redirects()
         {
-            var accountController = new AccountController(
-                new Mock<IFormsAuthenticationService>().Object,
-                new Mock<IDataService<Volunteer>>().Object);
-
             var model = new LogOnViewModel
                             {
                                 Username = "dstewart",
@@ -63,27 +59,33 @@ namespace Lifebyte.Web.Tests.Controllers
                                 RememberMe = false,
                             };
 
+            var formsAuthenticationServiceMock = new Mock<IFormsAuthenticationService>();
+            formsAuthenticationServiceMock.Setup(f => f.SignIn(model.Username, model.Password, model.RememberMe))
+                .Returns(true);
+
+            var accountController = new AccountController(
+                formsAuthenticationServiceMock.Object,
+                new Mock<IDataService<Volunteer>>().Object);            
+
             ActionResult result = accountController.LogOn(model, "home/index");
 
             Assert.IsInstanceOf<RedirectResult>(result);
         }
 
         [Test]
-        public void AccountController_LogOn_Returns_View()
+        public void LogOn_ReturnsView()
         {
-            // TODO check the data service to see if the login is valid.
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
                 new Mock<IDataService<Volunteer>>().Object);
 
             ActionResult result = accountController.LogOn();
 
-            //Assert.IsInstanceOf<ViewResult>(result);
-            Assert.Inconclusive();
+            Assert.IsInstanceOf<ViewResult>(result);
         }
 
         [Test]
-        public void AccountController_Register_Returns_View()
+        public void Register_ReturnsView()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
@@ -98,7 +100,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_Register_Save_Returns_Redirect_Fail()
+        public void Register_FailedSave_ReturnsRedirect()
         {
             // arrange
             var accountController = new AccountController(
@@ -126,17 +128,17 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void AccountController_Register_Save_Returns_Redirect_Success()
+        public void Register_Save_ReturnsRedirect()
         {
             var fakeVolunteer = new Volunteer
-            {
-                FirstName = "Firstname",
-                LastName = "LNameTest",
-                Username = "TestUser",
-                Password = "p@SSw0rd",
-                PrimaryPhone = "3334445555",
-                Email = "user@email.com"
-            };
+                                    {
+                                        FirstName = "Firstname",
+                                        LastName = "LNameTest",
+                                        Username = "TestUser",
+                                        Password = "p@SSw0rd",
+                                        PrimaryPhone = "3334445555",
+                                        Email = "user@email.com"
+                                    };
 
             var dataService = new Mock<IDataService<Volunteer>>();
 
