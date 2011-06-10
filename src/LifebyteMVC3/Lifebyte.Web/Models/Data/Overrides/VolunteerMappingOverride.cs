@@ -15,6 +15,7 @@ namespace Lifebyte.Web.Models.Data.Overrides
             mapping.Map(v => v.PrimaryPhone).Length(10);
             mapping.Map(v => v.SecondaryPhone).Length(10);
             mapping.Map(v => v.Email).Length(200);
+            mapping.Map(v => v.Password).Length(500);
         }
     }
 }

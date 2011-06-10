@@ -13,7 +13,7 @@ namespace Lifebyte.Web.Models.Data
     /// This code was adapted to us Fluent NHibernate and a custom config file.
     /// http://nhforge.org/doc/nh/en/index.html
     /// </summary>
-    public class NHibernateHelper
+    public static class NHibernateHelper
     {
         private const string CurrentSessionKey = "nhibernate.current_session";
         private static readonly ISessionFactory sessionFactory;

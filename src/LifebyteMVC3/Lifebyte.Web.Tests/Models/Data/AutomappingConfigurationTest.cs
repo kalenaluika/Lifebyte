@@ -62,7 +62,7 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
-        [Test, Ignore]
+        [Test]
         public void Generate_Mapping_File_Export()
         {
             Fluently.Configure()

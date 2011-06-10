@@ -25,8 +25,10 @@ namespace Lifebyte.Web.Models.Data
 
                         throw;
                     }
-
-                    NHibernateHelper.CloseSession();
+                    finally
+                    {
+                        NHibernateHelper.CloseSession();
+                    }
 
                     return entity;
                 }

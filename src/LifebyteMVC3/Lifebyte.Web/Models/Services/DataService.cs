@@ -1,7 +1,8 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using System.Text;
 using Lifebyte.Web.Models.Core.Interfaces;
-using System;
+using Lifebyte.Web.Properties;
 
 namespace Lifebyte.Web.Models.Services
 {
@@ -15,7 +16,7 @@ namespace Lifebyte.Web.Models.Services
         }
 
         public void Save(T entity)
-        {             
+        {
             repository.Save(entity);
         }
 
@@ -26,12 +27,17 @@ namespace Lifebyte.Web.Models.Services
         /// <param name="password"></param>
         /// <param name="volunteerId"></param>
         /// <returns></returns>
+        /// <remarks>http://www.4guysfromrolla.com/articles/112002-1.aspx</remarks>
         public string EncryptPassword(string password, Guid volunteerId)
         {
-            var salt = volunteerId.ToString();
-            var saltedHash = new UTF8Encoding().GetBytes(salt + password);
+            byte[] saltedHash = new UTF8Encoding().GetBytes(Salt(volunteerId) + password);
 
             return Convert.ToBase64String(new SHA1CryptoServiceProvider().ComputeHash(saltedHash));
+        }
+
+        private string Salt(Guid volunteerId)
+        {
+            return string.Format("{0}{1}", Settings.Default.Salt, volunteerId);
         }
     }
 }
