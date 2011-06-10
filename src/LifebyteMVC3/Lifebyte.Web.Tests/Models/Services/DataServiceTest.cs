@@ -1,8 +1,8 @@
 ﻿using Lifebyte.Web.Models.Core.Entities;
-using Lifebyte.Web.Models.Services;
-using NUnit.Framework;
-using Moq;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Services;
+using Moq;
+using NUnit.Framework;
 
 namespace Lifebyte.Web.Tests.Models.Services
 {
@@ -10,7 +10,7 @@ namespace Lifebyte.Web.Tests.Models.Services
     public class DataServiceTest
     {
         [Test]
-        public void DataService_Save_SaveWasCalled()
+        public void Save_WasCalled()
         {
             var fakeVolunteer = new Volunteer();
             var repository = new Mock<IRepository<Volunteer>>();

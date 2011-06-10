@@ -2,8 +2,8 @@ namespace Lifebyte.Web.Models.Core.Interfaces
 {
     public interface IFormsAuthenticationService
     {
-        void SetAuthCookie(string userName, bool createPersistentCookie);
-
         void SignOut();
+
+        bool SignIn(string username, string password, bool createPersistentCookie);
     }
 }

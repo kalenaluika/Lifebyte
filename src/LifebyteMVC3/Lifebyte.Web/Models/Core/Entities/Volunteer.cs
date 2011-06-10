@@ -17,6 +17,8 @@ namespace Lifebyte.Web.Models.Core.Entities
         [Display(Name = "Last Name")]
         public virtual string LastName { get; set; }
 
+        public virtual string Company { get; set; }
+
         public virtual string Address { get; set; }
 
         public virtual string City { get; set; }
@@ -43,9 +45,20 @@ namespace Lifebyte.Web.Models.Core.Entities
         [DataType(DataType.Password)]
         public virtual string Password { get; set; }
 
-
         [ScaffoldColumn(false)]
         public virtual DateTime LastSignInDate { get; set; }
+
+        [ScaffoldColumn(false)]
+        public virtual Guid CreateByVolunteerId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public virtual DateTime CreateDate { get; set; }
+
+        [ScaffoldColumn(false)]
+        public virtual Guid LastModByVolunteerId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public virtual DateTime LastModDate { get; set; }
 
         /// <summary>
         /// We do not delete from the website. We only set records to be inactive and 

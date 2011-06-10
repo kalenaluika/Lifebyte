@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.ViewModels;
@@ -18,7 +19,7 @@ namespace Lifebyte.Web.Controllers
         /// <param name="formsAuthenticationService">This service authenticates the volunteer.</param>
         /// <param name="volunteerDataService">This service handles volunteer database functions.</param>
         public AccountController(IFormsAuthenticationService formsAuthenticationService,
-            IDataService<Volunteer> volunteerDataService)
+                                 IDataService<Volunteer> volunteerDataService)
         {
             this.formsAuthenticationService = formsAuthenticationService;
             this.volunteerDataService = volunteerDataService;
@@ -34,9 +35,9 @@ namespace Lifebyte.Web.Controllers
         {
             returnUrl = returnUrl ?? "~/";
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid &&
+                formsAuthenticationService.SignIn(model.Username, model.Password, model.RememberMe))
             {
-                formsAuthenticationService.SetAuthCookie(model.Username, model.RememberMe);
                 return Redirect(returnUrl);
             }
 
@@ -62,6 +63,14 @@ namespace Lifebyte.Web.Controllers
                 return View(volunteer);
             }
 
+            volunteer.Active = true;
+            volunteer.Id = Guid.NewGuid();
+            volunteer.LastSignInDate = DateTime.Now;
+            volunteer.Password = volunteerDataService.EncryptPassword(volunteer.Password, volunteer.Id);
+            volunteer.CreateByVolunteerId = volunteer.Id;
+            volunteer.CreateDate = DateTime.Now;
+            volunteer.LastModByVolunteerId = volunteer.Id;
+            volunteer.LastModDate = DateTime.Now;
             volunteerDataService.Save(volunteer);
 
             return new RedirectResult("Welcome");

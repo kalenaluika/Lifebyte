@@ -1,14 +1,38 @@
 ﻿using Lifebyte.Web.Models.Core.Interfaces;
+using NHibernate;
 
 namespace Lifebyte.Web.Models.Data
 {
     public class Repository<T> : IRepository<T> where T : ICoreEntity
     {
-        public void Save(T entity)
+        public T Save(T entity)
         {
-            // http://jameskovacs.com/2011/01/21/loquacious-configuration-in-nhibernate-3/
-            // TODO Work on saving to the database.
-            throw new System.NotImplementedException();
+            using (ISession session = NHibernateHelper.GetCurrentSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Save(entity);
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        if (transaction.IsActive)
+                        {
+                            transaction.Rollback();
+                        }
+
+                        throw;
+                    }
+                    finally
+                    {
+                        NHibernateHelper.CloseSession();
+                    }
+
+                    return entity;
+                }
+            }
         }
     }
 }

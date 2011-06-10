@@ -8,7 +8,7 @@ namespace Lifebyte.Web.Tests.Controllers
     public class RequestControllerTest
     {
         [Test]
-        public void RequestController_Index_loads_View()
+        public void Index_ReturnsView()
         {
             var controller = new RequestController();
             ActionResult result = controller.Index();
