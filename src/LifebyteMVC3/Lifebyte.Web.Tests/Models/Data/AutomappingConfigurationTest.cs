@@ -84,6 +84,39 @@ namespace Lifebyte.Web.Tests.Models.Data
 
             Assert.IsTrue(automapConfig.ShouldMap(typeof (Volunteer)));
         }
+        
+        /// <summary>
+        /// The Computer entity should be mapped.
+        /// </summary>
+        [Test]
+        public void Computer_ShouldMap_Test()
+        {
+            var automapConfig = new AutomappingConfiguration();
+
+            Assert.IsTrue(automapConfig.ShouldMap(typeof(Computer)));
+        }
+
+        /// <summary>
+        /// The ComputerStatus entity should be mapped.
+        /// </summary>
+        [Test]
+        public void ComputerStatus_ShouldMap_Test()
+        {
+            var automapConfig = new AutomappingConfiguration();
+
+            Assert.IsTrue(automapConfig.ShouldMap(typeof(ComputerStatus)));
+        }
+
+        /// <summary>
+        /// The LicenseType entity should be mapped.
+        /// </summary>
+        [Test]
+        public void LicenseType_ShouldMap_Test()
+        {
+            var automapConfig = new AutomappingConfiguration();
+
+            Assert.IsTrue(automapConfig.ShouldMap(typeof(LicenceType)));
+        }
 
         private AutoPersistenceModel CreateAutomappings()
         {

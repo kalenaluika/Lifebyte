@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComputerController.cs" />
     <Compile Include="Controllers\DonateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Core\Entities\Computer.cs" />
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Models\Data\AutomappingConfiguration.cs" />
     <Compile Include="Models\Data\CascadeConvention.cs" />
     <Compile Include="Models\Data\NHibernateHelper.cs" />
+    <Compile Include="Models\Data\Overrides\ComputerMappingOverride.cs" />
     <Compile Include="Models\Data\Overrides\DefaultStringLengthConvention.cs" />
     <Compile Include="Models\Data\Overrides\VolunteerMappingOverride.cs" />
     <Compile Include="Models\Data\Repository.cs" />
@@ -234,6 +237,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Views\Computer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
@@ -246,6 +250,7 @@
     <Content Include="Views\Account\LogOff.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
