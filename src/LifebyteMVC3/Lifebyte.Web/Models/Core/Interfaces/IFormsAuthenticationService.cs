@@ -4,6 +4,6 @@ namespace Lifebyte.Web.Models.Core.Interfaces
     {
         void SignOut();
 
-        bool SignIn(string username, string password, bool createPersistentCookie);
+        void SetAuthCookie(string username, bool createPersistentCookie);
     }
 }

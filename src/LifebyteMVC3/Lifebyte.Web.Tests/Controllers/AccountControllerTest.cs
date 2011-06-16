@@ -5,6 +5,7 @@ using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.ViewModels;
 using Moq;
 using NUnit.Framework;
+using System;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -59,9 +60,24 @@ namespace Lifebyte.Web.Tests.Controllers
                                 RememberMe = false,
                             };
 
+            var fakeVolunteer = new Volunteer
+                                    {
+                                        Username = model.Username,
+                                        Password = model.Password,
+                                    };
+
             var formsAuthenticationServiceMock = new Mock<IFormsAuthenticationService>();
-            formsAuthenticationServiceMock.Setup(f => f.SignIn(model.Username, model.Password, model.RememberMe))
-                .Returns(true);
+            
+            formsAuthenticationServiceMock.Setup(f => f.SetAuthCookie(It.IsAny<string>(), It.IsAny<bool>()))
+                .Verifiable();
+
+            var volunteerDataServiceMock = new Mock<IDataService<Volunteer>>();
+
+            volunteerDataServiceMock.Setup(v => v.FindOne(vol => vol.Username == It.IsAny<string>()))
+                .Returns(fakeVolunteer);
+
+            volunteerDataServiceMock.Setup(v => v.EncryptPassword(It.IsAny<string>(), It.IsAny<Guid>()))
+                .Returns(model.Password);
 
             var accountController = new AccountController(
                 formsAuthenticationServiceMock.Object,

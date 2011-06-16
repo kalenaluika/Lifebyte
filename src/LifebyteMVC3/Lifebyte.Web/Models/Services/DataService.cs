@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using Lifebyte.Web.Models.Core.Interfaces;
@@ -18,6 +20,26 @@ namespace Lifebyte.Web.Models.Services
         public void Save(T entity)
         {
             repository.Save(entity);
+        }
+
+        /// <summary>
+        /// Finds one instance of an entity.
+        /// </summary>
+        /// <param name="predicate">The query expression.</param>
+        /// <returns></returns>
+        public T FindOne(Expression<Func<T, bool>> predicate)
+        {
+            return repository.FindOne(predicate);
+        }
+
+        /// <summary>
+        /// Finds all of the instances.
+        /// </summary>
+        /// <param name="predicate">The query expression.</param>
+        /// <returns></returns>
+        public IList<T> FindAll(Expression<Func<T, bool>> predicate)
+        {
+            return repository.FindAll(predicate);
         }
 
         /// <summary>

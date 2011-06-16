@@ -14,6 +14,8 @@ We welcome your input. The goal of the project is to upgrade the existing Lifeby
 
 Ideals
 --------
+* [ReadMe Driven Development](http://tom.preston-werner.com/2010/08/23/readme-driven-development.html)
+
 * [Test Driven Development](http://www.testdriven.com/)
 
 * [Domain Driven Design](http://www.domaindrivendesign.org/)

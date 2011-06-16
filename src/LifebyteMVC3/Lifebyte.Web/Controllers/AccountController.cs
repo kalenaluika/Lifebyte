@@ -33,14 +33,24 @@ namespace Lifebyte.Web.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnViewModel model, string returnUrl)
         {
-            returnUrl = returnUrl ?? "~/";
-
-            if (ModelState.IsValid &&
-                formsAuthenticationService.SignIn(model.Username, model.Password, model.RememberMe))
+            if (!ModelState.IsValid)
             {
-                return Redirect(returnUrl);
+                return View();
             }
 
+            var volunteer = volunteerDataService.FindOne(v => v.Username == model.Username);
+
+            if (volunteer != null &&
+                volunteer.Password == volunteerDataService.EncryptPassword(model.Password, volunteer.Id))
+            {
+                var name = string.Format("{0} {1}", volunteer.FirstName ?? "", volunteer.LastName ?? "");
+
+                formsAuthenticationService.SetAuthCookie(name.Trim(), model.RememberMe);
+
+                return Redirect(returnUrl ?? "~/");
+            }
+
+            ModelState.AddModelError("Username", "Invalid username or password.");
             return View();
         }
 
