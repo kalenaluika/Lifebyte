@@ -17,9 +17,9 @@ namespace Lifebyte.Web.Models.Services
             this.repository = repository;
         }
 
-        public void Save(T entity)
+        public void Save(T entity, object id)
         {
-            repository.Save(entity);
+            repository.Save(entity, id);
         }
 
         /// <summary>

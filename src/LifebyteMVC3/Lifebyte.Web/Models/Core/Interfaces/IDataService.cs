@@ -10,7 +10,8 @@ namespace Lifebyte.Web.Models.Core.Interfaces
         /// Saves the entity to the database.
         /// </summary>
         /// <param name="entity"></param>
-        void Save(T entity);
+        /// <param name="id"></param>
+        void Save(T entity, object id);
 
         /// <summary>
         /// Finds one instance of an entity.

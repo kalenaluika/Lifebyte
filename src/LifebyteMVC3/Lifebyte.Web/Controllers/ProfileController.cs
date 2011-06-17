@@ -2,7 +2,7 @@
 
 namespace Lifebyte.Web.Controllers
 {
-    [AuthorizeAttribute]
+    [Authorize]
     public class ProfileController : Controller
     {
         /// <summary>

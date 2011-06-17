@@ -81,7 +81,7 @@ namespace Lifebyte.Web.Controllers
             volunteer.CreateDate = DateTime.Now;
             volunteer.LastModByVolunteerId = volunteer.Id;
             volunteer.LastModDate = DateTime.Now;
-            volunteerDataService.Save(volunteer);
+            volunteerDataService.Save(volunteer, volunteer.Id);
 
             return new RedirectResult("Welcome");
         }

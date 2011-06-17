@@ -11,7 +11,7 @@ namespace Lifebyte.Web.Models.Data
     {
         #region IRepository<T> Members
 
-        public T Save(T entity)
+        public T Save(T entity, object id)
         {
             using (ISession session = NHibernateHelper.GetCurrentSession())
             {
@@ -19,7 +19,7 @@ namespace Lifebyte.Web.Models.Data
                 {
                     try
                     {
-                        session.Save(entity);
+                        session.Save(entity, id);
                         transaction.Commit();
                     }
                     catch
