@@ -68,7 +68,7 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var formsAuthenticationServiceMock = new Mock<IFormsAuthenticationService>();
 
-            formsAuthenticationServiceMock.Setup(f => f.SetAuthCookie(It.IsAny<string>(), It.IsAny<bool>()))
+            formsAuthenticationServiceMock.Setup(f => f.SetAuthCookie(It.IsAny<Volunteer>(), It.IsAny<bool>()))
                 .Verifiable();
 
             var volunteerDataServiceMock = new Mock<IDataService<Volunteer>>();

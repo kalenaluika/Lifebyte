@@ -40,8 +40,8 @@ namespace Lifebyte.Web.Models.Services
                 .Register(Component.For(typeof (IDataService<>))
                               .ImplementedBy(typeof (DataService<>))
                               .LifeStyle.Transient)
-                .Register(Component.For(typeof(IRepository<>))
-                              .ImplementedBy(typeof(Repository<>))
+                .Register(Component.For(typeof (IRepository<>))
+                              .ImplementedBy(typeof (Repository<>))
                               .LifeStyle.Transient);
         }
     }

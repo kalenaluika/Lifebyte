@@ -42,10 +42,8 @@ namespace Lifebyte.Web.Controllers
 
             if (volunteer != null &&
                 volunteer.Password == volunteerDataService.EncryptPassword(model.Password, volunteer.Id))
-            {
-                var name = string.Format("{0} {1}", volunteer.FirstName ?? "", volunteer.LastName ?? "");
-
-                formsAuthenticationService.SetAuthCookie(name.Trim(), model.RememberMe);
+            {        
+                formsAuthenticationService.SetAuthCookie(volunteer, model.RememberMe);
 
                 return Redirect(returnUrl ?? "~/");
             }
@@ -82,6 +80,8 @@ namespace Lifebyte.Web.Controllers
             volunteer.LastModByVolunteerId = volunteer.Id;
             volunteer.LastModDate = DateTime.Now;
             volunteerDataService.Save(volunteer, volunteer.Id);
+
+            formsAuthenticationService.SetAuthCookie(volunteer, false);
 
             return new RedirectResult("Welcome");
         }
