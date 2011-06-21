@@ -237,12 +237,22 @@
     <Content Include="Views\Request\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\README.md" />
+    <None Include="Controllers\README.md" />
+    <None Include="Models\Core\Entities\README.md" />
+    <None Include="Models\Core\Interfaces\README.md" />
+    <None Include="Models\Core\README.md" />
+    <None Include="Models\Data\README.md" />
+    <None Include="Models\Services\README.md" />
     <None Include="Models\ViewModels\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Views\Computer\Index.cshtml" />
+    <Content Include="Views\Profile\Edit.cshtml" />
+    <None Include="Scripts\README.md" />
+    <None Include="Views\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />

@@ -73,7 +73,7 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var volunteerDataServiceMock = new Mock<IDataService<Volunteer>>();
 
-            volunteerDataServiceMock.Setup(v => v.FindOne(vol => It.IsAny<bool>()))
+            volunteerDataServiceMock.Setup(v => v.SelectOne(vol => It.IsAny<bool>()))
                 .Returns(fakeVolunteer);
 
             volunteerDataServiceMock.Setup(v => v.EncryptPassword(It.IsAny<string>(), It.IsAny<Guid>()))
@@ -159,7 +159,7 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var dataService = new Mock<IDataService<Volunteer>>();
 
-            dataService.Setup(d => d.Save(fakeVolunteer, It.IsAny<Guid>())).Verifiable("Save was not called.");
+            dataService.Setup(d => d.Insert(fakeVolunteer, It.IsAny<Guid>())).Verifiable("Save was not called.");
 
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,

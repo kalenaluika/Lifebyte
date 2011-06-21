@@ -1,0 +1,13 @@
+﻿@model Lifebyte.Web.Models.Core.Entities.Volunteer
+@{
+    ViewBag.Title = "Edit Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Edit Profile</h2>
+@using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <p>
+        <input type="submit" value="Update Profile" /></p>
+}

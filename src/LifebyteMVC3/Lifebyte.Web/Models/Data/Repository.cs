@@ -11,7 +11,7 @@ namespace Lifebyte.Web.Models.Data
     {
         #region IRepository<T> Members
 
-        public T Save(T entity, object id)
+        public T Insert(T entity, object id)
         {
             using (ISession session = NHibernateHelper.GetCurrentSession())
             {
@@ -41,12 +41,42 @@ namespace Lifebyte.Web.Models.Data
             }
         }
 
+        public T Update(T entity)
+        {
+            using (ISession session = NHibernateHelper.GetCurrentSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Update(entity);
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        if (transaction.IsActive)
+                        {
+                            transaction.Rollback();
+                        }
+
+                        throw;
+                    }
+                    finally
+                    {
+                        NHibernateHelper.CloseSession();
+                    }
+
+                    return entity;
+                }
+            }
+        }
+
         /// <summary>
-        /// Finds one instance of an entity.
+        /// Selects one instance of an entity.
         /// </summary>
-        /// <param name="predicate">The query expression.</param>
+        /// <param name="predicate">The LINQ expression.</param>
         /// <returns></returns>
-        public T FindOne(Expression<Func<T, bool>> predicate)
+        public T SelectOne(Expression<Func<T, bool>> predicate)
         {
             using (ISession session = NHibernateHelper.GetCurrentSession())
             {
@@ -77,11 +107,11 @@ namespace Lifebyte.Web.Models.Data
         }
 
         /// <summary>
-        /// Finds all of the instances.
+        /// Selects all of the instances.
         /// </summary>
-        /// <param name="predicate">The query expression.</param>
+        /// <param name="predicate">The LINQ expression.</param>
         /// <returns></returns>
-        public IList<T> FindAll(Expression<Func<T, bool>> predicate)
+        public IList<T> SelectAll(Expression<Func<T, bool>> predicate)
         {
             using (ISession session = NHibernateHelper.GetCurrentSession())
             {

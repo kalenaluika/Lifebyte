@@ -7,25 +7,31 @@ namespace Lifebyte.Web.Models.Core.Interfaces
     public interface IDataService<T> where T : ICoreEntity
     {
         /// <summary>
-        /// Saves the entity to the database.
+        /// Inserts the entity to the database.
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="id"></param>
-        void Save(T entity, object id);
+        void Insert(T entity, object id);
 
         /// <summary>
-        /// Finds one instance of an entity.
+        /// Updates the entity to the database.
+        /// </summary>
+        /// <param name="entity"></param>
+        void Update(T entity);
+
+        /// <summary>
+        /// Selects one instance of an entity.
         /// </summary>
         /// <param name="predicate">The query expression.</param>
         /// <returns></returns>
-        T FindOne(Expression<Func<T, bool>> predicate);
+        T SelectOne(Expression<Func<T, bool>> predicate);
 
         /// <summary>
-        /// Finds all of the instances.
+        /// Selects all of the instances.
         /// </summary>
         /// <param name="predicate">The query expression.</param>
         /// <returns></returns>
-        IList<T> FindAll(Expression<Func<T, bool>> predicate);
+        IList<T> SelectAll(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// We do not store plain text passwords in the database.

@@ -33,13 +33,29 @@ namespace Lifebyte.Web.Tests.Controllers
         public void Index_ReturnsView()
         {
             var volunteerDataService = new Mock<IDataService<Volunteer>>();
-            volunteerDataService.Setup(v => v.FindOne(vol => vol.Id == It.IsAny<Guid>()))
+            volunteerDataService.Setup(v => v.SelectOne(vol => vol.Id == It.IsAny<Guid>()))
                 .Returns(new Volunteer());
 
             var profileController = new ProfileController(volunteerDataService.Object,
                                                           new Mock<IFormsAuthenticationService>().Object);
 
             ActionResult result = profileController.Index();
+
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+
+        [Test]
+        public void Edit_ReturnsView()
+        {
+            var volunteerDataService = new Mock<IDataService<Volunteer>>();
+            volunteerDataService.Setup(v => v.SelectOne(vol => vol.Id == It.IsAny<Guid>()))
+                .Returns(new Volunteer());
+
+            var profileController = new ProfileController(volunteerDataService.Object,
+                                                          new Mock<IFormsAuthenticationService>().Object);
+
+            ActionResult result = profileController.Edit();
 
             Assert.IsInstanceOf<ViewResult>(result);
         }

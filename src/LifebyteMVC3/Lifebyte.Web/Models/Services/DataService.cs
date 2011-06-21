@@ -17,29 +17,34 @@ namespace Lifebyte.Web.Models.Services
             this.repository = repository;
         }
 
-        public void Save(T entity, object id)
+        public void Insert(T entity, object id)
         {
-            repository.Save(entity, id);
+            repository.Insert(entity, id);
+        }
+
+        public void Update(T entity)
+        {
+            repository.Update(entity);
         }
 
         /// <summary>
-        /// Finds one instance of an entity.
+        /// Selects one instance of an entity.
         /// </summary>
-        /// <param name="predicate">The query expression.</param>
+        /// <param name="predicate">The LINQ expression.</param>
         /// <returns></returns>
-        public T FindOne(Expression<Func<T, bool>> predicate)
+        public T SelectOne(Expression<Func<T, bool>> predicate)
         {
-            return repository.FindOne(predicate);
+            return repository.SelectOne(predicate);
         }
 
         /// <summary>
-        /// Finds all of the instances.
+        /// Selects all of the instances.
         /// </summary>
-        /// <param name="predicate">The query expression.</param>
+        /// <param name="predicate">The LINQ expression.</param>
         /// <returns></returns>
-        public IList<T> FindAll(Expression<Func<T, bool>> predicate)
+        public IList<T> SelectAll(Expression<Func<T, bool>> predicate)
         {
-            return repository.FindAll(predicate);
+            return repository.SelectAll(predicate);
         }
 
         /// <summary>

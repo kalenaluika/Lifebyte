@@ -16,7 +16,8 @@ namespace Lifebyte.Web.Models.Services
             FormsAuthentication.SetAuthCookie(getUserName(volunteer), createPersistentCookie);
 
             BakeCookie(volunteer,
-                       FormsAuthentication.GetAuthCookie(FormsAuthentication.FormsCookieName, false));
+                       FormsAuthentication.GetAuthCookie(FormsAuthentication.FormsCookieName, false),
+                       createPersistentCookie);
         }
 
         public void SignOut()
@@ -37,14 +38,15 @@ namespace Lifebyte.Web.Models.Services
         /// </summary>
         /// <param name="volunteer"></param>
         /// <param name="cookie"></param>
-        private void BakeCookie(Volunteer volunteer, HttpCookie cookie)
+        /// <param name="createPersistentCookie"></param>
+        private void BakeCookie(Volunteer volunteer, HttpCookie cookie, bool createPersistentCookie)
         {
             cookie.Value = FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
                                                            1,
                                                            getUserName(volunteer),
                                                            DateTime.Now,
                                                            DateTime.Now.AddTicks(FormsAuthentication.Timeout.Ticks),
-                                                           false,
+                                                           createPersistentCookie,
                                                            volunteer.Id.ToString(),
                                                            FormsAuthentication.FormsCookiePath));
             cookie.Expires = DateTime.Now.AddTicks(FormsAuthentication.Timeout.Ticks);

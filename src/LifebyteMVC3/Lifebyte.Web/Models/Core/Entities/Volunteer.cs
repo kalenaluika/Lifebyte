@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Interfaces;
 
 namespace Lifebyte.Web.Models.Core.Entities
 {
     public class Volunteer : ICoreEntity
     {
-        [ScaffoldColumn(false)]
+        [HiddenInput(DisplayValue = false)]
         public virtual Guid Id { get; set; }
 
         [Required]

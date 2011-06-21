@@ -6,20 +6,22 @@ namespace Lifebyte.Web.Models.Core.Interfaces
 {
     public interface IRepository<T> where T : ICoreEntity
     {
-        T Save(T entity, object id);
+        T Insert(T entity, object id);
+
+        T Update(T entity);
 
         /// <summary>
         /// Finds one instance of an entity.
         /// </summary>
         /// <param name="predicate">The query expression.</param>
         /// <returns></returns>
-        T FindOne(Expression<Func<T, bool>> predicate);
+        T SelectOne(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Finds all of the instances.
         /// </summary>
         /// <param name="predicate">The query expression.</param>
         /// <returns></returns>
-        IList<T> FindAll(Expression<Func<T, bool>> predicate);
+        IList<T> SelectAll(Expression<Func<T, bool>> predicate);
     }
 }

@@ -38,7 +38,7 @@ namespace Lifebyte.Web.Controllers
                 return View();
             }
 
-            var volunteer = volunteerDataService.FindOne(v => v.Username == model.Username);
+            var volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
 
             if (volunteer != null &&
                 volunteer.Password == volunteerDataService.EncryptPassword(model.Password, volunteer.Id))
@@ -79,7 +79,7 @@ namespace Lifebyte.Web.Controllers
             volunteer.CreateDate = DateTime.Now;
             volunteer.LastModByVolunteerId = volunteer.Id;
             volunteer.LastModDate = DateTime.Now;
-            volunteerDataService.Save(volunteer, volunteer.Id);
+            volunteerDataService.Insert(volunteer, volunteer.Id);
 
             formsAuthenticationService.SetAuthCookie(volunteer, false);
 

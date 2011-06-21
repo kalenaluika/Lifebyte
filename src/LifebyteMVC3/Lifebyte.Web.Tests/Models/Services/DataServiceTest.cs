@@ -26,7 +26,7 @@ namespace Lifebyte.Web.Tests.Models.Services
 
             var repository = new Mock<IRepository<Volunteer>>();
 
-            repository.Setup(r => r.FindAll(v => v.LastName == It.IsAny<string>()))
+            repository.Setup(r => r.SelectAll(v => v.LastName == It.IsAny<string>()))
                 .Returns(volunteers);
         }
 
@@ -42,7 +42,7 @@ namespace Lifebyte.Web.Tests.Models.Services
 
             var repository = new Mock<IRepository<Volunteer>>();
 
-            repository.Setup(r => r.FindOne(v => v.Username == fakeVolunteer.Username
+            repository.Setup(r => r.SelectOne(v => v.Username == fakeVolunteer.Username
                                                  && v.Password == fakeVolunteer.Password))
                 .Returns(fakeVolunteer);
         }
@@ -53,11 +53,11 @@ namespace Lifebyte.Web.Tests.Models.Services
             var fakeVolunteer = new Volunteer();
             var repository = new Mock<IRepository<Volunteer>>();
 
-            repository.Setup(r => r.Save(It.IsAny<Volunteer>(), It.IsAny<object>())).Verifiable();
+            repository.Setup(r => r.Insert(It.IsAny<Volunteer>(), It.IsAny<object>())).Verifiable();
 
             var dataService = new DataService<Volunteer>(repository.Object);
 
-            dataService.Save(fakeVolunteer, fakeVolunteer.Id);
+            dataService.Insert(fakeVolunteer, fakeVolunteer.Id);
 
             repository.Verify();
         }
