@@ -41,7 +41,7 @@ namespace Lifebyte.Web.Controllers
             var volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
 
             if (volunteer != null &&
-                volunteer.Password == volunteerDataService.EncryptPassword(model.Password, volunteer.Id))
+                volunteer.Password == volunteerDataService.HashPassword(model.Password, volunteer.Id))
             {        
                 formsAuthenticationService.SetAuthCookie(volunteer, model.RememberMe);
 
@@ -74,11 +74,12 @@ namespace Lifebyte.Web.Controllers
             volunteer.Active = true;
             volunteer.Id = Guid.NewGuid();
             volunteer.LastSignInDate = DateTime.Now;
-            volunteer.Password = volunteerDataService.EncryptPassword(volunteer.Password, volunteer.Id);
+            volunteer.Password = volunteerDataService.HashPassword(volunteer.Password, volunteer.Id);
             volunteer.CreateByVolunteerId = volunteer.Id;
             volunteer.CreateDate = DateTime.Now;
             volunteer.LastModByVolunteerId = volunteer.Id;
             volunteer.LastModDate = DateTime.Now;
+
             volunteerDataService.Insert(volunteer, volunteer.Id);
 
             formsAuthenticationService.SetAuthCookie(volunteer, false);

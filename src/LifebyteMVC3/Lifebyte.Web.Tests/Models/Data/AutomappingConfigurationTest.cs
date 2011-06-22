@@ -39,7 +39,7 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// If this fails, unignore the test below to generate the DDL script.
         /// </summary>
         /// <remarks>http://ayende.com/Blog/archive/2006/08/09/NHibernateMappingCreatingSanityChecks.aspx</remarks>
-        [Test]
+        [Test, Ignore]
         public void AutomappingConfiguration_Mapping_Confirmation()
         {
             ISessionFactory sessionFactory = Fluently.Configure()
@@ -62,7 +62,7 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// <summary>
         /// Unignore to generate the hbm.xml mapping files and DDL script.
         /// </summary>
-        [Test]
+        [Test, Ignore]
         public void Generate_Mapping_File_Export()
         {
             Fluently.Configure()

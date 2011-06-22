@@ -55,7 +55,7 @@ namespace Lifebyte.Web.Models.Services
         /// <param name="volunteerId"></param>
         /// <returns></returns>
         /// <remarks>http://www.4guysfromrolla.com/articles/112002-1.aspx</remarks>
-        public string EncryptPassword(string password, Guid volunteerId)
+        public string HashPassword(string password, Guid volunteerId)
         {
             byte[] saltedHash = new UTF8Encoding().GetBytes(Salt(volunteerId) + password);
 

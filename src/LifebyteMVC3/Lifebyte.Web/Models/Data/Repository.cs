@@ -9,8 +9,6 @@ namespace Lifebyte.Web.Models.Data
 {
     public class Repository<T> : IRepository<T> where T : class, ICoreEntity
     {
-        #region IRepository<T> Members
-
         public T Insert(T entity, object id)
         {
             using (ISession session = NHibernateHelper.GetCurrentSession())
@@ -140,7 +138,5 @@ namespace Lifebyte.Web.Models.Data
                 }
             }
         }
-
-        #endregion
     }
 }

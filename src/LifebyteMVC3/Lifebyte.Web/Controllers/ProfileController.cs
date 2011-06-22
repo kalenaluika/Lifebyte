@@ -51,8 +51,8 @@ namespace Lifebyte.Web.Controllers
 
             Volunteer originalModel = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
            
-            model.Password = model.Password != PasswordChars 
-                ? volunteerDataService.EncryptPassword(model.Password, originalModel.Id) 
+            model.Password = model.Password != PasswordChars
+                ? volunteerDataService.HashPassword(model.Password, originalModel.Id) 
                 : originalModel.Password;
 
             model.LastSignInDate = DateTime.Now;

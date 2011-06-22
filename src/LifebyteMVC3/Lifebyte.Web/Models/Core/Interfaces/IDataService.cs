@@ -40,6 +40,6 @@ namespace Lifebyte.Web.Models.Core.Interfaces
         /// <param name="password"></param>
         /// <param name="volunteerId"></param>
         /// <returns></returns>
-        string EncryptPassword(string password, Guid volunteerId);
+        string HashPassword(string password, Guid volunteerId);
     }
 }
