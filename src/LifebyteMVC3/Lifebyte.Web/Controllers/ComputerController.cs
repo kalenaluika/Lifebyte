@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Lifebyte.Web.Models.Core.Entities;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -11,7 +12,7 @@ namespace Lifebyte.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new Computer());
         }
     }
 }

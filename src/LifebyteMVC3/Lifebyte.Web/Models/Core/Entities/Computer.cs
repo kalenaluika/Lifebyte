@@ -11,9 +11,12 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         public virtual Recipient Recipient { get; set; }
 
+        //How come it doesn't defalut display on the model?
+   
         [Required]
         public virtual ComputerStatus ComputerStatus { get; set; }
 
+        // same as above
         [Display(Name = "Lifebyte Number")]
         public virtual string LifebyteNumber { get; set; }
 
