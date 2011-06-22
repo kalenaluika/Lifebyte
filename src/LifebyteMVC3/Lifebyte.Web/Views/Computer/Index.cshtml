@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Lifebyte.Web.Models.Core.Entities.Computer
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,6 +12,21 @@
 
 
 <p>People waiting for a computer: [placeholder for field populated by LINQ]</p>
+<p>Perhaps on this page we list, by default, computers that do not have a recipient</p>
+<p>Perhaps we have a button, a method,  to to Add a computer </p>
+
+<p>Perhaps we have  a method,  to search for a computer with different criteria </p>
+
+
+@Html.DisplayForModel()
+<p>below  is just an edit that probably would be on a differnt page.  On save would we want user
+to remain, or be redirected to another page?</p>
+@using (Html.BeginForm("Computer", "Computer", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save" />
+}
+
 
 
 
