@@ -15,7 +15,26 @@
 <p>Perhaps on this page we list, by default, computers that do not have a recipient</p>
 <p>Perhaps we have a button, a method,  to to Add a computer </p>
 
-<p>Perhaps we have  a method,  to search for a computer with different criteria </p>
+<p>Attempting to list </p>
+
+
+@{ 
+    var colNames = new List<string>();
+    colNames.Add("LifebyteNumber");
+    colNames.Add("License");
+    colNames.Add("ComputerStatus");
+    var computerGrid = new WebGrid(null, colNames);
+                                            
+    @computerGrid.GetHtml( columns: 
+                          computerGrid.Columns(computerGrid.Column("LifebyteNumber", "Lifebyte #"),
+                                               computerGrid.Column("License","License"),
+                                               computerGrid.Column("ComputerStatus","Status")
+                                              )
+                         ); 
+ }
+
+
+
 
 
 @Html.DisplayForModel()
