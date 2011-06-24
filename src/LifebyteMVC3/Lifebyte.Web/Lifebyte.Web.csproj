@@ -101,6 +101,7 @@
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
     <Compile Include="Models\Core\Interfaces\IRepository.cs" />
+    <Compile Include="Models\Core\UnitedStatesStates.cs" />
     <Compile Include="Models\Data\AutomappingConfiguration.cs" />
     <Compile Include="Models\Data\CascadeConvention.cs" />
     <Compile Include="Models\Data\NHibernateHelper.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Profile\Edit.cshtml" />
     <None Include="Scripts\README.md" />
     <None Include="Views\README.md" />
+    <Content Include="Views\Shared\EditorTemplates\_StateDropdownList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />

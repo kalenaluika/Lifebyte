@@ -64,25 +64,25 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Volunteer volunteer)
+        public ActionResult Register(Volunteer model)
         {
             if (!ModelState.IsValid)
             {
-                return View(volunteer);
+                return View(model);
             }
 
-            volunteer.Active = true;
-            volunteer.Id = Guid.NewGuid();
-            volunteer.LastSignInDate = DateTime.Now;
-            volunteer.Password = volunteerDataService.HashPassword(volunteer.Password, volunteer.Id);
-            volunteer.CreateByVolunteerId = volunteer.Id;
-            volunteer.CreateDate = DateTime.Now;
-            volunteer.LastModByVolunteerId = volunteer.Id;
-            volunteer.LastModDate = DateTime.Now;
+            model.Active = true;
+            model.Id = Guid.NewGuid();
+            model.LastSignInDate = DateTime.Now;
+            model.Password = volunteerDataService.HashPassword(model.Password, model.Id);
+            model.CreateByVolunteerId = model.Id;
+            model.CreateDate = DateTime.Now;
+            model.LastModByVolunteerId = model.Id;
+            model.LastModDate = DateTime.Now;
 
-            volunteerDataService.Insert(volunteer, volunteer.Id);
+            volunteerDataService.Insert(model, model.Id);
 
-            formsAuthenticationService.SetAuthCookie(volunteer, false);
+            formsAuthenticationService.SetAuthCookie(model, false);
 
             return new RedirectResult("Welcome");
         }

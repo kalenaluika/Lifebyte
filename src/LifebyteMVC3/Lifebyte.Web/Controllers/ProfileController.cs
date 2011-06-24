@@ -49,22 +49,33 @@ namespace Lifebyte.Web.Controllers
                 return View(model);
             }
 
-            Volunteer originalModel = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            var originalModel = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
            
-            model.Password = model.Password != PasswordChars
-                ? volunteerDataService.HashPassword(model.Password, originalModel.Id) 
-                : originalModel.Password;
+            model.Password = UpdatedPassword(model, originalModel);
 
             model.LastSignInDate = DateTime.Now;
             model.CreateByVolunteerId = originalModel.CreateByVolunteerId;
             model.CreateDate = originalModel.CreateDate;
-            model.LastModByVolunteerId = model.Id;
+            model.LastModByVolunteerId = originalModel.Id;
             model.LastModDate = DateTime.Now;
             model.Active = originalModel.Active;
 
             volunteerDataService.Update(model);
 
             return View("Index");
+        }
+
+        /// <summary>
+        /// Checks to see if the volunteer updated their password on the form.
+        /// </summary>
+        /// <param name="model">The updated model.</param>
+        /// <param name="originalModel">The original model.</param>
+        /// <returns>The new hashed password or the original password.</returns>
+        private string UpdatedPassword(Volunteer model, Volunteer originalModel)
+        {
+            return model.Password != PasswordChars
+                       ? volunteerDataService.HashPassword(model.Password, originalModel.Id) 
+                       : originalModel.Password;
         }
     }
 }

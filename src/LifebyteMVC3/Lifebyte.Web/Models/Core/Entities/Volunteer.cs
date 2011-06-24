@@ -7,7 +7,7 @@ namespace Lifebyte.Web.Models.Core.Entities
 {
     public class Volunteer : ICoreEntity
     {
-        [HiddenInput(DisplayValue = false)]
+        [ScaffoldColumn(false)]
         public virtual Guid Id { get; set; }
 
         [Required]
@@ -24,6 +24,7 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         public virtual string City { get; set; }
 
+        [UIHint("_StateDropdownList")]
         public virtual string State { get; set; }
 
         public virtual string Zip { get; set; }
