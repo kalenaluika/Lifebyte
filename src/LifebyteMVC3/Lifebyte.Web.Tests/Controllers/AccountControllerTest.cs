@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.Core.Entities;
@@ -64,6 +65,7 @@ namespace Lifebyte.Web.Tests.Controllers
                                     {
                                         Username = model.Username,
                                         Password = model.Password,
+                                        Active = true,
                                     };
 
             var formsAuthenticationServiceMock = new Mock<IFormsAuthenticationService>();
@@ -73,7 +75,7 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var volunteerDataServiceMock = new Mock<IDataService<Volunteer>>();
 
-            volunteerDataServiceMock.Setup(v => v.SelectOne(vol => It.IsAny<bool>()))
+            volunteerDataServiceMock.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
                 .Returns(fakeVolunteer);
 
             volunteerDataServiceMock.Setup(v => v.HashPassword(It.IsAny<string>(), It.IsAny<Guid>()))
@@ -81,12 +83,11 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var accountController = new AccountController(
                 formsAuthenticationServiceMock.Object,
-                new Mock<IDataService<Volunteer>>().Object);
+                volunteerDataServiceMock.Object);
 
             ActionResult result = accountController.LogOn(model, "home/index");
 
-            //Assert.IsInstanceOf<RedirectResult>(result);
-            Assert.Inconclusive("We need to finish this test.");
+            Assert.IsInstanceOf<RedirectResult>(result);            
         }
 
         [Test]

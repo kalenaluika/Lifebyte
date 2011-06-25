@@ -40,6 +40,12 @@ namespace Lifebyte.Web.Controllers
 
             var volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
 
+            if(volunteer != null && !volunteer.Active)
+            {
+                ModelState.AddModelError("Username", "You account is inactive. Please contact us to activate your account.");
+                return View();
+            }
+
             if (volunteer != null &&
                 volunteer.Password == volunteerDataService.HashPassword(model.Password, volunteer.Id))
             {        
@@ -71,7 +77,11 @@ namespace Lifebyte.Web.Controllers
                 return View(model);
             }
 
-            model.Active = true;
+            // Initially the account is inactive. An administrator has to activate the account in order
+            // for the volunteer to access the site.
+            // This is a HACK until we get role based authentication working.
+            model.Active = false;
+
             model.Id = Guid.NewGuid();
             model.LastSignInDate = DateTime.Now;
             model.Password = volunteerDataService.HashPassword(model.Password, model.Id);

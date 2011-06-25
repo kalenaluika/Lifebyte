@@ -7,6 +7,7 @@ using Lifebyte.Web.Models.Core.Interfaces;
 using Moq;
 using NUnit.Framework;
 using System.Security.Principal;
+using System.Linq.Expressions;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -34,37 +35,36 @@ namespace Lifebyte.Web.Tests.Controllers
         public void Index_ReturnsView()
         {
             var volunteerDataService = new Mock<IDataService<Volunteer>>();
-            volunteerDataService.Setup(v => v.SelectOne(vol => vol.Id == It.IsAny<Guid>()))
+            volunteerDataService.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
                 .Returns(new Volunteer());
 
             var profileController = new ProfileController(volunteerDataService.Object,
                                                           new Mock<IFormsAuthenticationService>().Object);
 
-            //ActionResult result = profileController.Index();
+            ActionResult result = profileController.Index();
 
-            //Assert.IsInstanceOf<ViewResult>(result);
-            Assert.Inconclusive();
+            Assert.IsInstanceOf<ViewResult>(result);
         }
-
 
         [Test]
         public void Edit_ReturnsView()
-        {
-            var volunteerDataService = new Mock<IDataService<Volunteer>>();
-            volunteerDataService.Setup(v => v.SelectOne(vol => vol.Id == It.IsAny<Guid>()))
-                .Returns(new Volunteer());
-
+        {            
             var formsAuthenticationService = new Mock<IFormsAuthenticationService>();
-            formsAuthenticationService.Setup(f => f.GetVolunteerID(It.IsAny<IPrincipal>()))
+            formsAuthenticationService.Setup(f => f.GetVolunteerID((IPrincipal)null))
                 .Returns(Guid.NewGuid());
+
+            var volunteerDataService = new Mock<IDataService<Volunteer>>();
+
+            // http://stackoverflow.com/questions/5196669/moqing-methods-where-expressionfunct-bool-are-passed-in-as-parameters
+            volunteerDataService.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
+                .Returns(new Volunteer());
 
             var profileController = new ProfileController(volunteerDataService.Object,
                                                           formsAuthenticationService.Object);
 
-            //ActionResult result = profileController.Edit();
+            ActionResult result = profileController.Edit();
 
-            //Assert.IsInstanceOf<ViewResult>(result);
-            Assert.Inconclusive();
+            Assert.IsInstanceOf<ViewResult>(result);
         }
     }
 }

@@ -35,7 +35,8 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Edit()
         {
-            Volunteer model = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            var id = formsAuthenticationService.GetVolunteerID(User);
+            Volunteer model = volunteerDataService.SelectOne(v => v.Id == id);
             model.Password = PasswordChars;
 
             return View(model);
