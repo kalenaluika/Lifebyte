@@ -51,7 +51,10 @@ namespace Lifebyte.Web.Controllers
             }
 
             var originalModel = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
-           
+
+            model.Id = originalModel.Id;
+
+            // This is a HACK. We should have a separate view to change a password, or a better method.
             model.Password = UpdatedPassword(model, originalModel);
 
             model.LastSignInDate = DateTime.Now;

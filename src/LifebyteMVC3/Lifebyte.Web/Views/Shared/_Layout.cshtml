@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />    
-    <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/themes/sunny/jquery-ui-1.8.9.custom.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <title>@ViewBag.Title</title>    
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.6.1.min.js")""></script>    
     <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-1.7.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.dropdown.js")"></script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />        
+    <link href="@Url.Content("~/Content/themes/sunny/jquery-ui-1.8.9.custom.css")" rel="stylesheet" type="text/css" />    
+    <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
 @Html.Partial("_LogOnPartialView")
@@ -99,18 +102,6 @@
             </div>
         </div>
         <!-- end #footer -->
-    </div>
-    
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.5.js"></script>
-    <!--
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.js"></script>
-    <script type="text/javascript">window.jQuery || document.write('<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")">\x3C/script>')</script>
-    <script type="text/javascript">
-        $("#calendar").datepicker();
-        $("#search-text").focus(function () {
-            $(this).val('');
-        });
-    </script>
-    -->
+    </div>    
 </body>
 </html>

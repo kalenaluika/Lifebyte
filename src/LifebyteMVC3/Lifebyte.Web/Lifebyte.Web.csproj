@@ -196,6 +196,7 @@
     <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.min.js" />
+    <Content Include="Scripts\jquery.dropdown.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
