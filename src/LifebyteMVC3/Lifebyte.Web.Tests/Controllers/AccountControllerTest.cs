@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Models.ViewModels;
+using Lifebyte.Web.Tests.TestHelpers;
 using Moq;
 using NUnit.Framework;
 
@@ -33,6 +35,17 @@ namespace Lifebyte.Web.Tests.Controllers
             ActionResult result = accountController.LogOff();
 
             Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void LogOffActionRoute_ReturnsView()
+        {
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/LogOff");
+
+            Assert.IsNotNull(routeData, "The Account/LogOff route was null.");
+            Assert.AreEqual("Account", routeData.Values["Controller"]);
+            Assert.AreEqual("LogOff", routeData.Values["Action"]);
+            Assert.IsEmpty(routeData.Values["id"].ToString());
         }
 
         [Test]
@@ -103,6 +116,17 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
+        public void LogOnActionRoute_ReturnsView()
+        {
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/LogOn");
+
+            Assert.IsNotNull(routeData, "The Account/LogOn route was null.");
+            Assert.AreEqual("Account", routeData.Values["Controller"]);
+            Assert.AreEqual("LogOn", routeData.Values["Action"]);
+            Assert.IsEmpty(routeData.Values["id"].ToString());
+        }
+
+        [Test]
         public void Register_FailedSave_ReturnsRedirect()
         {
             // arrange
@@ -143,6 +167,17 @@ namespace Lifebyte.Web.Tests.Controllers
             var view = (ViewResult) result;
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<Volunteer>(view.ViewData.Model);
+        }
+
+        [Test]
+        public void RegisterActionRoute_ReturnsView()
+        {
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/Register");
+
+            Assert.IsNotNull(routeData, "The Account/Register route was null.");
+            Assert.AreEqual("Account", routeData.Values["Controller"]);
+            Assert.AreEqual("Register", routeData.Values["Action"]);
+            Assert.IsEmpty(routeData.Values["id"].ToString());
         }
 
         [Test]

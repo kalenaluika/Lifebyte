@@ -88,6 +88,7 @@
     <Compile Include="Controllers\DonateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\RecipientController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -97,11 +98,16 @@
     <Compile Include="Models\Core\Entities\ComputerStatus.cs" />
     <Compile Include="Models\Core\Entities\LicenceType.cs" />
     <Compile Include="Models\Core\Entities\Recipient.cs" />
+    <Compile Include="Models\Core\Entities\RecipientStatus.cs" />
+    <Compile Include="Models\Core\Entities\ScheduleType.cs" />
+    <Compile Include="Models\Core\Entities\USState.cs" />
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
     <Compile Include="Models\Core\Interfaces\IRepository.cs" />
-    <Compile Include="Models\Core\UnitedStatesStates.cs" />
+    <Compile Include="Models\Core\Lookups\RecipientStatuses.cs" />
+    <Compile Include="Models\Core\Lookups\ScheduleTypes.cs" />
+    <Compile Include="Models\Core\Lookups\UnitedStatesStates.cs" />
     <Compile Include="Models\Data\AutomappingConfiguration.cs" />
     <Compile Include="Models\Data\CascadeConvention.cs" />
     <Compile Include="Models\Data\NHibernateHelper.cs" />
@@ -256,6 +262,10 @@
     <None Include="Scripts\README.md" />
     <None Include="Views\README.md" />
     <Content Include="Views\Shared\EditorTemplates\_StateDropdownList.cshtml" />
+    <Content Include="Views\Recipient\Index.cshtml" />
+    <Content Include="Views\Recipient\Add.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_RecipientStatusDropdownList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_ScheduleTypeDropdownList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />

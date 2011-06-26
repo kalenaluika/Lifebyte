@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Lifebyte.Web.Models.Core
+namespace Lifebyte.Web.Models.Core.Lookups
 {
     /// <summary>
     /// http://stackoverflow.com/questions/289048/asp-net-mvc-us-state-drop-down-list/4651491#4651491

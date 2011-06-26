@@ -84,11 +84,13 @@
     <Compile Include="Controllers\DonateControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ProfileControllerTest.cs" />
+    <Compile Include="Controllers\RecipientControllerTest.cs" />
     <Compile Include="Controllers\RequestControllerTest.cs" />
     <Compile Include="Controllers\VolunteerControllerTest.cs" />
     <Compile Include="Models\Data\AutomappingConfigurationTest.cs" />
     <Compile Include="Models\Services\DataServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelpers\RouteTestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Lifebyte.Web\Lifebyte.Web.csproj">
