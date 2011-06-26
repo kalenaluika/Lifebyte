@@ -105,7 +105,7 @@ namespace Lifebyte.Web.Models.Data
         }
 
         /// <summary>
-        /// Selects all of the instances.
+        /// Selects the first 100 instances.
         /// </summary>
         /// <param name="predicate">The LINQ expression.</param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace Lifebyte.Web.Models.Data
                 {
                     try
                     {
-                        var results = session.QueryOver<T>().Where(predicate).List();
+                        var results = session.QueryOver<T>().Where(predicate).Take(100).List();
                         transaction.Commit();
 
                         return results;
