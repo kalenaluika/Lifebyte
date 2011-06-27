@@ -27,7 +27,14 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Add()
         {
-            return View(new Recipient());
+            var model = new Recipient
+                            {
+                                ContactDate = DateTime.Now,
+                                RecipientStatus = "Needs Computer",
+                                State = "CO",
+                            };
+
+            return View(model);
         }
 
         [HttpPost]

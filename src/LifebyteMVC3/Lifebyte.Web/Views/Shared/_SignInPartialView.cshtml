@@ -1,9 +1,28 @@
-﻿@if(Request.IsAuthenticated) {
-    <text>Welcome <strong>@User.Identity.Name</strong>!
-    [ @Html.ActionLink("View Profile", "Index", "Profile") ] 
-    [ @Html.ActionLink("Log Off", "SignOff", "Account") ]</text>
-}
-else {
-    @Html.ActionLink("Log On", "SignIn", "Account") @:|| 
-    @Html.ActionLink("Register", "Register", "Account")
-}
+﻿<ul>
+    <li>
+        <h2>
+            Volunteers</h2>
+    </li>
+    <li>
+        @if (Request.IsAuthenticated)
+        {
+            <ul>
+                <li>Welcome <strong>@User.Identity.Name</strong>!</li>
+                <li>@Html.ActionLink("View Profile", "Index", "Profile")</li>
+                <li>@Html.ActionLink("Sign Off", "SignOff", "Account")</li>
+            </ul>
+            <ul>
+                <li>Data Entry</li>
+                <li>@Html.ActionLink("Computers", "Index", "Computer")</li>
+                <li>@Html.ActionLink("Recipients", "Index", "Recipient")</li>
+            </ul>
+        }
+        else
+        {
+            <ul>
+                <li>@Html.ActionLink("Sign In", "SignIn", "Account")</li>
+                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+            </ul>
+        }
+    </li>
+</ul>

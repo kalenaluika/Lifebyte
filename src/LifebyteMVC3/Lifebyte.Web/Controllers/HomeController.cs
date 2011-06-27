@@ -12,5 +12,10 @@ namespace Lifebyte.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

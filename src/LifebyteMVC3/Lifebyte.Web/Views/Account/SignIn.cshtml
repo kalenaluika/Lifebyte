@@ -3,16 +3,16 @@
     ViewBag.Title = "Lifebyte - Sign In";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>SignIn</h2>
-
+<h2>
+    SignIn</h2>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary()
     @Html.EditorForModel()
-    <div>
+    <p>
         <input type="submit" value="Sign In" />
-        <br />
+    </p>
+    <p>
         @Html.ActionLink("Register", "Register", "Account")
-    </div>
+    </p>
 }

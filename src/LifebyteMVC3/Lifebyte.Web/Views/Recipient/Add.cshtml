@@ -13,8 +13,8 @@
         <input type="submit" value="Add Recipient" /></p>
 }
 <script type="text/javascript">
-    choose("State_StateDropdownList", "State", "CO");
-    choose("RecipientStatus_RecipientStatusDropdownList", "RecipientStatus", "Needs Computer");
-    choose("ScheduleType_ScheduleTypeDropdownList", "ScheduleType", "");
+    choose("State_StateDropdownList", "State", "@Model.State");
+    choose("RecipientStatus_RecipientStatusDropdownList", "RecipientStatus", "@Model.RecipientStatus");
+    choose("ScheduleType_ScheduleTypeDropdownList", "ScheduleType", "@Model.ScheduleType");
 </script>
 

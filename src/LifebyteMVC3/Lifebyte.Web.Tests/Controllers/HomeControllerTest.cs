@@ -28,5 +28,25 @@ namespace Lifebyte.Web.Tests.Controllers
             Assert.AreEqual("Index", routeData.Values["Action"]);
             Assert.IsEmpty(routeData.Values["id"].ToString());
         }
+
+        [Test]
+        public void Privacy_ReturnsView()
+        {
+            var controller = new HomeController();
+            ActionResult result = controller.Privacy();
+
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
+        public void PrivacyActionRoute_ReturnsView()
+        {
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Home/Privacy");
+
+            Assert.IsNotNull(routeData, "The Home/Privacy route was null.");
+            Assert.AreEqual("Home", routeData.Values["Controller"]);
+            Assert.AreEqual("Privacy", routeData.Values["Action"]);
+            Assert.IsEmpty(routeData.Values["id"].ToString());
+        }
     }
 }

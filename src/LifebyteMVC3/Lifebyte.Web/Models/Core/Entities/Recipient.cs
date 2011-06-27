@@ -60,7 +60,7 @@ namespace Lifebyte.Web.Models.Core.Entities
         /// The date the recipient was scheduled to receive the computer.
         /// </summary>
         [Display(Name = "Schedule Date")]
-        public virtual DateTime ScheduleDate { get; set; }
+        public virtual DateTime? ScheduleDate { get; set; }
 
         [UIHint("_ScheduleTypeDropdownList")]
         [Display(Name = "Schedule Type")]
