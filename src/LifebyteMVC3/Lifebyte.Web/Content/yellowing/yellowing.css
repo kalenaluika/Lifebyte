@@ -34,11 +34,8 @@ h3 {
 }
 
 p, ul, ol {
-	margin-top: 0;
+	margin-top: 10px;
 	line-height: 180%;
-}
-
-ul, ol {
 }
 
 a {
@@ -174,6 +171,7 @@ img.aligncenter {
 
 #menu li {
 	float: left;
+	list-style: none;
 }
 
 #menu a {
@@ -220,6 +218,12 @@ img.aligncenter {
 	float: left;
 	width: 540px;
 	padding: 30px 20px 0px 0px;
+}
+
+#content a {
+    color: #E6B41F;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .post {

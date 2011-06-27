@@ -1,0 +1,286 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: 2676
+*/
+
+/* base.css, part of YUI's CSS Foundation */
+h1
+{
+    /*18px via YUI Fonts CSS foundation*/
+    font-size: 138.5%;
+}
+
+h2
+{
+    /*16px via YUI Fonts CSS foundation*/
+    font-size: 123.1%;
+}
+
+h3
+{
+    /*14px via YUI Fonts CSS foundation*/
+    font-size: 108%;
+}
+
+h1, h2, h3, h4, h5, h6, strong
+{
+    /*bringing boldness back to headers and the strong element*/
+    font-weight: bold;
+}
+abbr, acronym
+{
+    /*indicating to users that more info is available */
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+em
+{
+    /*bringing italics back to the em element*/
+    font-style: italic;
+}
+
+blockquote, ul, ol, dl
+{
+    /*giving blockquotes and lists room to breath*/
+    margin: 1em;
+    
+}
+
+q
+{
+    font-style: italic;
+    font-weight: bold;
+    display: block;
+    padding: 20px;
+}
+
+
+ol, ul, dl
+{
+    /*bringing lists on to the page with breathing room */
+    margin-left: 2em;
+}
+ol li
+{
+    /*giving OL's LIs generated numbers*/
+    list-style: decimal outside;
+}
+
+dl dd
+{
+    /*providing spacing for definition terms*/
+    margin-left: 1em;
+}
+th, td
+{
+    /*borders and padding to make the table readable*/
+    border: 1px solid #000;
+    padding: .5em;
+}
+th
+{
+    /*distinguishing table headers from data cells*/
+    font-weight: bold;
+    text-align: center;
+}
+caption
+{
+    /*coordinated margin to match cell's padding*/
+    margin-bottom: .5em; /*centered so it doesn't blend in to other content*/
+    text-align: center;
+}
+p, fieldset, table, pre
+{
+    /*so things don't run into each other*/
+    margin-bottom: 1em;
+}
+
+/* <DS> */
+/* http://webtypography.net/Rhythm_and_Proportion/Vertical_Motion/2.2.2/ */
+p
+{
+    line-height: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+}
+/* </DS> */
+
+/* setting a consistent width, 160px; 
+   control of type=file still not possible */
+input[type=text], input[type=password], textarea
+{
+    width: 12.25em;
+    width: 11.9em;
+}
+
+/* <DS> */
+label
+{
+    font-weight: bold;
+}
+/* </DS>
+
+/* <DS:HTML5BoilerPlate href="https://github.com/paulirish/html5-boilerplate"> */
+ins
+{
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+
+mark
+{
+    background-color: #ff9;
+    color: #000;
+    font-style: italic;
+    font-weight: bold;
+}
+
+del
+{
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title]
+{
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+hr
+{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+input, select
+{
+    vertical-align: middle;
+}
+
+/* Normalize monospace sizing:
+   http://en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
+pre, code, kbd, samp
+{
+    font-family: monospace, sans-serif;
+}
+
+/* Always force a scrollbar in non-IE */
+html
+{
+    overflow-y: scroll;
+}
+
+small
+{
+    font-size: 85%;
+}
+
+td
+{
+    vertical-align: top;
+}
+
+
+/* Set sub, sup without affecting line-height: http://gist.github.com/413930 */
+sub, sup
+{
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+}
+sup
+{
+    top: -0.5em;
+}
+sub
+{
+    bottom: -0.25em;
+}
+
+/* http://www.pathf.com/blogs/2008/05/formatting-quoted-code-in-blog-posts-css21-white-space-pre-wrap/ */
+pre
+{    
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 15px;
+}
+
+/* http://www.sitepoint.com/blogs/2010/08/20/ie-remove-textarea-scrollbars/ */
+textarea
+{
+    overflow: auto;
+}
+
+
+/* Align checkboxes, radios, text inputs with their label by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
+input[type="radio"]
+{
+    vertical-align: text-bottom;
+}
+input[type="checkbox"]
+{
+    vertical-align: bottom;
+}
+
+/* Hand cursor on clickable input elements */
+label, input[type="button"], input[type="submit"], input[type="image"], button
+{
+    cursor: pointer;
+}
+
+/* Make buttons play nice in IE:
+   www.viget.com/inspire/styling-the-button-element-in-internet-explorer/ */
+button
+{
+    width: auto;
+    overflow: visible;
+}
+
+a
+{
+    color: #607890;
+    text-decoration: none;
+}
+
+a:visited
+{
+    
+    font-weight: normal;
+}
+
+a:link, a:active
+{
+    font-weight: bold;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+/* </DS:HTML5BoilerPlate> */

@@ -34,7 +34,7 @@ namespace Lifebyte.Web.Tests.Controllers
 
             ActionResult result = accountController.LogOff();
 
-            Assert.IsInstanceOf<ViewResult>(result);
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
         }
 
         [Test]

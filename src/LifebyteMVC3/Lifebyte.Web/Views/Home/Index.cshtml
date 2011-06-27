@@ -2,18 +2,22 @@
     ViewBag.Title = "Lifebyte Computer Ministry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <h2>Welcome to Lifebyte</h2>
-        <p>            
-            Welcome to <a href="http://www.lifebyte.org/"><strong>Lifebyte </strong></a>a minstry
-            which is part of <a href="http://www.coloradocommunity.org/"><b>'Colorado Community
-                Church'</b></a>
-        </p>
-        <p>
-            Lifebyte is composed of a group of spirit-filled people who use the gifts and direction
-            of God to acquire, restore, and deliver free computers while sharing the love of
-            Jesus Christ. Lifebyte share the message and love of Jesus Christ by rebuilding,
-            deploying, and maintaining donated computers across the Denver Metro Area and beyond.</p>
-        <p>
-            Lifebyte ministry is reaching commmunity through Computers for the past 10 years.
-            Maintaining, fixing, donating Computers to the community is the main function of
-            the Lifebyte. Donations in the form of Computers and/or financial will be accepted.</p>
+<h2>
+    Welcome to Lifebyte</h2>
+<p>
+    Welcome to Lifebyte a ministry of <a href="http://www.coloradocommunity.org/">Colorado
+        Community Church</a>
+</p>
+<p>@Html.ActionLink("Do you need a computer?", "Index", "Request")</p>
+<p>@Html.ActionLink("Do you have a computer?", "Index", "Donate")</p>
+<p>@Html.ActionLink("Would you like to volunteer with us?", "Index", "Volunteer")</p>
+<p>
+    Lifebyte is composed of a group of spirit-filled people who use the gifts and direction
+    of God to acquire, restore, and deliver <strong>free computers</strong> while sharing
+    the love of Jesus Christ. Lifebyte shares the message and love of Jesus Christ by
+    rebuilding, deploying, and maintaining donated computers across the Denver Metro
+    Area and beyond.</p>
+<p>
+    Lifebyte has been reaching the Denver community through computers for the past @(DateTime.Now.Year - 2000)
+    years. Maintaining, fixing, and donating computers is the main function of Lifebyte.
+    We also teach classes and help with website development.</p>
