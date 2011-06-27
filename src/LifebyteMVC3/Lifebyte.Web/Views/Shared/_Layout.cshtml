@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css" />
     <link href="@Url.Content("~/Content/base.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/themes/sunny/jquery-ui-1.8.9.custom.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/Content/yellowing/yellowing.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/earthling2/style.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -24,76 +24,95 @@
                     @Html.ActionLink("Lifebyte", "Index", "Home")
                 </h1>
                 <p>
-                    Computer Ministry of Colorado Community Church
+                    Computer Ministry
                 </p>
-            </div>            
+            </div>
         </div>
         <!-- end #header -->
+        <div id="menu">
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Request", "Index", "Request", null, new { title = "Request a Computer" })</a></li>
+                <li>@Html.ActionLink("Donate", "Index", "Donate")</li>
+                <li>@Html.ActionLink("Volunteer", "Index", "Volunteer")</li>
+            </ul>
+        </div>
+        <!-- end #menu -->
         <div id="page">
-            <div id="page-bgtop">
-                <div id="page-bgbtm">
-                    <div id="menu">
-                        <ul>
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Request", "Index", "Request", null, new { title = "Request a Computer" })</a></li>
-                            <li>@Html.ActionLink("Donate", "Index", "Donate")</li>
-                            <li>@Html.ActionLink("Volunteer", "Index", "Volunteer")</li>
-                        </ul>
-                    </div>
-                    <!-- end #menu -->
-                    <div id="content">
-                        <p>
-                            @Html.Partial("_SignInPartialView")
-                        </p>
-                        @RenderBody()
-                    </div>
-                    <div id="sidebar">
-                        <ul>                            
-                            <li>
-                                <h2>
-                                    Upcoming Events</h2>
-                                <ul>
-                                    <li>March 3<sup>rd</sup> Meeting</li>
-                                    <li>March 19<sup>th</sup> Delivery Day</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h2>
-                                    Stats</h2>
-                                <ul>
-                                    <li>16,527 pounds (8 tons) recycled</li>
-                                    <li>66 Computers ready for delivery</li>
-                                    <li>29 People waiting for a computer</li>
-                                    <li>629 people helped</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h2>
-                                    Partners</h2>
-                                <ul>
-                                    <li><a href="https://www.msregrefurb.com/RRPSite/OnlineDirectory.aspx">Microsoft</a></li>
-                                    <li><a href="http://www.aidmatrix.com/">Aidmatrix</a></li>
-                                    <li><a href="http://twitter.com/lifebyte">Twitter</a></li>
-                                    <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355">Facebook</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- end #sidebar -->
-                    <div style="clear: both;">
-                        &nbsp;</div>
-                </div>
+            <div id="content">
+                <p>
+                    @Html.Partial("_SignInPartialView")
+                </p>
+                @RenderBody()
+                <div style="clear: both;">
+                    &nbsp;</div>
             </div>
+            <!-- end #content -->
+            <div id="sidebar">
+                <ul>
+                    <li>
+                        <h2>
+                            Upcoming Events</h2>
+                        <ul>
+                            <li>March 3<sup>rd</sup> Meeting</li>
+                            <li>March 19<sup>th</sup> Delivery Day</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>
+                            Stats</h2>
+                        <ul>
+                            <li>16,527 pounds (8 tons) recycled</li>
+                            <li>66 Computers ready for delivery</li>
+                            <li>29 People waiting for a computer</li>
+                            <li>629 people helped</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>
+                            Partners</h2>
+                        <ul>
+                            <li><a href="https://www.msregrefurb.com/RRPSite/OnlineDirectory.aspx">Microsoft</a></li>
+                            <li><a href="http://www.aidmatrix.com/">Aidmatrix</a></li>
+                            <li><a href="http://twitter.com/lifebyte">Twitter</a></li>
+                            <li><a href="http://www.facebook.com/pages/Englewood-CO/Lifebyte/159623783355">Facebook</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- end #sidebar -->
+            <div style="clear: both;">
+                &nbsp;</div>
         </div>
         <!-- end #page -->
-        <div id="footer-wrapper">
-            <div id="footer">
-                <p>
-                    Call us at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a>
-                    | Design by <a href="http://www.freecsstemplates.org">Free CSS Templates</a></p>
-            </div>
-        </div>
-        <!-- end #footer -->
     </div>
+    <div id="footer-content">
+        <div class="column1">
+            <h2>
+                Volutpat quisque sed et aliquam</h2>
+            <p>
+                <strong>Maecenas ut ante</strong> eu velit laoreet tempor accumsan vitae nibh. Aenean
+                commodo, tortor eu porta convolutpat elementum. Proin fermentum molestie erat eget
+                vehicula. Aenean eget tellus mi. Fusce scelerisque odio quis ante bibendum sollicitudin.
+                Suspendisse potenti. Vivamus quam odio, facilisis at ultrices nec, sollicitudin
+                ac risus. Donec ut odio ipsum, sed tincidunt. <a href="#">Learn more&#8230;</a></p>
+        </div>
+        <div class="column2">
+            <ul class="list">
+                <li><a href="#">Tempor accumsan vitae sed nibh dolore</a></li>
+                <li><a href="#">Aenean commodo, tortor eu porta veroeros</a></li>
+                <li><a href="#">Fermentum molestie erat eget consequat</a></li>
+                <li><a href="#">Donec vestibulum interdum diam etiam</a></li>
+                <li><a href="#">Vehicula aenean eget sed tellus blandit</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div id="footer">
+        <p>
+            Call us at 303-256-1224 | <a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a>
+            | Design by <a href="http://www.freecsstemplates.org">Free CSS Templates</a></p>
+    </div>
+    <!-- end #footer -->
 </body>
 </html>
