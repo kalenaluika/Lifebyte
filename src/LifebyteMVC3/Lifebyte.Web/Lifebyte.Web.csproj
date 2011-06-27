@@ -258,6 +258,7 @@
     <Content Include="Views\Computer\Index.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <None Include="Scripts\README.md" />
+    <Content Include="Views\Account\Welcome.cshtml" />
     <None Include="Views\README.md" />
     <Content Include="Views\Shared\EditorTemplates\_StateDropdownList.cshtml" />
     <Content Include="Views\Recipient\Index.cshtml" />
@@ -273,7 +274,7 @@
     <Content Include="Views\Account\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_LogOnPartialView.cshtml" />
+    <Content Include="Views\Shared\_SignInPartialView.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup />

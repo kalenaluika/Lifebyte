@@ -81,5 +81,14 @@ namespace Lifebyte.Web.Controllers
                        ? volunteerDataService.HashPassword(model.Password, originalModel.Id) 
                        : originalModel.Password;
         }
+
+        /// <summary>
+        /// The welcome page is what a newly registered volunteer sees.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Welcome()
+        {
+            return View();
+        }
     }
 }

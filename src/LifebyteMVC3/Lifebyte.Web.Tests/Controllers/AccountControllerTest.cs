@@ -205,7 +205,30 @@ namespace Lifebyte.Web.Tests.Controllers
 
             dataService.VerifyAll();
 
-            Assert.IsInstanceOf<RedirectResult>(result);
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
+        }
+
+        [Test]
+        public void Welcome_ReturnsView()
+        {
+            var accountController = new AccountController(
+                 new Mock<IFormsAuthenticationService>().Object,
+                 new Mock<IDataService<Volunteer>>().Object);
+
+            ActionResult result = accountController.Welcome();
+
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void WelcomeActionRoute_ReturnsView()
+        {
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/Welcome");
+
+            Assert.IsNotNull(routeData, "The Account/Welcome route was null.");
+            Assert.AreEqual("Account", routeData.Values["Controller"]);
+            Assert.AreEqual("Welcome", routeData.Values["Action"]);
+            Assert.IsEmpty(routeData.Values["id"].ToString());
         }
     }
 }

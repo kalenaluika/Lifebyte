@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Lifebyte.Web.Controllers;
@@ -8,8 +9,6 @@ using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Tests.TestHelpers;
 using Moq;
 using NUnit.Framework;
-using System.Security.Principal;
-using System.Linq.Expressions;
 
 namespace Lifebyte.Web.Tests.Controllers
 {
@@ -34,36 +33,21 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void Index_ReturnsView()
+        public void EditActionRoute_ReturnsView()
         {
-            var volunteerDataService = new Mock<IDataService<Volunteer>>();
-            volunteerDataService.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
-                .Returns(new Volunteer());
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Profile/Edit");
 
-            var profileController = new ProfileController(volunteerDataService.Object,
-                                                          new Mock<IFormsAuthenticationService>().Object);
-
-            ActionResult result = profileController.Index();
-
-            Assert.IsInstanceOf<ViewResult>(result);
-        }
-
-        [Test]
-        public void IndexActionRoute_ReturnsView()
-        {
-            RouteData routeData = RouteTestHelper.GetRouteData("~/Profile/Index");
-
-            Assert.IsNotNull(routeData, "The Profile/Index route was null.");
+            Assert.IsNotNull(routeData, "The Profile/Edit route was null.");
             Assert.AreEqual("Profile", routeData.Values["Controller"]);
-            Assert.AreEqual("Index", routeData.Values["Action"]);
+            Assert.AreEqual("Edit", routeData.Values["Action"]);
             Assert.IsEmpty(routeData.Values["id"].ToString());
         }
 
         [Test]
         public void Edit_ReturnsView()
-        {            
+        {
             var formsAuthenticationService = new Mock<IFormsAuthenticationService>();
-            formsAuthenticationService.Setup(f => f.GetVolunteerID((IPrincipal)null))
+            formsAuthenticationService.Setup(f => f.GetVolunteerID(null))
                 .Returns(Guid.NewGuid());
 
             var volunteerDataService = new Mock<IDataService<Volunteer>>();
@@ -81,14 +65,29 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void EditActionRoute_ReturnsView()
+        public void IndexActionRoute_ReturnsView()
         {
-            RouteData routeData = RouteTestHelper.GetRouteData("~/Profile/Edit");
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Profile/Index");
 
-            Assert.IsNotNull(routeData, "The Profile/Edit route was null.");
+            Assert.IsNotNull(routeData, "The Profile/Index route was null.");
             Assert.AreEqual("Profile", routeData.Values["Controller"]);
-            Assert.AreEqual("Edit", routeData.Values["Action"]);
+            Assert.AreEqual("Index", routeData.Values["Action"]);
             Assert.IsEmpty(routeData.Values["id"].ToString());
+        }
+
+        [Test]
+        public void Index_ReturnsView()
+        {
+            var volunteerDataService = new Mock<IDataService<Volunteer>>();
+            volunteerDataService.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
+                .Returns(new Volunteer());
+
+            var profileController = new ProfileController(volunteerDataService.Object,
+                                                          new Mock<IFormsAuthenticationService>().Object);
+
+            ActionResult result = profileController.Index();
+
+            Assert.IsInstanceOf<ViewResult>(result);
         }
     }
 }

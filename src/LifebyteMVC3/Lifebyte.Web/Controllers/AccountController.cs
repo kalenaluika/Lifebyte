@@ -40,15 +40,16 @@ namespace Lifebyte.Web.Controllers
 
             var volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
 
-            if(volunteer != null && !volunteer.Active)
+            if (volunteer != null && !volunteer.Active)
             {
-                ModelState.AddModelError("Username", "You account is inactive. Please contact us to activate your account.");
+                ModelState.AddModelError("Username",
+                                         "You account is inactive. Please contact us to activate your account.");
                 return View();
             }
 
             if (volunteer != null &&
                 volunteer.Password == volunteerDataService.HashPassword(model.Password, volunteer.Id))
-            {        
+            {
                 formsAuthenticationService.SetAuthCookie(volunteer, model.RememberMe);
 
                 return Redirect(returnUrl ?? "~/");
@@ -77,6 +78,13 @@ namespace Lifebyte.Web.Controllers
                 return View(model);
             }
 
+            var existingVolunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
+            if (existingVolunteer != null)
+            {
+                ModelState.AddModelError("Username", "That username already exists.");
+                return View();
+            }
+
             // Initially the account is inactive. An administrator has to activate the account in order
             // for the volunteer to access the site.
             // This is a HACK until we get role based authentication working.
@@ -92,9 +100,15 @@ namespace Lifebyte.Web.Controllers
 
             volunteerDataService.Insert(model, model.Id);
 
-            formsAuthenticationService.SetAuthCookie(model, false);
+            // Do not sign the new registration into the website until we have roles in place!
+            // That will be explained in the Welcome page.
 
-            return new RedirectResult("Welcome");
+            return RedirectToAction("Welcome");
+        }
+
+        public ActionResult Welcome()
+        {
+            return View();
         }
     }
 }

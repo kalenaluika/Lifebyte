@@ -7,6 +7,7 @@
     Edit Profile</h2>
 @using (Html.BeginForm("Edit", "Profile", FormMethod.Post))
 {
+    @Html.ValidationSummary()
     @Html.EditorForModel()
     <p>
         <input type="submit" value="Update Profile" /></p>

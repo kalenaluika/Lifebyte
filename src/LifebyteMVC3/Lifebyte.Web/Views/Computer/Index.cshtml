@@ -23,6 +23,7 @@
 to remain, or be redirected to another page?</p>
 @using (Html.BeginForm("Computer", "Computer", FormMethod.Post))
 {
+    @Html.ValidationSummary()
     @Html.EditorForModel()
     <input type="submit" value="Save" />
 }
