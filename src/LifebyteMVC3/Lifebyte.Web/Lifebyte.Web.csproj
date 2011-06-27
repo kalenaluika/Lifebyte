@@ -270,7 +270,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LogOnPartialView.cshtml" />

@@ -25,13 +25,13 @@ namespace Lifebyte.Web.Controllers
             this.volunteerDataService = volunteerDataService;
         }
 
-        public ActionResult LogOn()
+        public ActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LogOn(LogOnViewModel model, string returnUrl)
+        public ActionResult SignIn(SignInViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Lifebyte.Web.Controllers
         public ActionResult LogOff()
         {
             formsAuthenticationService.SignOut();
-            return RedirectToAction("LogOn");
+            return RedirectToAction("SignIn");
         }
 
         public ActionResult Register()

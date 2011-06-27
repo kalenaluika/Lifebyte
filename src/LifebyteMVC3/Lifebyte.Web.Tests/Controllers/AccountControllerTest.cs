@@ -49,7 +49,7 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void LogOnPost_InvalidModelState_ReturnsView()
+        public void SignInPost_InvalidModelState_ReturnsView()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
@@ -57,17 +57,17 @@ namespace Lifebyte.Web.Tests.Controllers
 
             accountController.ModelState.AddModelError("test", "error");
 
-            var model = new LogOnViewModel();
+            var model = new SignInViewModel();
 
-            ActionResult result = accountController.LogOn(model, "home/index");
+            ActionResult result = accountController.SignIn(model, "home/index");
 
             Assert.IsInstanceOf<ViewResult>(result);
         }
 
         [Test]
-        public void LogOnPost_ValidUser_Redirects()
+        public void SignInPost_ValidUser_Redirects()
         {
-            var model = new LogOnViewModel
+            var model = new SignInViewModel
                             {
                                 Username = "dstewart",
                                 Password = "p@ssw0rd",
@@ -98,31 +98,31 @@ namespace Lifebyte.Web.Tests.Controllers
                 formsAuthenticationServiceMock.Object,
                 volunteerDataServiceMock.Object);
 
-            ActionResult result = accountController.LogOn(model, "home/index");
+            ActionResult result = accountController.SignIn(model, "home/index");
 
             Assert.IsInstanceOf<RedirectResult>(result);            
         }
 
         [Test]
-        public void LogOn_ReturnsView()
+        public void SignIn_ReturnsView()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
                 new Mock<IDataService<Volunteer>>().Object);
 
-            ActionResult result = accountController.LogOn();
+            ActionResult result = accountController.SignIn();
 
             Assert.IsInstanceOf<ViewResult>(result);
         }
 
         [Test]
-        public void LogOnActionRoute_ReturnsView()
+        public void SignInActionRoute_ReturnsView()
         {
-            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/LogOn");
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/SignIn");
 
-            Assert.IsNotNull(routeData, "The Account/LogOn route was null.");
+            Assert.IsNotNull(routeData, "The Account/SignIn route was null.");
             Assert.AreEqual("Account", routeData.Values["Controller"]);
-            Assert.AreEqual("LogOn", routeData.Values["Action"]);
+            Assert.AreEqual("SignIn", routeData.Values["Action"]);
             Assert.IsEmpty(routeData.Values["id"].ToString());
         }
 

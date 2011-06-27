@@ -2,7 +2,7 @@
 
 namespace Lifebyte.Web.Models.ViewModels
 {
-    public class LogOnViewModel
+    public class SignInViewModel
     {
         [Required]
         public string Username { get; set; }
