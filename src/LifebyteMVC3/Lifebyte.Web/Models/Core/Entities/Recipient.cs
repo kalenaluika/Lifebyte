@@ -14,9 +14,11 @@ namespace Lifebyte.Web.Models.Core.Entities
         }
 
         [HiddenInput(DisplayValue = false)]
+        [Required]
         public virtual Guid Id { get; set; }
 
         [Display(Name = "First Name")]
+        [Required]
         public virtual string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
@@ -29,17 +31,18 @@ namespace Lifebyte.Web.Models.Core.Entities
         public virtual string City { get; set; }
 
         [UIHint("_StateDropdownList")]
-        public virtual UnitedStatesState State { get; set; }
+        public virtual string State { get; set; }
 
         public virtual string Zip { get; set; }
 
         public virtual string Email { get; set; }
 
+        [Required]
         public virtual string Phone { get; set; }
 
         [UIHint("_RecipientStatusDropdownList")]
         [Display(Name = "Status")]
-        public virtual RecipientStatus RecipientStatus { get; set; }
+        public virtual string RecipientStatus { get; set; }
 
         /// <summary>
         /// Notes that the volunteer entered about the recipient.
@@ -61,7 +64,7 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         [UIHint("_ScheduleTypeDropdownList")]
         [Display(Name = "Schedule Type")]
-        public virtual ScheduleType ScheduleType { get; set; }
+        public virtual string ScheduleType { get; set; }
 
         /// <summary>
         /// The date the record was created.

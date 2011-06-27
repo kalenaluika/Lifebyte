@@ -8,8 +8,8 @@ namespace Lifebyte.Web.Models.Core.Lookups
         public static readonly IDictionary<string, string> ScheduleTypesDictionary = new Dictionary<string, string>
                                                                                          {
                                                                                              {"", ""},
-                                                                                             {"1", "Delivery"},
-                                                                                             {"2", "Pick-Up"},
+                                                                                             {"Delivery", "Delivery"},
+                                                                                             {"Pick-Up", "Pick-Up"},
                                                                                          };
 
         public static SelectList ScheduleTypesSelectList

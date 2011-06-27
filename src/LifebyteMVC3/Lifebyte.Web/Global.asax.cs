@@ -10,6 +10,8 @@ namespace Lifebyte.Web
 {
     public class MvcApplication : HttpApplication
     {
+        private static IWindsorContainer container;
+
         protected void Application_Start()
         {
             BuildControllerFactory();
@@ -24,6 +26,7 @@ namespace Lifebyte.Web
         protected void Application_End()
         {
             NHibernateHelper.CloseSessionFactory();
+            container.Dispose();
         }
 
         /// <summary>
@@ -31,7 +34,7 @@ namespace Lifebyte.Web
         /// </summary>
         private static void BuildControllerFactory()
         {
-            var container = new WindsorContainer().Install(FromAssembly.This());
+            container = new WindsorContainer().Install(FromAssembly.This());
 
             var dependencyResolverService = new DependencyResolverService(container);
 

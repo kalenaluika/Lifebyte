@@ -1,0 +1,18 @@
+﻿@model Lifebyte.Web.Models.Core.Entities.Recipient
+@{
+    ViewBag.Title = "Lifebyte - Edit Recipient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Recipient</h2>
+@using (Html.BeginForm("Edit", "Recipient", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <p>
+        <input type="submit" value="Save Recipient" /></p>
+}
+<script type="text/javascript">
+    choose("State_StateDropdownList", "State", "@Model.State");
+    choose("RecipientStatus_RecipientStatusDropdownList", "RecipientStatus", "@Model.RecipientStatus");
+    choose("ScheduleType_ScheduleTypeDropdownList", "ScheduleType", "@Model.ScheduleType");
+</script>

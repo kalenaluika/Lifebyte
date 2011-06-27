@@ -98,9 +98,6 @@
     <Compile Include="Models\Core\Entities\ComputerStatus.cs" />
     <Compile Include="Models\Core\Entities\LicenceType.cs" />
     <Compile Include="Models\Core\Entities\Recipient.cs" />
-    <Compile Include="Models\Core\Entities\RecipientStatus.cs" />
-    <Compile Include="Models\Core\Entities\ScheduleType.cs" />
-    <Compile Include="Models\Core\Entities\USState.cs" />
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
@@ -266,6 +263,7 @@
     <Content Include="Views\Recipient\Add.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_RecipientStatusDropdownList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_ScheduleTypeDropdownList.cshtml" />
+    <Content Include="Views\Recipient\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
