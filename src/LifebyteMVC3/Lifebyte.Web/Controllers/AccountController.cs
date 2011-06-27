@@ -58,7 +58,7 @@ namespace Lifebyte.Web.Controllers
             return View();
         }
 
-        public ActionResult LogOff()
+        public ActionResult SignOff()
         {
             formsAuthenticationService.SignOut();
             return RedirectToAction("SignIn");

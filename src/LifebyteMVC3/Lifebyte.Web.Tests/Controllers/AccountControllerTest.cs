@@ -26,25 +26,25 @@ namespace Lifebyte.Web.Tests.Controllers
         }
 
         [Test]
-        public void LogOff_Returns_View()
+        public void SignOff_Returns_View()
         {
             var accountController = new AccountController(
                 new Mock<IFormsAuthenticationService>().Object,
                 new Mock<IDataService<Volunteer>>().Object);
 
-            ActionResult result = accountController.LogOff();
+            ActionResult result = accountController.SignOff();
 
             Assert.IsInstanceOf<RedirectToRouteResult>(result);
         }
 
         [Test]
-        public void LogOffActionRoute_ReturnsView()
+        public void SignOffActionRoute_ReturnsView()
         {
-            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/LogOff");
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Account/SignOff");
 
-            Assert.IsNotNull(routeData, "The Account/LogOff route was null.");
+            Assert.IsNotNull(routeData, "The Account/SignOff route was null.");
             Assert.AreEqual("Account", routeData.Values["Controller"]);
-            Assert.AreEqual("LogOff", routeData.Values["Action"]);
+            Assert.AreEqual("SignOff", routeData.Values["Action"]);
             Assert.IsEmpty(routeData.Values["id"].ToString());
         }
 
