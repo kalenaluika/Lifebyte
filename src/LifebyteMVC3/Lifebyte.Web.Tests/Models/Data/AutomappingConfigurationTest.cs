@@ -37,6 +37,8 @@ namespace Lifebyte.Web.Tests.Models.Data
         /// <summary>    
         /// Matches the automapping to the database.
         /// If this fails, unignore the test below to generate the DDL script.
+        /// I know this is a slow integration test, but it is needed to make sure our 
+        /// Entities are mapped to the database.
         /// </summary>
         /// <remarks>http://ayende.com/Blog/archive/2006/08/09/NHibernateMappingCreatingSanityChecks.aspx</remarks>
         [Test]
