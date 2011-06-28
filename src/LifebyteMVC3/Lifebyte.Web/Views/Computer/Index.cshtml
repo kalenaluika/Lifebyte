@@ -5,19 +5,35 @@
 }
 <h2>
     Computer</h2>
+<p>
+Search by status: 
+@Html.EditorFor(c => c.FirstOrDefault().ComputerStatus)
+</p>
+<p>Search by LB Number:
+@Html.EditorFor(c => c.FirstOrDefault().LifebyteNumber)</p>
+<p>
+<input type="button" id="searchButton" value="Search" />
+</p>
+
 <p>@Html.ActionLink("Add", "Add")</p>
 @{ 
     var computerGrid = new WebGrid(Model);
-    /*
-                               
-        @computerGrid.GetHtml(columns:computerGrid.Columns( 
-    //computerGrid.Column(header:"",style: "text-align-center",
-    //                                            format: (item) => new HtmlString(Html.ActionLink("Edit View", "Edit", new { id = item.Id }))
-    //                                           ),   
-                                    computerGrid.Column("Status","Status"),
-                                    computerGrid.Column("LifebyteNumber", "Lifebyte #"),
-                                    computerGrid.Column("LicenseType","License Type"),
-                                    computerGrid.Column("License","License")
-                                                                      )
-                         )*/
 }
+@computerGrid.GetHtml(columns: computerGrid.Columns(
+                                computerGrid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id })),
+                                computerGrid.Column("ComputerStatus", "Status"),
+                                computerGrid.Column("LifebyteNumber", "Lifebyte #"),
+                                computerGrid.Column("LicenseType", "License Type")))
+<script type="text/javascript">
+    choose("ComputerStatus_ComputerStatusDropdownList", "ComputerStatus", "");
+    $("#searchButton").click(function (i) {
+
+        var searchCriteria = $("#ComputerStatus").val();
+        
+        if (!searchCriteria) {
+            searchCriteria = $("#LifebyteNumber").val()
+        }
+
+        document.location = "/computer/index/" + searchCriteria;
+    });
+</script>

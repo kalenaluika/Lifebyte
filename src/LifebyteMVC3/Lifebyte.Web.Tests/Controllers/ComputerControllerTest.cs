@@ -231,11 +231,38 @@ namespace Lifebyte.Web.Tests.Controllers
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
-            ActionResult result = controller.Index();
+            ActionResult result = controller.Index(null);
 
             Assert.IsInstanceOf<ViewResult>(result);
 
             var view = (ViewResult) result;
+
+            Assert.IsNotNull(view.ViewData.Model);
+            Assert.IsInstanceOf<List<Computer>>(view.ViewData.Model);
+        }
+
+        [Test]
+        public void Index_WithQuery_ReturnsView()
+        {
+            var computerDataService = new Mock<IDataService<Computer>>();
+
+            computerDataService.Setup(c => c.SelectAll(It.IsAny<Expression<Func<Computer, bool>>>()))
+                .Returns(new List<Computer>
+                             {
+                                 new Computer()
+                             });
+
+            var controller = new ComputerController(computerDataService.Object,
+                                                    new Mock<IFormsAuthenticationService>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object,
+                                                    new Mock<IDataService<WindowsLicense>>().Object,
+                                                    new Mock<IDataService<Volunteer>>().Object);
+
+            ActionResult result = controller.Index("LB0123");
+
+            Assert.IsInstanceOf<ViewResult>(result);
+
+            var view = (ViewResult)result;
 
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<List<Computer>>(view.ViewData.Model);

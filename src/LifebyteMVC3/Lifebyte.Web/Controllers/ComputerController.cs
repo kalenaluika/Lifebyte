@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
-using System;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -15,34 +15,51 @@ namespace Lifebyte.Web.Controllers
     public class ComputerController : Controller
     {
         private readonly IDataService<Computer> computerDataService;
-        private IFormsAuthenticationService formsAuthenticationService;
-        private IDataService<WindowsLicense> windowsLicenseDataService;
+        private readonly IFormsAuthenticationService formsAuthenticationService;
+        private readonly IDataService<Volunteer> volunterDataService;
+        private readonly IDataService<WindowsLicense> windowsLicenseDataService;
         private IDataService<Recipient> recipientDataService;
-        private IDataService<Volunteer> volunterDataService;
 
-        public ComputerController(IDataService<Computer> computerDataService, 
-            IFormsAuthenticationService formsAuthenticationService, 
-            IDataService<Recipient> recipientDataService, 
-            IDataService<WindowsLicense> windowsLicenseDataService, 
-            IDataService<Volunteer> volunteerDataService)
+        public ComputerController(IDataService<Computer> computerDataService,
+                                  IFormsAuthenticationService formsAuthenticationService,
+                                  IDataService<Recipient> recipientDataService,
+                                  IDataService<WindowsLicense> windowsLicenseDataService,
+                                  IDataService<Volunteer> volunteerDataService)
         {
             this.computerDataService = computerDataService;
             this.formsAuthenticationService = formsAuthenticationService;
             this.recipientDataService = recipientDataService;
             this.windowsLicenseDataService = windowsLicenseDataService;
-            this.volunterDataService = volunteerDataService;
+            volunterDataService = volunteerDataService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            List<Computer> model = computerDataService.SelectAll(a => a.Active)
-                .Select(c => new Computer
-                                 {
-                                     Id = c.Id,
-                                     ComputerStatus = c.ComputerStatus,
-                                     LifebyteNumber = c.LifebyteNumber,
-                                     LicenseType = c.LicenseType,
-                                 })
+            const string blankLBNumber = "LB0000";
+            int lbNumber;
+            List<Computer> model;
+
+            if (!string.IsNullOrWhiteSpace(id) && int.TryParse(id.ToUpper().Replace("LB",""), out lbNumber))
+            {
+                id = string.Format(blankLBNumber.Substring(0, blankLBNumber.Length - id.Length) + id);
+
+                model = computerDataService.SelectAll(c => c.Active && c.LifebyteNumber == id)
+                .OrderBy(c => c.ComputerStatus)
+                .ThenBy(c => c.LifebyteNumber).ToList();
+
+                return View(model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                model = computerDataService.SelectAll(c => c.Active && c.ComputerStatus == Server.HtmlDecode(id))
+                    .OrderBy(c => c.ComputerStatus)
+                    .ThenBy(c => c.LifebyteNumber).ToList();
+
+                return View(model);
+            }
+
+            model = computerDataService.SelectAll(a => a.Active)
                 .OrderBy(c => c.ComputerStatus)
                 .ThenBy(c => c.LifebyteNumber)
                 .ToList();
@@ -68,16 +85,19 @@ namespace Lifebyte.Web.Controllers
             // Only Windows machines require a license.
             if (!string.IsNullOrEmpty(model.LicenseType))
             {
-                var license = windowsLicenseDataService.SelectOne(w => !w.Installed && w.LicenseType == model.LicenseType);
+                WindowsLicense license =
+                    windowsLicenseDataService.SelectOne(w => !w.Installed && w.LicenseType == model.LicenseType);
                 if (license == null)
                 {
-                    ModelState.AddModelError("LicenseType", string.Format("Sorry, we are out of {0} licenses.", model.LicenseType));
+                    ModelState.AddModelError("LicenseType",
+                                             string.Format("Sorry, we are out of {0} licenses.", model.LicenseType));
                     return View(model);
                 }
                 model.WindowsLicense = license.Id;
             }
 
-            var volunteer = volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Volunteer volunteer =
+                volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             model.Active = true;
             model.ComputerStatus = "Build";
@@ -86,44 +106,45 @@ namespace Lifebyte.Web.Controllers
             model.Id = Guid.NewGuid();
             model.LastModByVolunteer = volunteer;
             model.LastModDate = DateTime.Now;
-            
+
             computerDataService.Insert(model, model.Id);
 
-            return RedirectToAction("Edit", "Computer", new { id = model.Id });
+            return RedirectToAction("Edit", "Computer", new {id = model.Id});
         }
 
         public ActionResult Edit(Guid id)
         {
-            var model = computerDataService.SelectOne(c => c.Id == id);
+            Computer model = computerDataService.SelectOne(c => c.Id == id);
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Edit(Computer model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            var volunteer = volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
-            var originalComputer = computerDataService.SelectOne(c => c.Id == model.Id);
+            Volunteer volunteer =
+                volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Computer originalComputer = computerDataService.SelectOne(c => c.Id == model.Id);
 
             model.Active = originalComputer.Active;
             model.CreateByVolunteer = originalComputer.CreateByVolunteer;
             model.CreateDate = originalComputer.CreateDate;
             model.LastModByVolunteer = volunteer;
             model.LastModDate = DateTime.Now;
-            
+
             // You cannot update the license.
             model.WindowsLicense = originalComputer.WindowsLicense;
-            model.LicenseType = originalComputer.LicenseType;            
+            model.LicenseType = originalComputer.LicenseType;
 
             computerDataService.Update(model);
 
-            var windowsLicense = windowsLicenseDataService.SelectOne(w => w.Id == model.WindowsLicense);
+            WindowsLicense windowsLicense = windowsLicenseDataService.SelectOne(w => w.Id == model.WindowsLicense);
             windowsLicense.Installed = true;
-            
+
             windowsLicenseDataService.Update(windowsLicense);
 
             return RedirectToAction("Index");
