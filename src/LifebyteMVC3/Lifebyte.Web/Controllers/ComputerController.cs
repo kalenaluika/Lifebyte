@@ -1,5 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
+using System.Collections.Generic;
+using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.Services;
+using System.Linq;
+using System.Text;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -10,9 +16,33 @@ namespace Lifebyte.Web.Controllers
     [Authorize]
     public class ComputerController : Controller
     {
+        private readonly IDataService<Computer> computerDataService;
+
+
+        public ComputerController (IDataService<Computer> computerDataService)
+        {
+            this.computerDataService = computerDataService;
+        }
+
         public ActionResult Index()
         {
-            return View(new Computer());
+            var model = computerDataService.SelectAll(a => a.Active == true)
+                .Select(c => new
+                                 {
+                                     c.Id,
+                                     Status = null == null ? "--" : c.ComputerStatus.Name
+                                     ,
+                                     statid = null == null ? -1 : c.ComputerStatus.Id
+                                     ,
+                                     c.LifebyteNumber,
+                                     LicenceType = null == null ? "" : c.LicenceType.FullName,
+                                     c.License
+                                 })
+                .OrderBy(ob => ob.statid).ThenBy(tb => tb.LifebyteNumber).ToList();
+
+            
+            return View(model);
+            
         }
     }
 }

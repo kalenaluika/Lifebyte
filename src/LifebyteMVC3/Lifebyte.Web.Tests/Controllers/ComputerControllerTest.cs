@@ -15,7 +15,7 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void Index_ReturnsView()
         {
-            var controller = new ComputerController();
+            var controller = new ComputerController(new Mock<IDataService<Computer>>().Object);
             ActionResult result = controller.Index();
 
             Assert.IsInstanceOf<ViewResult>( result);
@@ -25,7 +25,7 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void Index_Computer_ReturnsView()
         {
-            var computerController = new ComputerController();
+            var computerController = new ComputerController(new Mock<IDataService<Computer>>().Object);
          //       new Mock<IFormsAuthenticationService>().Object,
          //       new Mock<IDataService<Computer>>().Object);
 
