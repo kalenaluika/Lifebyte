@@ -1,0 +1,23 @@
+﻿@model Lifebyte.Web.Models.Core.Entities.Computer
+@{
+    ViewBag.Title = "Lifebyte - Add Computer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Add a Computer</h2>
+<p>
+    If you are building a Mac, Linux, or you have the original install disk, you do
+    not need to select a license. Just leave the dropdown blank and click Add Computer.</p>
+@using (Html.BeginForm("Add", "Computer", FormMethod.Post))
+{ 
+    
+    <p>@Html.LabelFor( c => c.LicenseType)
+    @Html.EditorFor( c => c.LicenseType)
+    @Html.ValidationMessageFor( c => c.LicenseType)
+    </p>
+    <p>
+        <input type="submit" value="Add Computer" /></p>
+}
+<script type="text/javascript">
+    choose("LicenseType_LicenseTypeDropdownList", "LicenseType", "@Model.LicenseType");
+</script>

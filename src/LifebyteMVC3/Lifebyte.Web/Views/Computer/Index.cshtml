@@ -1,32 +1,16 @@
-﻿@model List<Lifebyte.Web.Models.Core.Entities.Computer> \
-           
-   //        @model List<Lifebyte.Web.Models.Core.Entities.Computer> 
-
+﻿@model List<Lifebyte.Web.Models.Core.Entities.Computer>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lifebyte - Computer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Computer</h2>
-<br />
-<br />
-
-<p>Computers ready for delivery: [placeholder for field populated by LINQ]</p>
-
-
-<p>People waiting for a computer: [placeholder for field populated by LINQ]</p>
-<p>Perhaps on this page we list, by default, computers that do not have a recipient</p>
-<p>Perhaps we have a button, a method,  to to Add a computer </p>
-
- <p>@Html.ActionLink("Add New", "Create");</p>
-
-
+<h2>
+    Computer</h2>
+<p>@Html.ActionLink("Add", "Add")</p>
 @{ 
-     var computerGrid = new WebGrid(Model);
-
+    var computerGrid = new WebGrid(Model);
+    /*
                                
-     <table cellspacing="2" border="1" >   
-    @computerGrid.GetHtml(columns:computerGrid.Columns( 
+        @computerGrid.GetHtml(columns:computerGrid.Columns( 
     //computerGrid.Column(header:"",style: "text-align-center",
     //                                            format: (item) => new HtmlString(Html.ActionLink("Edit View", "Edit", new { id = item.Id }))
     //                                           ),   
@@ -35,27 +19,5 @@
                                     computerGrid.Column("LicenseType","License Type"),
                                     computerGrid.Column("License","License")
                                                                       )
-                         ); 
-
-                         
-                         </table>  
- }
-
-
-
-
-
-
-<p>below  is just an edit that probably would be on a differnt page.  On save would we want user
-to remain, or be redirected to another page?</p>
-@using (Html.BeginForm("Computer", "Computer", FormMethod.Post))
-{
-    @Html.ValidationSummary()
-    @Html.EditorForModel()
-    <input type="submit" value="Save" />
+                         )*/
 }
-
-
-
-
-

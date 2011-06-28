@@ -52,7 +52,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var volunteerDataService = new Mock<IDataService<Volunteer>>();
 
-            // http://stackoverflow.com/questions/5196669/moqing-methods-where-expressionfunct-bool-are-passed-in-as-parameters
             volunteerDataService.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
                 .Returns(new Volunteer());
 

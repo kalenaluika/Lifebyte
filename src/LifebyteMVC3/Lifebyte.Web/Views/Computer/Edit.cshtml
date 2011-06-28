@@ -1,0 +1,17 @@
+﻿@model Lifebyte.Web.Models.Core.Entities.Computer
+@{
+    ViewBag.Title = "Lifebyte - Edit Computer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Edit Computer</h2>
+@using (Html.BeginForm("Edit", "Computer", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <p>
+        <input type="submit" value="Save" /></p>
+}
+<script type="text/javascript">
+    choose("ComputerStatus_ComputerStatusDropdownList", "ComputerStatus", "@Model.ComputerStatus");
+    choose("LicenseType_LicenseTypeDropdownList", "LicenseType", "@Model.LicenseType");
+</script>

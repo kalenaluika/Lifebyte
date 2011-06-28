@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Lifebyte.Web.Models.Core.Interfaces;
 
@@ -10,11 +11,10 @@ namespace Lifebyte.Web.Models.Core.Entities
         public virtual Guid Id { get; set; }
 
         public virtual Recipient Recipient { get; set; }
-
-        //How come it doesn't defalut display on the model?
    
         [Required]
-        public virtual ComputerStatus ComputerStatus { get; set; }
+        [UIHint("_ComputerStatusDropdownList")]
+        public virtual string ComputerStatus { get; set; }
 
         // same as above
         [Display(Name = "Lifebyte Number")]
@@ -25,10 +25,12 @@ namespace Lifebyte.Web.Models.Core.Entities
         [Display(Name = "Belarc HTML")]
         public virtual string ManifestHtml { get; set; }
 
-        public virtual string License { get; set; }
+        [Display(Name = "License")]
+        public virtual string WindowsLicense { get; set; }
 
         [Display(Name = "License Type")]
-        public virtual LicenceType LicenceType { get; set; }
+        [UIHint("_LicenseTypeDropdownList")]
+        public virtual string LicenseType { get; set; }
 
         [ScaffoldColumn(false)]
         public virtual Volunteer CreateByVolunteer { get; set; }

@@ -95,13 +95,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Core\Entities\Computer.cs" />
-    <Compile Include="Models\Core\Entities\ComputerStatus.cs" />
-    <Compile Include="Models\Core\Entities\LicenceType.cs" />
     <Compile Include="Models\Core\Entities\Recipient.cs" />
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
+    <Compile Include="Models\Core\Entities\WindowsLicense.cs" />
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
     <Compile Include="Models\Core\Interfaces\IDataService.cs" />
     <Compile Include="Models\Core\Interfaces\IRepository.cs" />
+    <Compile Include="Models\Core\Lookups\ComputerStatuses.cs" />
+    <Compile Include="Models\Core\Lookups\LicenseTypes.cs" />
     <Compile Include="Models\Core\Lookups\RecipientStatuses.cs" />
     <Compile Include="Models\Core\Lookups\ScheduleTypes.cs" />
     <Compile Include="Models\Core\Lookups\UnitedStatesStates.cs" />
@@ -109,9 +110,7 @@
     <Compile Include="Models\Data\CascadeConvention.cs" />
     <Compile Include="Models\Data\NHibernateHelper.cs" />
     <Compile Include="Models\Data\Overrides\ComputerMappingOverride.cs" />
-    <Compile Include="Models\Data\Overrides\ComputerStatusMappingOverride.cs" />
     <Compile Include="Models\Data\Overrides\DefaultStringLengthConvention.cs" />
-    <Compile Include="Models\Data\Overrides\LicenseTypeMappingOverride.cs" />
     <Compile Include="Models\Data\Overrides\VolunteerMappingOverride.cs" />
     <Compile Include="Models\Data\Repository.cs" />
     <Compile Include="Models\Services\DataService.cs" />
@@ -278,6 +277,8 @@
     <None Include="Scripts\README.md" />
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Computer\Add.cshtml" />
+    <Content Include="Views\Computer\Edit.cshtml" />
     <None Include="Views\README.md" />
     <Content Include="Views\Shared\EditorTemplates\_StateDropdownList.cshtml" />
     <Content Include="Views\Recipient\Index.cshtml" />
@@ -285,6 +286,8 @@
     <Content Include="Views\Shared\EditorTemplates\_RecipientStatusDropdownList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\_ScheduleTypeDropdownList.cshtml" />
     <Content Include="Views\Recipient\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_ComputerStatusDropdownList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_LicenseTypeDropdownList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Profile\Index.cshtml" />
