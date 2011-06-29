@@ -22,7 +22,9 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var model = recipientDataService.SelectAll(r => r.Active && r.RecipientStatus == "Needs Computer");
+
+            return View(model);
         }
 
         public ActionResult Add()

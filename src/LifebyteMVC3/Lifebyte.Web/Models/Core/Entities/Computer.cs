@@ -22,9 +22,6 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         public virtual string Notes { get; set; }
 
-        [Display(Name = "Belarc HTML")]
-        public virtual string ManifestHtml { get; set; }
-
         [Display(Name = "License")]
         public virtual string WindowsLicense { get; set; }
 
