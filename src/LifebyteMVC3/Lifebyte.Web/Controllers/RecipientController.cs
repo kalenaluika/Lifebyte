@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
+using System.Collections.Generic;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -20,9 +22,76 @@ namespace Lifebyte.Web.Controllers
             this.formsAuthenticationService = formsAuthenticationService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string status, string fname, string lname)
         {
-            var model = recipientDataService.SelectAll(r => r.Active && r.RecipientStatus == "Needs Computer");
+            List<Recipient> model;
+
+            if (!string.IsNullOrWhiteSpace(fname)
+                && !string.IsNullOrWhiteSpace(lname)
+                && !string.IsNullOrWhiteSpace(status))
+            {
+                model = recipientDataService.SelectAll(r => r.Active
+                    && r.FirstName == Server.UrlDecode(fname)
+                    && r.LastName == Server.UrlDecode(lname)
+                    && r.RecipientStatus == Server.UrlDecode(status))
+                    .OrderBy(r => r.LastName)
+                    .ThenBy(r => r.FirstName)
+                    .ToList();
+
+                return View(model);
+            }
+
+            if(!string.IsNullOrWhiteSpace(fname)
+                && !string.IsNullOrWhiteSpace(lname))
+            {
+                model = recipientDataService.SelectAll(r => r.Active
+                    && r.FirstName == Server.UrlDecode(fname)
+                    && r.LastName == Server.UrlDecode(lname))
+                    .OrderBy(r => r.LastName)
+                    .ThenBy(r => r.FirstName)
+                    .ToList();
+
+                    return View(model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(lname))
+            {
+                model = recipientDataService.SelectAll(r => r.Active
+                    && r.LastName == Server.UrlDecode(lname))
+                    .OrderBy(r => r.LastName)
+                    .ThenBy(r => r.FirstName)
+                    .ToList();
+
+                return View(model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(fname))
+            {
+                model = recipientDataService.SelectAll(r => r.Active
+                    && r.FirstName == Server.UrlDecode(fname))
+                    .OrderBy(r => r.LastName)
+                    .ThenBy(r => r.FirstName)
+                    .ToList();
+
+                return View(model);
+            }
+
+            if (!string.IsNullOrWhiteSpace(status))
+            {
+                model = recipientDataService.SelectAll(r => r.Active 
+                    && r.RecipientStatus == Server.UrlDecode(status))
+                    .OrderBy(r => r.LastName)
+                    .ThenBy(r => r.FirstName)
+                    .ToList();
+
+                    return View(model);
+            }
+
+            model = recipientDataService.SelectAll(r => r.Active 
+                && r.RecipientStatus == "Needs Computer")
+                .OrderBy(r => r.LastName)
+                .ThenBy(r => r.FirstName)
+                .ToList();
 
             return View(model);
         }
@@ -89,6 +158,6 @@ namespace Lifebyte.Web.Controllers
             recipientDataService.Update(model);
 
             return RedirectToAction("Index");
-        }
+        }        
     }
 }

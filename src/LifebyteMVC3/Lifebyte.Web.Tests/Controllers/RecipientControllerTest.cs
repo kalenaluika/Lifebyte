@@ -144,12 +144,38 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new RecipientController(recipientDataServiceMock.Object,
                                                      new Mock<IDataService<Volunteer>>().Object,
                                                      new Mock<IFormsAuthenticationService>().Object);
-            ActionResult result = controller.Index();
+            
+            ActionResult result = controller.Index(null, null, null);
 
             Assert.IsInstanceOf(typeof (ViewResult), result);
 
             var view = (ViewResult) result;
             Assert.IsInstanceOf<List<Recipient>>(view.Model);
+        }
+
+        [Test]
+        public void Index_WithQuery_ReturnsView()
+        {
+            var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
+
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+                 .Returns(new List<Recipient>
+                              {
+                                  new Recipient()
+                              });
+
+            var controller = new RecipientController(recipientDataServiceMock.Object,
+                                                     new Mock<IDataService<Volunteer>>().Object,
+                                                     new Mock<IFormsAuthenticationService>().Object);
+
+            ActionResult result = controller.Index("New", "Dan", "Stewart");
+
+            Assert.IsInstanceOf<ViewResult>(result);
+
+            var view = (ViewResult)result;
+
+            Assert.IsNotNull(view.ViewData.Model);
+            Assert.IsInstanceOf<List<Recipient>>(view.ViewData.Model);
         }
     }
 }

@@ -13,8 +13,8 @@ Search by status:
 @Html.EditorFor(r => r.FirstOrDefault().RecipientStatus)
 </p>
 <p>Search by Name.</p>
-<p>First: @Html.EditorFor(r => r.FirstOrDefault().FirstName)<br />
-Last: @Html.EditorFor(r => r.FirstOrDefault().LastName)</p>
+<p>First: <input type="text" id="FirstName" maxlength="50" /><br />
+Last: <input type="text" id="LastName" maxlength="50" /></p>
 <p>
 <input type="button" id="searchButton" value="Search" />
 </p>
@@ -30,12 +30,9 @@ Last: @Html.EditorFor(r => r.FirstOrDefault().LastName)</p>
     choose("RecipientStatus_RecipientStatusDropdownList", "RecipientStatus", "");
     $("#searchButton").click(function (i) {
 
-        var searchCriteria = $("#RecipientStatus").val();
+        var searchCriteria = "status=" + escape($("#RecipientStatus").val())
+            + "&fname=" + escape($("#FirstName").val()) + "&lname=" + escape($("#LastName").val());
 
-        if (!searchCriteria) {
-            searchCriteria = $("#FirstName").val() + " " + $("#LastName").val();
-        }
-
-        document.location = "/recipient/index/" + escape(searchCriteria);
+        document.location = "/recipient/index/?" + searchCriteria;
     });
 </script>
