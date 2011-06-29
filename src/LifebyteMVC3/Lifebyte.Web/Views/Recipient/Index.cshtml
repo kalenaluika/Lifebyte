@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Lifebyte.Web.Models.Core.Entities.Recipient>
+@{
     ViewBag.Title = "Lifebyte - Recipient";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,3 +8,34 @@
 <p>
     @Html.ActionLink("Add", "Add")
 </p>
+<p>
+Search by status: 
+@Html.EditorFor(r => r.FirstOrDefault().RecipientStatus)
+</p>
+<p>Search by Name.</p>
+<p>First: @Html.EditorFor(r => r.FirstOrDefault().FirstName)<br />
+Last: @Html.EditorFor(r => r.FirstOrDefault().LastName)</p>
+<p>
+<input type="button" id="searchButton" value="Search" />
+</p>
+@{ 
+    var grid = new WebGrid(Model);
+}
+@grid.GetHtml(columns: grid.Columns(
+                        grid.Column("Id", "", r => Html.ActionLink("Edit", "Edit", new { id = r.Id })),
+                        grid.Column("RecipientStatus", "Status"),
+                        grid.Column("FirstName", "First Name"),
+                        grid.Column("LastName", "LastName")))
+<script type="text/javascript">
+    choose("RecipientStatus_RecipientStatusDropdownList", "RecipientStatus", "");
+    $("#searchButton").click(function (i) {
+
+        var searchCriteria = $("#RecipientStatus").val();
+
+        if (!searchCriteria) {
+            searchCriteria = $("#FirstName").val() + " " + $("#LastName").val();
+        }
+
+        document.location = "/recipient/index/" + escape(searchCriteria);
+    });
+</script>

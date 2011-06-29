@@ -17,13 +17,13 @@ Search by status:
 
 <p>@Html.ActionLink("Add", "Add")</p>
 @{ 
-    var computerGrid = new WebGrid(Model);
+    var grid = new WebGrid(Model);
 }
-@computerGrid.GetHtml(columns: computerGrid.Columns(
-                                computerGrid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id })),
-                                computerGrid.Column("ComputerStatus", "Status"),
-                                computerGrid.Column("LifebyteNumber", "Lifebyte #"),
-                                computerGrid.Column("LicenseType", "License Type")))
+@grid.GetHtml(columns: grid.Columns(
+                        grid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id })),
+                        grid.Column("ComputerStatus", "Status"),
+                        grid.Column("LifebyteNumber", "Lifebyte #"),
+                        grid.Column("LicenseType", "License Type")))
 <script type="text/javascript">
     choose("ComputerStatus_ComputerStatusDropdownList", "ComputerStatus", "");
     $("#searchButton").click(function (i) {
@@ -34,6 +34,6 @@ Search by status:
             searchCriteria = $("#LifebyteNumber").val()
         }
 
-        document.location = "/computer/index/" + searchCriteria;
+        document.location = "/computer/index/" + escape(searchCriteria);
     });
 </script>

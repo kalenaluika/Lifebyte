@@ -187,19 +187,6 @@
     <Content Include="Content\themes\sunny\images\ui-icons_fadc7a_256x240.png" />
     <Content Include="Content\themes\sunny\images\ui-icons_ffe180_256x240.png" />
     <Content Include="Content\themes\sunny\jquery-ui-1.8.9.custom.css" />
-    <Content Include="Content\yellowing\images\img01.jpg" />
-    <Content Include="Content\yellowing\images\img02.jpg" />
-    <Content Include="Content\yellowing\images\img04.gif" />
-    <Content Include="Content\yellowing\images\img05.jpg" />
-    <Content Include="Content\yellowing\images\img06.jpg" />
-    <Content Include="Content\yellowing\images\img07.gif" />
-    <Content Include="Content\yellowing\images\img08.jpg" />
-    <Content Include="Content\yellowing\images\img09.jpg" />
-    <Content Include="Content\yellowing\images\keyboard.jpg" />
-    <Content Include="Content\yellowing\index.html" />
-    <Content Include="Content\yellowing\Layout.txt" />
-    <Content Include="Content\yellowing\license.txt" />
-    <Content Include="Content\yellowing\yellowing.css" />
     <Content Include="favicon.ico" />
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
@@ -299,9 +286,7 @@
     <Content Include="Views\Shared\_SignInPartialView.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\images\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
