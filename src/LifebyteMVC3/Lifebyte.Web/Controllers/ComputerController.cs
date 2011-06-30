@@ -104,6 +104,7 @@ namespace Lifebyte.Web.Controllers
             model.CreateByVolunteer = volunteer;
             model.CreateDate = DateTime.Now;
             model.Id = Guid.NewGuid();
+            model.LifebyteNumber = computerDataService.NextLbNumber();
             model.LastModByVolunteer = volunteer;
             model.LastModDate = DateTime.Now;
 
@@ -128,6 +129,7 @@ namespace Lifebyte.Web.Controllers
 
             Volunteer volunteer =
                 volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+
             Computer originalComputer = computerDataService.SelectOne(c => c.Id == model.Id);
 
             model.Active = originalComputer.Active;
@@ -136,9 +138,10 @@ namespace Lifebyte.Web.Controllers
             model.LastModByVolunteer = volunteer;
             model.LastModDate = DateTime.Now;
 
-            // You cannot update the license.
+            // You cannot update the license or the LB number.
             model.WindowsLicense = originalComputer.WindowsLicense;
             model.LicenseType = originalComputer.LicenseType;
+            model.LifebyteNumber = originalComputer.LifebyteNumber;
 
             computerDataService.Update(model);
 

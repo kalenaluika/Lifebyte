@@ -50,6 +50,8 @@ namespace Lifebyte.Web.Models.Services
         /// <summary>
         /// We do not store plain text passwords in the database.
         /// This is the algorithm to encrypt the password. 
+        /// In order to be more SOLID we should put this into a special
+        /// IVolunteerDataService interface that implements IDataService of type Volunteer.
         /// </summary>
         /// <param name="password"></param>
         /// <param name="volunteerId"></param>
@@ -65,6 +67,17 @@ namespace Lifebyte.Web.Models.Services
         private string Salt(Guid volunteerId)
         {
             return string.Format("{0}{1}", Settings.Default.Salt, volunteerId);
+        }
+
+        /// <summary>
+        /// Returns the next available LB Number.
+        /// This is a specialized method that should be in an 
+        /// IComputerDataService interface that implements IDataService of type Computer.
+        /// </summary>
+        /// <returns></returns>
+        public string NextLbNumber()
+        {
+            return repository.NextLbNumber();
         }
     }
 }
