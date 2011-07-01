@@ -11,7 +11,7 @@ namespace Lifebyte.Web.Models.Core.Lookups
         public static readonly IDictionary<string, string> StateDictionary = new Dictionary<string, string>
                                                                                  {
                                                                                      {"",""},
-                                                                                     {"Alabama", "AL"},
+                                                                                     {"AL", "Alabama"},
                                                                                      {"Alaska", "AK"},
                                                                                      {"American Samoa", "AS"},
                                                                                      {"Arizona", "AZ"},

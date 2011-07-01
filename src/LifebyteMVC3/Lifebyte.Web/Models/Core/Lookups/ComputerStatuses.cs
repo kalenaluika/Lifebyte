@@ -8,15 +8,15 @@ namespace Lifebyte.Web.Models.Core.Lookups
         public static readonly IDictionary<string, string> ComputerStatusesDictionary = new Dictionary<string, string>
                                                                                             {
                                                                                                 {"", ""},
-                                                                                                {"Build", "Build"},
-                                                                                                {"Delivered", "Delivered"},
-                                                                                                {"Ready for Delivery", "Ready for Delivery"},
-                                                                                                {"Repair", "Repair"},
+                                                                                                {"1", "Build"},
+                                                                                                {"2", "Ready for Delivery"},
+                                                                                                {"3", "Repair"},
+                                                                                                {"4", "Delivered"},
                                                                                             };
 
         public static SelectList ComputerStatusesSelectList
         {
-            get { return new SelectList(ComputerStatusesDictionary, "Value", "Key"); }
+            get { return new SelectList(ComputerStatusesDictionary, "Key", "Value"); }
         }
     }
 }

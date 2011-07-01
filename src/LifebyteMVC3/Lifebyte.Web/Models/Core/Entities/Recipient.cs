@@ -35,9 +35,12 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         public virtual string Zip { get; set; }
 
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email Address")]
         public virtual string Email { get; set; }
 
         [Required]
+        [DataType(DataType.PhoneNumber)]
         public virtual string Phone { get; set; }
 
         [UIHint("_RecipientStatusDropdownList")]
@@ -54,12 +57,14 @@ namespace Lifebyte.Web.Models.Core.Entities
         /// We try to help people in the order that they contacted us.
         /// </summary>
         [Display(Name = "Contact Date")]
+        [DataType(DataType.Date)]
         public virtual DateTime ContactDate { get; set; }
 
         /// <summary>
         /// The date the recipient was scheduled to receive the computer.
         /// </summary>
         [Display(Name = "Schedule Date")]
+        [DataType(DataType.Date)]
         public virtual DateTime? ScheduleDate { get; set; }
 
         [UIHint("_ScheduleTypeDropdownList")]

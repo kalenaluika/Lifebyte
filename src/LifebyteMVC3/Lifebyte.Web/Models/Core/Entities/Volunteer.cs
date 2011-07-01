@@ -31,13 +31,16 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         [Required]
         [Display(Name = "Primary Phone")]
+        [DataType(DataType.PhoneNumber)]
         public virtual string PrimaryPhone { get; set; }
 
         [Display(Name = "Secondary Phone")]
+        [DataType(DataType.PhoneNumber)]
         public virtual string SecondaryPhone { get; set; }
 
         [Required]
         [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress)]
         public virtual string Email { get; set; }
 
         [Required]

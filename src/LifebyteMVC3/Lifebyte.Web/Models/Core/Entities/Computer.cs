@@ -22,7 +22,7 @@ namespace Lifebyte.Web.Models.Core.Entities
 
         public virtual string Notes { get; set; }
 
-        [Display(Name = "Belarc HTML")]
+        [Display(Name = "Belarc HTML File")]
         [UIHint("_ManifestHtmlFileUpload")]
         public virtual string ManifestHtml { get; set; }
 

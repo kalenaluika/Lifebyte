@@ -101,7 +101,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Core\Entities\Computer.cs" />
+    <Compile Include="Models\Core\Entities\ComputerStatus.cs" />
+    <Compile Include="Models\Core\Entities\LicenseType.cs" />
     <Compile Include="Models\Core\Entities\Recipient.cs" />
+    <Compile Include="Models\Core\Entities\RecipientStatus.cs" />
+    <Compile Include="Models\Core\Entities\ScheduleType.cs" />
+    <Compile Include="Models\Core\Entities\UnitedStatesState.cs" />
     <Compile Include="Models\Core\Entities\Volunteer.cs" />
     <Compile Include="Models\Core\Entities\WindowsLicense.cs" />
     <Compile Include="Models\Core\Interfaces\ICoreEntity.cs" />
