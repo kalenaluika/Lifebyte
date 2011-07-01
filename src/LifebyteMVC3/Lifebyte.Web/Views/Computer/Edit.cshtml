@@ -5,10 +5,13 @@
 }
 <h2>
     Edit Computer</h2>
-<p>Please e-mail the Belarc HTML file to 
-<a href="mailto:webmaster@lifebyte.org">webmaster@lifebyte.org</a> for now. 
-We are working on a file upload solution.</p>
-@using (Html.BeginForm("Edit", "Computer", FormMethod.Post))
+@if (!string.IsNullOrWhiteSpace(Model.ManifestHtml))
+{
+    <p>
+        @Html.ActionLink("View the Belarc File", "Manifest", new { id = Model.Id })
+    </p>
+}
+@using (Html.BeginForm("Edit", "Computer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.EditorForModel()
     <p>

@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Microsoft.Security.Application;
 
 namespace Lifebyte.Web.Controllers
 {
@@ -18,17 +22,14 @@ namespace Lifebyte.Web.Controllers
         private readonly IFormsAuthenticationService formsAuthenticationService;
         private readonly IDataService<Volunteer> volunterDataService;
         private readonly IDataService<WindowsLicense> windowsLicenseDataService;
-        private IDataService<Recipient> recipientDataService;
 
         public ComputerController(IDataService<Computer> computerDataService,
                                   IFormsAuthenticationService formsAuthenticationService,
-                                  IDataService<Recipient> recipientDataService,
                                   IDataService<WindowsLicense> windowsLicenseDataService,
                                   IDataService<Volunteer> volunteerDataService)
         {
             this.computerDataService = computerDataService;
             this.formsAuthenticationService = formsAuthenticationService;
-            this.recipientDataService = recipientDataService;
             this.windowsLicenseDataService = windowsLicenseDataService;
             volunterDataService = volunteerDataService;
         }
@@ -39,13 +40,13 @@ namespace Lifebyte.Web.Controllers
             int lbNumber;
             List<Computer> model;
 
-            if (!string.IsNullOrWhiteSpace(id) && int.TryParse(id.ToUpper().Replace("LB",""), out lbNumber))
+            if (!string.IsNullOrWhiteSpace(id) && int.TryParse(id.ToUpper().Replace("LB", ""), out lbNumber))
             {
                 id = string.Format(blankLBNumber.Substring(0, blankLBNumber.Length - id.Length) + id);
 
                 model = computerDataService.SelectAll(c => c.Active && c.LifebyteNumber == id)
-                .OrderBy(c => c.ComputerStatus)
-                .ThenBy(c => c.LifebyteNumber).ToList();
+                    .OrderBy(c => c.ComputerStatus)
+                    .ThenBy(c => c.LifebyteNumber).ToList();
 
                 return View(model);
             }
@@ -119,6 +120,12 @@ namespace Lifebyte.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// A file is uploaded as a manifest for the computer.
+        /// http://www.hanselman.com/blog/ABackToBasicsCaseStudyImplementingHTTPFileUploadWithASPNETMVCIncludingTestsAndMocks.aspx
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(Computer model)
         {
@@ -138,6 +145,28 @@ namespace Lifebyte.Web.Controllers
             model.LastModByVolunteer = volunteer;
             model.LastModDate = DateTime.Now;
 
+            // The request is null if this action is being tested.
+            // Hanselman's post in the URL above has a good way of mocking the request when we get time to work on it.
+            if (Request != null && Request.Files.Count == 1)
+            {
+                HttpPostedFileBase manifest = Request.Files[0];
+                if (manifest != null
+                    && manifest.ContentLength > 0
+                    && manifest.ContentType == "text/html")
+                {
+                    var manifestContent = new StringBuilder();
+                    Stream manifestStream = manifest.InputStream;
+                    var manifestReader = new StreamReader(manifestStream);
+                    string line;
+                    while ((line = manifestReader.ReadLine()) != null)
+                    {
+                        manifestContent.Append(line);
+                    }
+
+                    model.ManifestHtml = manifestContent.ToString();
+                }
+            }
+
             // You cannot update the license or the LB number.
             model.WindowsLicense = originalComputer.WindowsLicense;
             model.LicenseType = originalComputer.LicenseType;
@@ -151,6 +180,13 @@ namespace Lifebyte.Web.Controllers
             windowsLicenseDataService.Update(windowsLicense);
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Manifest(Guid id)
+        {
+            var model = computerDataService.SelectOne(c => c.Id == id);
+            model.ManifestHtml = Sanitizer.GetSafeHtml(model.ManifestHtml);
+            return View(model);
         }
     }
 }

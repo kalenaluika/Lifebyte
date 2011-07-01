@@ -31,7 +31,6 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -64,7 +63,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     windowsLicenseDataServiceMock.Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -82,7 +80,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -103,7 +100,6 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -131,7 +127,6 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -151,7 +146,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataServiceMock.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -192,7 +186,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataServiceMock.Object,
                                                     formsAuthenticationServiceMock.Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     windowsLicenseDataServiceMock.Object,
                                                     volunterDataServiceMock.Object);
 
@@ -227,7 +220,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -254,7 +246,6 @@ namespace Lifebyte.Web.Tests.Controllers
 
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
-                                                    new Mock<IDataService<Recipient>>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
                                                     new Mock<IDataService<Volunteer>>().Object);
 
@@ -266,6 +257,36 @@ namespace Lifebyte.Web.Tests.Controllers
 
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<List<Computer>>(view.ViewData.Model);
+        }
+
+
+        [Test]
+        public void Manifest_ResultsView()
+        {
+            var fakeComputer = new Computer
+                                   {
+                                       Id = Guid.NewGuid(),
+                                       ManifestHtml =
+                                           @"
+                                                <html>
+                                                    <head><title>LB0124</title></head>
+                                                    <body>
+                                                        <p>Hello World LB0124</p>
+                                                    </body>
+                                                </html>"
+                                   };
+
+            var computerDataService = new Mock<IDataService<Computer>>();
+
+            computerDataService.Setup(c => c.SelectOne(It.IsAny<Expression<Func<Computer, bool>>>()))
+                .Returns(fakeComputer);
+
+            var controller = new ComputerController(computerDataService.Object,
+                                                    new Mock<IFormsAuthenticationService>().Object,
+                                                    new Mock<IDataService<WindowsLicense>>().Object,
+                                                    new Mock<IDataService<Volunteer>>().Object);
+
+            ActionResult result = controller.Manifest(fakeComputer.Id);
         }
     }
 }
