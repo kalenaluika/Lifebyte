@@ -68,7 +68,7 @@ namespace Lifebyte.Web.Models.Core.Lookups
                                                                                      {"WA", "Washington"},
                                                                                      {"WV", "West Virginia"},
                                                                                      {"WI", "Wisconsin"},
-                                                                                     {"WY", "Wyoming"}
+                                                                                     {"WY", "Wyoming"},
                                                                                  };
 
         public static SelectList StateSelectList
