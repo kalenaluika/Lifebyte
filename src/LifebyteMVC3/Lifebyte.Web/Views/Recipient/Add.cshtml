@@ -7,6 +7,7 @@
 <h2>Add Recipient</h2>
 @using (Html.BeginForm("Add", "Recipient", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary()
     @Html.EditorForModel()
     <p>

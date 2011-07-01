@@ -31,6 +31,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SignIn(SignInViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -71,6 +72,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(Volunteer model)
         {
             if (!ModelState.IsValid)

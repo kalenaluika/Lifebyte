@@ -81,6 +81,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Computer model)
         {
             // Only Windows machines require a license.
@@ -127,6 +128,7 @@ namespace Lifebyte.Web.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Computer model)
         {
             if (!ModelState.IsValid)

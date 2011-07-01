@@ -10,10 +10,10 @@
     not need to select a license. Just leave the dropdown blank and click Add Computer.</p>
 @using (Html.BeginForm("Add", "Computer", FormMethod.Post))
 { 
-    
-    <p>@Html.LabelFor( c => c.LicenseType)
-    @Html.EditorFor( c => c.LicenseType)
-    @Html.ValidationMessageFor( c => c.LicenseType)
+    @Html.AntiForgeryToken()
+    <p>@Html.LabelFor(c => c.LicenseType)
+    @Html.EditorFor(c => c.LicenseType)
+    @Html.ValidationMessageFor(c => c.LicenseType)
     </p>
     <p>
         <input type="submit" value="Add Computer" /></p>

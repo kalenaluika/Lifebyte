@@ -109,6 +109,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Add(Recipient model)
         {
             if (!ModelState.IsValid)
@@ -138,6 +139,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Recipient model)
         {
             if (!ModelState.IsValid)

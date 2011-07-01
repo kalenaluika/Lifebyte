@@ -13,6 +13,8 @@
 }
 @using (Html.BeginForm("Edit", "Computer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
     @Html.EditorForModel()
     <p>
         <input type="submit" value="Save" /></p>

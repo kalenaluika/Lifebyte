@@ -43,6 +43,7 @@ namespace Lifebyte.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Volunteer model)
         {
             if(!ModelState.IsValid)
