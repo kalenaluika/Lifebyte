@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.ViewModels;
 using Microsoft.Security.Application;
 
 namespace Lifebyte.Web.Controllers
@@ -20,18 +21,21 @@ namespace Lifebyte.Web.Controllers
     {
         private readonly IDataService<Computer> computerDataService;
         private readonly IFormsAuthenticationService formsAuthenticationService;
-        private readonly IDataService<Volunteer> volunterDataService;
+        private readonly IDataService<Recipient> recipientDataService;
+        private readonly IDataService<Volunteer> volunteerDataService;
         private readonly IDataService<WindowsLicense> windowsLicenseDataService;
 
         public ComputerController(IDataService<Computer> computerDataService,
                                   IFormsAuthenticationService formsAuthenticationService,
                                   IDataService<WindowsLicense> windowsLicenseDataService,
-                                  IDataService<Volunteer> volunteerDataService)
+                                  IDataService<Volunteer> volunteerDataService,
+                                  IDataService<Recipient> recipientDataService)
         {
             this.computerDataService = computerDataService;
             this.formsAuthenticationService = formsAuthenticationService;
             this.windowsLicenseDataService = windowsLicenseDataService;
-            volunterDataService = volunteerDataService;
+            this.volunteerDataService = volunteerDataService;
+            this.recipientDataService = recipientDataService;
         }
 
         public ActionResult Index(string id)
@@ -99,7 +103,7 @@ namespace Lifebyte.Web.Controllers
             }
 
             Volunteer volunteer =
-                volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             model.Active = true;
             model.ComputerStatus = "Build";
@@ -137,7 +141,7 @@ namespace Lifebyte.Web.Controllers
             }
 
             Volunteer volunteer =
-                volunterDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             Computer originalComputer = computerDataService.SelectOne(c => c.Id == model.Id);
 
@@ -186,9 +190,47 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Manifest(Guid id)
         {
-            var model = computerDataService.SelectOne(c => c.Id == id);
+            Computer model = computerDataService.SelectOne(c => c.Id == id);
             model.ManifestHtml = Sanitizer.GetSafeHtml(model.ManifestHtml);
             return View(model);
+        }
+
+        public ActionResult Deliver(Guid id)
+        {
+            var computer = computerDataService.SelectOne(c => c.Id == id);
+            
+            if(computer.Recipient != null)
+            {
+                return View(new DeliverComputerViewModel
+                                {
+                                    Computer = computer,
+                                    RecipientsWhoNeedAComputer = new List<Recipient>
+                                                                     {
+                                                                         recipientDataService.SelectOne(
+                                                                             r => r.Id == computer.Recipient.Id)
+                                                                     },
+                                });
+            }
+
+            // TODO Get rid if the magic number "2" == "Needs Computer"
+            return View(new DeliverComputerViewModel
+                            {
+                                Computer = computer,
+                                RecipientsWhoNeedAComputer = recipientDataService
+                                    .SelectAll(r => r.RecipientStatus == "2")
+                                    .OrderBy(r => r.LastName).ToList(),
+                            });
+        }
+
+        [HttpPost]
+        public ActionResult Deliver(DeliverComputerViewModel model)
+        {
+            Computer computer = computerDataService.SelectOne(c => c.Id == model.Computer.Id);
+            computer.Recipient = recipientDataService.SelectOne(r => r.Id == model.RecipientId);
+
+            computerDataService.Update(computer);
+
+            return RedirectToAction("Index");
         }
     }
 }

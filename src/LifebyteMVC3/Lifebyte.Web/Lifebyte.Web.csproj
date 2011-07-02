@@ -128,6 +128,7 @@
     <Compile Include="Models\Services\DependencyResolverService.cs" />
     <Compile Include="Models\Services\FormsAuthenticationService.cs" />
     <Compile Include="Models\Core\Interfaces\IFormsAuthenticationService.cs" />
+    <Compile Include="Models\ViewModels\DeliverComputerViewModel.cs" />
     <Compile Include="Models\ViewModels\LogOnViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -278,6 +279,7 @@
     <Content Include="Views\Computer\Add.cshtml" />
     <Content Include="Views\Computer\Edit.cshtml" />
     <Content Include="Views\Computer\Manifest.cshtml" />
+    <Content Include="Views\Computer\Deliver.cshtml" />
     <None Include="Views\README.md" />
     <Content Include="Views\Shared\EditorTemplates\_StateDropdownList.cshtml" />
     <Content Include="Views\Recipient\Index.cshtml" />
