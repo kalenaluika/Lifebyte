@@ -1,0 +1,23 @@
+﻿@model Lifebyte.Web.Models.ViewModels.DeliverComputerViewModel
+@{
+    ViewBag.Title = "Lifebyte - Deliver " + Model.Computer.LifebyteNumber;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Deliver @Model.Computer.LifebyteNumber</h2>
+@using (Html.BeginForm("Deliver", "Computer", FormMethod.Post))
+{
+    <p>
+        <input type="submit" value="Deliver Computer" name="submit" />
+    </p>
+    <p>
+        @foreach (var recipient in Model.RecipientsWhoNeedAComputer)
+        {
+            <input type="radio" name="RecipientId" id="RecipientId" value="@recipient.Id" /> @(recipient.FirstName + " " + recipient.LastName)<br />
+        }
+    </p>
+    <p>
+        <input type="submit" value="Deliver Computer" name="submit" />
+        <input type="hidden" name="Computer.Id" id="Computer.Id" value="@Model.Computer.Id" />
+    </p>
+}

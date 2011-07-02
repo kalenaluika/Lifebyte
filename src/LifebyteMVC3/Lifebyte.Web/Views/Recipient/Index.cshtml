@@ -23,7 +23,6 @@ Last: <input type="text" id="LastName" maxlength="50" /></p>
 }
 @grid.GetHtml(columns: grid.Columns(
                         grid.Column("Id", "", r => Html.ActionLink("Edit", "Edit", new { id = r.Id })),
-                        grid.Column("RecipientStatus", "Status"),
                         grid.Column("FirstName", "First Name"),
                         grid.Column("LastName", "LastName")))
 <script type="text/javascript">

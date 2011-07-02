@@ -88,7 +88,7 @@ namespace Lifebyte.Web.Controllers
             }
 
             model = recipientDataService.SelectAll(r => r.Active 
-                && r.RecipientStatus == "Needs Computer")
+                && r.RecipientStatus == "2")
                 .OrderBy(r => r.LastName)
                 .ThenBy(r => r.FirstName)
                 .ToList();
@@ -101,7 +101,7 @@ namespace Lifebyte.Web.Controllers
             var model = new Recipient
                             {
                                 ContactDate = DateTime.Now,
-                                RecipientStatus = "Needs Computer",
+                                RecipientStatus = "2",
                                 State = "CO",
                             };
 

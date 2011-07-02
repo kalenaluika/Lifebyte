@@ -6,6 +6,7 @@
 <h2>
     Computer</h2>
 <p>
+<p>@Html.ActionLink("Add", "Add")</p>
 Search by status: 
 @Html.EditorFor(c => c.FirstOrDefault().ComputerStatus)
 </p>
@@ -14,14 +15,11 @@ Search by status:
 <p>
 <input type="button" id="searchButton" value="Search" />
 </p>
-
-<p>@Html.ActionLink("Add", "Add")</p>
 @{ 
     var grid = new WebGrid(Model);
 }
 @grid.GetHtml(columns: grid.Columns(
                         grid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id })),
-                        grid.Column("ComputerStatus", "Status"),
                         grid.Column("LifebyteNumber", "Lifebyte #"),
                         grid.Column("LicenseType", "License Type")))
 <script type="text/javascript">

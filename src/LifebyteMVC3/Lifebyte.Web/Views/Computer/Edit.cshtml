@@ -11,6 +11,14 @@
         @Html.ActionLink("View the Belarc File", "Manifest", new { id = Model.Id })
     </p>
 }
+@if (Model.Recipient != null)
+{ 
+    <p>@Html.ActionLink("This computer has been delivered.", "Deliver", new { id = Model.Id })</p>
+}
+else
+{
+    <p>@Html.ActionLink("Deliver to Recipient", "Deliver", new { id = Model.Id })</p>
+}
 @using (Html.BeginForm("Edit", "Computer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()

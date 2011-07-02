@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Lifebyte.Web.Models.Core.Interfaces;
 
@@ -11,7 +10,7 @@ namespace Lifebyte.Web.Models.Core.Entities
         public virtual Guid Id { get; set; }
 
         public virtual Recipient Recipient { get; set; }
-   
+
         [Required]
         [UIHint("_ComputerStatusDropdownList")]
         public virtual string ComputerStatus { get; set; }

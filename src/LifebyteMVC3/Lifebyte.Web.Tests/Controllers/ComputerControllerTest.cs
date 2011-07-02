@@ -6,6 +6,7 @@ using System.Web.Routing;
 using Lifebyte.Web.Controllers;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
+using Lifebyte.Web.Models.ViewModels;
 using Lifebyte.Web.Tests.TestHelpers;
 using Moq;
 using NUnit.Framework;
@@ -32,7 +33,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Add();
 
@@ -64,7 +66,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     windowsLicenseDataServiceMock.Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Add(computerFake);
 
@@ -81,7 +84,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Add(new Computer());
 
@@ -101,7 +105,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Add(new Computer
                                                      {
@@ -109,6 +114,44 @@ namespace Lifebyte.Web.Tests.Controllers
                                                      });
 
             Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public void DeliverActionRoute_ReturnsView()
+        {
+            Guid id = Guid.NewGuid();
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Computer/Deliver/" + id);
+
+            Assert.IsNotNull(routeData, "The Computer/Deliver route was null.");
+            Assert.AreEqual("Computer", routeData.Values["Controller"]);
+            Assert.AreEqual("Deliver", routeData.Values["Action"]);
+            Assert.AreEqual(id.ToString(), routeData.Values["id"].ToString());
+        }
+
+        [Test]
+        public void Deliver_ReturnsView()
+        {
+            var computerDataServiceMock = new Mock<IDataService<Computer>>();
+            computerDataServiceMock.Setup(c => c.SelectOne(It.IsAny<Expression<Func<Computer, bool>>>()))
+                .Returns(new Computer());
+
+            var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+                .Returns(new List<Recipient>());
+
+            var controller = new ComputerController(computerDataServiceMock.Object,
+                                                    new Mock<IFormsAuthenticationService>().Object,
+                                                    new Mock<IDataService<WindowsLicense>>().Object,
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    recipientDataServiceMock.Object);
+
+            ActionResult result = controller.Deliver(Guid.NewGuid());
+
+            Assert.IsInstanceOf<ViewResult>(result);
+
+            var view = (ViewResult) result;
+
+            Assert.IsInstanceOf<DeliverComputerViewModel>(view.Model);
         }
 
         [Test]
@@ -128,7 +171,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             controller.ModelState.AddModelError("test", "error");
 
@@ -147,7 +191,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataServiceMock.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Edit(Guid.NewGuid());
 
@@ -187,7 +232,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataServiceMock.Object,
                                                     formsAuthenticationServiceMock.Object,
                                                     windowsLicenseDataServiceMock.Object,
-                                                    volunterDataServiceMock.Object);
+                                                    volunterDataServiceMock.Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Edit(computerFake);
 
@@ -221,7 +267,8 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Index(null);
 
@@ -247,13 +294,14 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Index("LB0123");
 
             Assert.IsInstanceOf<ViewResult>(result);
 
-            var view = (ViewResult)result;
+            var view = (ViewResult) result;
 
             Assert.IsNotNull(view.ViewData.Model);
             Assert.IsInstanceOf<List<Computer>>(view.ViewData.Model);
@@ -261,7 +309,19 @@ namespace Lifebyte.Web.Tests.Controllers
 
 
         [Test]
-        public void Manifest_ResultsView()
+        public void ManifestActionRoute_ReturnsView()
+        {
+            Guid id = Guid.NewGuid();
+            RouteData routeData = RouteTestHelper.GetRouteData("~/Computer/Manifest/" + id);
+
+            Assert.IsNotNull(routeData, "The Computer/Manifest route was null.");
+            Assert.AreEqual("Computer", routeData.Values["Controller"]);
+            Assert.AreEqual("Manifest", routeData.Values["Action"]);
+            Assert.AreEqual(id.ToString(), routeData.Values["id"].ToString());
+        }
+
+        [Test]
+        public void Manifest_ReturnsView()
         {
             var fakeComputer = new Computer
                                    {
@@ -284,9 +344,27 @@ namespace Lifebyte.Web.Tests.Controllers
             var controller = new ComputerController(computerDataService.Object,
                                                     new Mock<IFormsAuthenticationService>().Object,
                                                     new Mock<IDataService<WindowsLicense>>().Object,
-                                                    new Mock<IDataService<Volunteer>>().Object);
+                                                    new Mock<IDataService<Volunteer>>().Object,
+                                                    new Mock<IDataService<Recipient>>().Object);
 
             ActionResult result = controller.Manifest(fakeComputer.Id);
+
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+
+        [Test]
+        public void Deliver_ValidPost_ReturnsRedirect()
+        {
+            var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
+                                                      new Mock<IFormsAuthenticationService>().Object,
+                                                      new Mock<IDataService<WindowsLicense>>().Object,
+                                                      new Mock<IDataService<Volunteer>>().Object,
+                                                      new Mock<IDataService<Recipient>>().Object);
+
+            var result = controller.Deliver(new DeliverComputerViewModel());
+
+            Assert.IsInstanceOf<RedirectToRouteResult>(result);
         }
     }
 }
