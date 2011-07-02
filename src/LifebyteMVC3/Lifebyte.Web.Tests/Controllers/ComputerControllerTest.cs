@@ -356,11 +356,19 @@ namespace Lifebyte.Web.Tests.Controllers
         [Test]
         public void Deliver_ValidPost_ReturnsRedirect()
         {
-            var controller = new ComputerController(new Mock<IDataService<Computer>>().Object,
+            var computerDataService = new Mock<IDataService<Computer>>();
+            computerDataService.Setup(c => c.SelectOne(It.IsAny<Expression<Func<Computer, bool>>>()))
+                .Returns(new Computer());
+
+            var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+                .Returns(new List<Recipient>());
+
+            var controller = new ComputerController(computerDataService.Object,
                                                       new Mock<IFormsAuthenticationService>().Object,
                                                       new Mock<IDataService<WindowsLicense>>().Object,
                                                       new Mock<IDataService<Volunteer>>().Object,
-                                                      new Mock<IDataService<Recipient>>().Object);
+                                                      recipientDataServiceMock.Object);
 
             var result = controller.Deliver(new DeliverComputerViewModel());
 
