@@ -48,26 +48,23 @@ namespace Lifebyte.Web.Controllers
             {
                 id = string.Format(blankLBNumber.Substring(0, blankLBNumber.Length - id.Length) + id);
 
-                model = computerDataService.SelectAll(c => c.Active && c.LifebyteNumber == id)
-                    .OrderBy(c => c.ComputerStatus)
-                    .ThenBy(c => c.LifebyteNumber).ToList();
+                model = computerDataService.SelectAll(c => c.Active && c.LifebyteNumber == id,
+                    order => order.LifebyteNumber, 0, 100).ToList();
 
                 return View(model);
             }
 
             if (!string.IsNullOrWhiteSpace(id))
             {
-                model = computerDataService.SelectAll(c => c.Active && c.ComputerStatus == Server.HtmlDecode(id))
-                    .OrderBy(c => c.ComputerStatus)
-                    .ThenBy(c => c.LifebyteNumber).ToList();
+                model = computerDataService.SelectAll(
+                    c => c.Active && c.ComputerStatus == Server.HtmlDecode(id),
+                    order => order.LifebyteNumber, 0, 100).ToList();
 
                 return View(model);
             }
 
-            model = computerDataService.SelectAll(a => a.Active)
-                .OrderBy(c => c.ComputerStatus)
-                .ThenBy(c => c.LifebyteNumber)
-                .ToList();
+            model = computerDataService.SelectAll(a => a.Active,
+                order => order.LifebyteNumber, 0, 100).ToList();
 
             return View(model);
         }
@@ -217,8 +214,8 @@ namespace Lifebyte.Web.Controllers
                             {
                                 Computer = computer,
                                 RecipientsWhoNeedAComputer = recipientDataService
-                                    .SelectAll(r => r.RecipientStatus == "2")
-                                    .OrderBy(r => r.LastName).ToList(),
+                                    .SelectAll(r => r.RecipientStatus == "2", 
+                                    order => order.LastName, 0, 100).ToList(),
                             });
         }
 

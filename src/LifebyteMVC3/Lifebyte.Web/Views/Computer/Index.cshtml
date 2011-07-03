@@ -19,9 +19,14 @@ Search by status:
     var grid = new WebGrid(Model);
 }
 @grid.GetHtml(columns: grid.Columns(
-                        grid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id })),
-                        grid.Column("LifebyteNumber", "Lifebyte #"),
-                        grid.Column("LicenseType", "License Type")))
+grid.Column("Id", "", c => Html.ActionLink("Edit", "Edit", new { id = c.Id }), canSort: false),
+                            grid.Column("LifebyteNumber", "Lifebyte #", canSort: false),
+                            grid.Column("LicenseType", "License Type", canSort: false)),
+                            mode: WebGridPagerModes.Numeric, 
+                            firstText: "First",
+                            previousText: "Previous",
+                            nextText: "Next",
+                            lastText: "Last")
 <script type="text/javascript">
     choose("ComputerStatus_ComputerStatusDropdownList", "ComputerStatus", "");
     $("#searchButton").click(function (i) {

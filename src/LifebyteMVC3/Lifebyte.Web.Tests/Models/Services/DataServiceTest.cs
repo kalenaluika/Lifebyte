@@ -26,8 +26,8 @@ namespace Lifebyte.Web.Tests.Models.Services
 
             var repository = new Mock<IRepository<Volunteer>>();
 
-            repository.Setup(r => r.SelectAll(v => v.LastName == It.IsAny<string>()))
-                .Returns(volunteers);
+            repository.Setup(r => r.SelectAll(v => v.LastName == It.IsAny<string>(), 
+                order => order.FirstName, 0, 100)).Returns(volunteers);
         }
 
         [Test]

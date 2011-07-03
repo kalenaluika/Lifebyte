@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
+using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
 using NHibernate;
-using Lifebyte.Web.Models.Core.Entities;
 using NHibernate.Criterion;
+using Expression = NHibernate.Criterion.Expression;
 
 namespace Lifebyte.Web.Models.Data
 {
@@ -110,16 +113,27 @@ namespace Lifebyte.Web.Models.Data
         /// Selects the first 100 instances.
         /// </summary>
         /// <param name="predicate">The LINQ expression.</param>
+        /// <param name="orderBy">The order by clause. All order by's will be returned in ascending order.</param>
+        /// <param name="skip">The number of records to skip. This helps with paging.</param>
+        /// <param name="take">The number of records to take from the results. It cannot be 
+        /// greater than 100.</param>
         /// <returns></returns>
-        public IList<T> SelectAll(Expression<Func<T, bool>> predicate)
+        public IList<T> SelectAll(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> orderBy, int skip, int take)
         {
+            if (take > 100)
+            {
+                throw new InvalidEnumArgumentException("Take cannot be greater than 100.");
+            }
+
             using (ISession session = NHibernateHelper.GetCurrentSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
                     try
                     {
-                        var results = session.QueryOver<T>().Where(predicate).Take(100).List();
+                        var results = session.QueryOver<T>().Where(predicate)
+                            .OrderBy(orderBy).Asc.Skip(skip).Take(take).List();
                         transaction.Commit();
 
                         return results;
@@ -150,9 +164,9 @@ namespace Lifebyte.Web.Models.Data
         /// <returns></returns>
         public string NextLbNumber()
         {
-            using (ISession session = NHibernateHelper.GetCurrentSession())
+            using (var session = NHibernateHelper.GetCurrentSession())
             {
-                using (ITransaction transaction = session.BeginTransaction())
+                using (var transaction = session.BeginTransaction())
                 {
                     try
                     {
@@ -162,12 +176,13 @@ namespace Lifebyte.Web.Models.Data
                                 .UniqueResult();
                         transaction.Commit();
 
-                        int id = int.Parse(result.ToString().ToUpper().Replace("LB", ""));
+                        var id = int.Parse(result.ToString().ToUpper().Replace("LB", ""));
                         id++;
 
-                        const string blankLBNumber = "LB0000";
+                        const string blankLbNumber = "LB0000";
 
-                        return string.Format(blankLBNumber.Substring(0, blankLBNumber.Length - id.ToString().Length) + id);
+                        return
+                            string.Format(blankLbNumber.Substring(0, blankLbNumber.Length - id.ToString().Length) + id);
                     }
                     catch
                     {

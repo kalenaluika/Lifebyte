@@ -38,13 +38,18 @@ namespace Lifebyte.Web.Models.Services
         }
 
         /// <summary>
-        /// Selects all of the instances.
+        /// Selects the first 100 instances.
         /// </summary>
         /// <param name="predicate">The LINQ expression.</param>
+        /// <param name="orderBy">The order by clause. All order by's will be returned in ascending order.</param>
+        /// <param name="skip">The number of records to skip. This helps with paging.</param>
+        /// <param name="take">The number of records to take from the results. It cannot be 
+        /// greater than 100.</param>
         /// <returns></returns>
-        public IList<T> SelectAll(Expression<Func<T, bool>> predicate)
+        public IList<T> SelectAll(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> orderBy, int skip, int take)
         {
-            return repository.SelectAll(predicate);
+            return repository.SelectAll(predicate, orderBy, skip, take);
         }
 
         /// <summary>

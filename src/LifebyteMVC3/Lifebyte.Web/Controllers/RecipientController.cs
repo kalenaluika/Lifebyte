@@ -33,9 +33,8 @@ namespace Lifebyte.Web.Controllers
                 model = recipientDataService.SelectAll(r => r.Active
                     && r.FirstName == Server.UrlDecode(fname)
                     && r.LastName == Server.UrlDecode(lname)
-                    && r.RecipientStatus == Server.UrlDecode(status))
-                    .OrderBy(r => r.LastName)
-                    .ThenBy(r => r.FirstName)
+                    && r.RecipientStatus == Server.UrlDecode(status),
+                    order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
@@ -46,9 +45,8 @@ namespace Lifebyte.Web.Controllers
             {
                 model = recipientDataService.SelectAll(r => r.Active
                     && r.FirstName == Server.UrlDecode(fname)
-                    && r.LastName == Server.UrlDecode(lname))
-                    .OrderBy(r => r.LastName)
-                    .ThenBy(r => r.FirstName)
+                    && r.LastName == Server.UrlDecode(lname),
+                    order => order.LastName, 0, 100)
                     .ToList();
 
                     return View(model);
@@ -57,9 +55,8 @@ namespace Lifebyte.Web.Controllers
             if (!string.IsNullOrWhiteSpace(lname))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.LastName == Server.UrlDecode(lname))
-                    .OrderBy(r => r.LastName)
-                    .ThenBy(r => r.FirstName)
+                    && r.LastName == Server.UrlDecode(lname),
+                    order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
@@ -68,9 +65,8 @@ namespace Lifebyte.Web.Controllers
             if (!string.IsNullOrWhiteSpace(fname))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.FirstName == Server.UrlDecode(fname))
-                    .OrderBy(r => r.LastName)
-                    .ThenBy(r => r.FirstName)
+                    && r.FirstName == Server.UrlDecode(fname),
+                    order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
@@ -79,18 +75,16 @@ namespace Lifebyte.Web.Controllers
             if (!string.IsNullOrWhiteSpace(status))
             {
                 model = recipientDataService.SelectAll(r => r.Active 
-                    && r.RecipientStatus == Server.UrlDecode(status))
-                    .OrderBy(r => r.LastName)
-                    .ThenBy(r => r.FirstName)
+                    && r.RecipientStatus == Server.UrlDecode(status),
+                    order => order.LastName, 0, 100)
                     .ToList();
 
                     return View(model);
             }
 
             model = recipientDataService.SelectAll(r => r.Active 
-                && r.RecipientStatus == "2")
-                .OrderBy(r => r.LastName)
-                .ThenBy(r => r.FirstName)
+                && r.RecipientStatus == "2",
+                order => order.LastName, 0, 100)
                 .ToList();
 
             return View(model);

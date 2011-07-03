@@ -136,7 +136,8 @@ namespace Lifebyte.Web.Tests.Controllers
                 .Returns(new Computer());
 
             var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
-            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>(),
+                It.IsAny<Expression<Func<Recipient, object>>>(), 0, 100))
                 .Returns(new List<Recipient>());
 
             var controller = new ComputerController(computerDataServiceMock.Object,
@@ -258,7 +259,8 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var computerDataService = new Mock<IDataService<Computer>>();
 
-            computerDataService.Setup(c => c.SelectAll(It.IsAny<Expression<Func<Computer, bool>>>()))
+            computerDataService.Setup(c => c.SelectAll(It.IsAny<Expression<Func<Computer, bool>>>(),
+                It.IsAny<Expression<Func<Computer, object>>>(), 0, 100))
                 .Returns(new List<Computer>
                              {
                                  new Computer()
@@ -285,7 +287,8 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var computerDataService = new Mock<IDataService<Computer>>();
 
-            computerDataService.Setup(c => c.SelectAll(It.IsAny<Expression<Func<Computer, bool>>>()))
+            computerDataService.Setup(c => c.SelectAll(It.IsAny<Expression<Func<Computer, bool>>>(),
+                It.IsAny<Expression<Func<Computer, object>>>(), 0, 100))
                 .Returns(new List<Computer>
                              {
                                  new Computer()
@@ -361,7 +364,8 @@ namespace Lifebyte.Web.Tests.Controllers
                 .Returns(new Computer());
 
             var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
-            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>(),
+                It.IsAny<Expression<Func<Recipient, object>>>(), 0, 100))
                 .Returns(new List<Recipient>());
 
             var controller = new ComputerController(computerDataService.Object,

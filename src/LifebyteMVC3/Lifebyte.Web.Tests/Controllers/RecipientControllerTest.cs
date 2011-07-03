@@ -138,7 +138,8 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
 
-            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>(),
+                It.IsAny<Expression<Func<Recipient, object>>>(), 0, 100))
                 .Returns(new List<Recipient>());
 
             var controller = new RecipientController(recipientDataServiceMock.Object,
@@ -158,7 +159,8 @@ namespace Lifebyte.Web.Tests.Controllers
         {
             var recipientDataServiceMock = new Mock<IDataService<Recipient>>();
 
-            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>()))
+            recipientDataServiceMock.Setup(r => r.SelectAll(It.IsAny<Expression<Func<Recipient, bool>>>(),
+                It.IsAny<Expression<Func<Recipient, object>>>(), 0, 100))
                  .Returns(new List<Recipient>
                               {
                                   new Recipient()

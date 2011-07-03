@@ -27,11 +27,16 @@ namespace Lifebyte.Web.Models.Core.Interfaces
         T SelectOne(Expression<Func<T, bool>> predicate);
 
         /// <summary>
-        /// Selects all of the instances.
+        /// Selects the first 100 instances.
         /// </summary>
-        /// <param name="predicate">The query expression.</param>
+        /// <param name="predicate">The LINQ expression.</param>
+        /// <param name="orderBy">The order by clause. All order by's will be returned in ascending order.</param>
+        /// <param name="skip">The number of records to skip. This helps with paging.</param>
+        /// <param name="take">The number of records to take from the results. It cannot be 
+        /// greater than 100.</param>
         /// <returns></returns>
-        IList<T> SelectAll(Expression<Func<T, bool>> predicate);
+        IList<T> SelectAll(Expression<Func<T, bool>> predicate,
+            Expression<Func<T, object>> orderBy, int skip, int take);
 
         /// <summary>
         /// We do not store plain text passwords in the database.
