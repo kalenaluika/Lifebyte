@@ -13,7 +13,7 @@
     <p>
         @foreach (var recipient in Model.RecipientsWhoNeedAComputer)
         {
-            <input type="radio" name="RecipientId" id="RecipientId" value="@recipient.Id" /> @(recipient.FirstName + " " + recipient.LastName)<br />
+            <input type="radio" name="RecipientId" id="RecipientId" value="@recipient.Id" /> @Html.ActionLink(recipient.FirstName + " " + recipient.LastName, "Edit", "Recipient", new { id = recipient.Id.ToString() }, null)<br />
         }
     </p>
     <p>
