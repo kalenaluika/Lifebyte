@@ -6,6 +6,7 @@ using Lifebyte.Web.Models.ViewModels;
 
 namespace Lifebyte.Web.Controllers
 {
+    [RequireHttps]
     public class AccountController : Controller
     {
         private readonly IFormsAuthenticationService formsAuthenticationService;
@@ -39,7 +40,7 @@ namespace Lifebyte.Web.Controllers
                 return View();
             }
 
-            var volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
+            Volunteer volunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
 
             if (volunteer != null && !volunteer.Active)
             {
@@ -80,7 +81,7 @@ namespace Lifebyte.Web.Controllers
                 return View(model);
             }
 
-            var existingVolunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
+            Volunteer existingVolunteer = volunteerDataService.SelectOne(v => v.Username == model.Username);
             if (existingVolunteer != null)
             {
                 ModelState.AddModelError("Username", "That username already exists.");

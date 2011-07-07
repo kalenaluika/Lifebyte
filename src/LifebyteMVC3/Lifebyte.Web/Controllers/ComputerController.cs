@@ -17,6 +17,7 @@ namespace Lifebyte.Web.Controllers
     /// to be assigned to a recipient
     /// </summary>
     [Authorize]
+    [RequireHttps]
     public class ComputerController : Controller
     {
         private readonly IDataService<Computer> computerDataService;
@@ -49,7 +50,7 @@ namespace Lifebyte.Web.Controllers
                 id = string.Format(blankLBNumber.Substring(0, blankLBNumber.Length - id.Length) + id);
 
                 model = computerDataService.SelectAll(c => c.Active && c.LifebyteNumber == id,
-                    order => order.LifebyteNumber, 0, 100).ToList();
+                                                      order => order.LifebyteNumber, 0, 100).ToList();
 
                 return View(model);
             }
@@ -64,7 +65,7 @@ namespace Lifebyte.Web.Controllers
             }
 
             model = computerDataService.SelectAll(a => a.Active,
-                order => order.LifebyteNumber, 0, 100).ToList();
+                                                  order => order.LifebyteNumber, 0, 100).ToList();
 
             return View(model);
         }
@@ -194,9 +195,9 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Deliver(Guid id)
         {
-            var computer = computerDataService.SelectOne(c => c.Id == id);
-            
-            if(computer.Recipient != null)
+            Computer computer = computerDataService.SelectOne(c => c.Id == id);
+
+            if (computer.Recipient != null)
             {
                 return View(new DeliverComputerViewModel
                                 {
@@ -214,8 +215,8 @@ namespace Lifebyte.Web.Controllers
                             {
                                 Computer = computer,
                                 RecipientsWhoNeedAComputer = recipientDataService
-                                    .SelectAll(r => r.RecipientStatus == "2", 
-                                    order => order.LastName, 0, 100).ToList(),
+                                    .SelectAll(r => r.RecipientStatus == "2",
+                                               order => order.LastName, 0, 100).ToList(),
                             });
         }
 

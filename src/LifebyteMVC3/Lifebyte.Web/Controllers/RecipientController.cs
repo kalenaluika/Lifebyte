@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Lifebyte.Web.Models.Core.Entities;
 using Lifebyte.Web.Models.Core.Interfaces;
-using System.Collections.Generic;
 
 namespace Lifebyte.Web.Controllers
 {
+    [Authorize]
+    [RequireHttps]
     public class RecipientController : Controller
     {
-        private readonly IDataService<Recipient> recipientDataService;
         private readonly IFormsAuthenticationService formsAuthenticationService;
+        private readonly IDataService<Recipient> recipientDataService;
         private readonly IDataService<Volunteer> volunteerDataService;
-        
-        public RecipientController(IDataService<Recipient> recipientDataService, 
-            IDataService<Volunteer> volunteerDataService, 
-            IFormsAuthenticationService formsAuthenticationService)
+
+        public RecipientController(IDataService<Recipient> recipientDataService,
+                                   IDataService<Volunteer> volunteerDataService,
+                                   IFormsAuthenticationService formsAuthenticationService)
         {
             this.recipientDataService = recipientDataService;
             this.volunteerDataService = volunteerDataService;
@@ -31,32 +33,32 @@ namespace Lifebyte.Web.Controllers
                 && !string.IsNullOrWhiteSpace(status))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.FirstName == Server.UrlDecode(fname)
-                    && r.LastName == Server.UrlDecode(lname)
-                    && r.RecipientStatus == Server.UrlDecode(status),
-                    order => order.LastName, 0, 100)
+                                                            && r.FirstName == Server.UrlDecode(fname)
+                                                            && r.LastName == Server.UrlDecode(lname)
+                                                            && r.RecipientStatus == Server.UrlDecode(status),
+                                                       order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
             }
 
-            if(!string.IsNullOrWhiteSpace(fname)
+            if (!string.IsNullOrWhiteSpace(fname)
                 && !string.IsNullOrWhiteSpace(lname))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.FirstName == Server.UrlDecode(fname)
-                    && r.LastName == Server.UrlDecode(lname),
-                    order => order.LastName, 0, 100)
+                                                            && r.FirstName == Server.UrlDecode(fname)
+                                                            && r.LastName == Server.UrlDecode(lname),
+                                                       order => order.LastName, 0, 100)
                     .ToList();
 
-                    return View(model);
+                return View(model);
             }
 
             if (!string.IsNullOrWhiteSpace(lname))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.LastName == Server.UrlDecode(lname),
-                    order => order.LastName, 0, 100)
+                                                            && r.LastName == Server.UrlDecode(lname),
+                                                       order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
@@ -65,8 +67,8 @@ namespace Lifebyte.Web.Controllers
             if (!string.IsNullOrWhiteSpace(fname))
             {
                 model = recipientDataService.SelectAll(r => r.Active
-                    && r.FirstName == Server.UrlDecode(fname),
-                    order => order.LastName, 0, 100)
+                                                            && r.FirstName == Server.UrlDecode(fname),
+                                                       order => order.LastName, 0, 100)
                     .ToList();
 
                 return View(model);
@@ -74,17 +76,17 @@ namespace Lifebyte.Web.Controllers
 
             if (!string.IsNullOrWhiteSpace(status))
             {
-                model = recipientDataService.SelectAll(r => r.Active 
-                    && r.RecipientStatus == Server.UrlDecode(status),
-                    order => order.LastName, 0, 100)
+                model = recipientDataService.SelectAll(r => r.Active
+                                                            && r.RecipientStatus == Server.UrlDecode(status),
+                                                       order => order.LastName, 0, 100)
                     .ToList();
 
-                    return View(model);
+                return View(model);
             }
 
-            model = recipientDataService.SelectAll(r => r.Active 
-                && r.RecipientStatus == "2",
-                order => order.LastName, 0, 100)
+            model = recipientDataService.SelectAll(r => r.Active
+                                                        && r.RecipientStatus == "2",
+                                                   order => order.LastName, 0, 100)
                 .ToList();
 
             return View(model);
@@ -111,7 +113,8 @@ namespace Lifebyte.Web.Controllers
                 return View();
             }
 
-            var volunteer = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Volunteer volunteer =
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             model.Active = true;
             model.CreateDate = DateTime.Now;
@@ -127,7 +130,7 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            var model = recipientDataService.SelectOne(r => r.Id == id);
+            Recipient model = recipientDataService.SelectOne(r => r.Id == id);
 
             return View(model);
         }
@@ -141,9 +144,10 @@ namespace Lifebyte.Web.Controllers
                 return View();
             }
 
-            var originalRecipeint = recipientDataService.SelectOne(r => r.Id == model.Id);
+            Recipient originalRecipeint = recipientDataService.SelectOne(r => r.Id == model.Id);
 
-            var volunteer = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Volunteer volunteer =
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             model.Active = originalRecipeint.Active;
             model.CreateDate = originalRecipeint.CreateDate;
@@ -154,6 +158,6 @@ namespace Lifebyte.Web.Controllers
             recipientDataService.Update(model);
 
             return RedirectToAction("Index");
-        }        
+        }
     }
 }

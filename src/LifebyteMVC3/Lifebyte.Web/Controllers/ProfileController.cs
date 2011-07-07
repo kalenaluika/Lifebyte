@@ -6,11 +6,12 @@ using Lifebyte.Web.Models.Core.Interfaces;
 namespace Lifebyte.Web.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class ProfileController : Controller
     {
+        private const string PasswordChars = "******";
         private readonly IFormsAuthenticationService formsAuthenticationService;
         private readonly IDataService<Volunteer> volunteerDataService;
-        private const string PasswordChars = "******";
 
         public ProfileController(IDataService<Volunteer> volunteerDataService,
                                  IFormsAuthenticationService formsAuthenticationService)
@@ -25,7 +26,8 @@ namespace Lifebyte.Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            Volunteer model = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Volunteer model =
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             // Change password for display purposes.
             model.Password = PasswordChars;
@@ -35,7 +37,7 @@ namespace Lifebyte.Web.Controllers
 
         public ActionResult Edit()
         {
-            var id = formsAuthenticationService.GetVolunteerID(User);
+            Guid id = formsAuthenticationService.GetVolunteerID(User);
             Volunteer model = volunteerDataService.SelectOne(v => v.Id == id);
             model.Password = PasswordChars;
 
@@ -46,12 +48,13 @@ namespace Lifebyte.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Volunteer model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var originalModel = volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
+            Volunteer originalModel =
+                volunteerDataService.SelectOne(v => v.Id == formsAuthenticationService.GetVolunteerID(User));
 
             model.Id = originalModel.Id;
 
@@ -79,7 +82,7 @@ namespace Lifebyte.Web.Controllers
         private string UpdatedPassword(Volunteer model, Volunteer originalModel)
         {
             return model.Password != PasswordChars
-                       ? volunteerDataService.HashPassword(model.Password) 
+                       ? volunteerDataService.HashPassword(model.Password)
                        : originalModel.Password;
         }
     }
