@@ -91,8 +91,11 @@ namespace Lifebyte.Web.Tests.Controllers
             volunteerDataServiceMock.Setup(v => v.SelectOne(It.IsAny<Expression<Func<Volunteer, bool>>>()))
                 .Returns(fakeVolunteer);
 
-            volunteerDataServiceMock.Setup(v => v.HashPassword(It.IsAny<string>(), It.IsAny<Guid>()))
+            volunteerDataServiceMock.Setup(v => v.HashPassword(It.IsAny<string>()))
                 .Returns(model.Password);
+
+            volunteerDataServiceMock.Setup(v => v.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
 
             var accountController = new AccountController(
                 formsAuthenticationServiceMock.Object,

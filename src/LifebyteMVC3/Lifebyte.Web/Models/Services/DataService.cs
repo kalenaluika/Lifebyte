@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Security.Cryptography;
-using System.Text;
 using Lifebyte.Web.Models.Core.Interfaces;
 using Lifebyte.Web.Properties;
 
@@ -54,24 +52,18 @@ namespace Lifebyte.Web.Models.Services
 
         /// <summary>
         /// We do not store plain text passwords in the database.
-        /// This is the algorithm to encrypt the password. 
+        /// We use BCrypt. 
         /// In order to be more SOLID we should put this into a special
         /// IVolunteerDataService interface that implements IDataService of type Volunteer.
         /// </summary>
         /// <param name="password"></param>
-        /// <param name="volunteerId"></param>
         /// <returns></returns>
-        /// <remarks>http://www.4guysfromrolla.com/articles/112002-1.aspx</remarks>
-        public string HashPassword(string password, Guid volunteerId)
+        /// <remarks>http://bcrypt.codeplex.com/</remarks>
+        public string HashPassword(string password)
         {
-            byte[] saltedHash = new UTF8Encoding().GetBytes(Salt(volunteerId) + password);
-
-            return Convert.ToBase64String(new SHA1CryptoServiceProvider().ComputeHash(saltedHash));
-        }
-
-        private string Salt(Guid volunteerId)
-        {
-            return string.Format("{0}{1}", Settings.Default.Salt, volunteerId);
+            // The work factor is a setting we can increase in the production web.config.
+            return BCrypt.Net.BCrypt.HashPassword(password, 
+                BCrypt.Net.BCrypt.GenerateSalt(Settings.Default.WorkFactor));
         }
 
         /// <summary>
@@ -83,6 +75,17 @@ namespace Lifebyte.Web.Models.Services
         public string NextLbNumber()
         {
             return repository.NextLbNumber();
+        }
+
+        /// <summary>
+        /// Verifies that the attempted password matches a given hashed password.
+        /// </summary>
+        /// <param name="attemptedPassword">The attempted password.</param>
+        /// <param name="hashedPassword">The hashed password stored in the database.</param>        
+        /// <returns></returns>
+        public bool VerifyPassword(string attemptedPassword, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(attemptedPassword, hashedPassword);
         }
     }
 }

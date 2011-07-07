@@ -79,17 +79,8 @@ namespace Lifebyte.Web.Controllers
         private string UpdatedPassword(Volunteer model, Volunteer originalModel)
         {
             return model.Password != PasswordChars
-                       ? volunteerDataService.HashPassword(model.Password, originalModel.Id) 
+                       ? volunteerDataService.HashPassword(model.Password) 
                        : originalModel.Password;
-        }
-
-        /// <summary>
-        /// The welcome page is what a newly registered volunteer sees.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Welcome()
-        {
-            return View();
         }
     }
 }

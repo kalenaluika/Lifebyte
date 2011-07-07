@@ -48,8 +48,8 @@ namespace Lifebyte.Web.Controllers
                 return View();
             }
 
-            if (volunteer != null &&
-                volunteer.Password == volunteerDataService.HashPassword(model.Password, volunteer.Id))
+            if (volunteer != null
+                && volunteerDataService.VerifyPassword(model.Password, volunteer.Password))
             {
                 formsAuthenticationService.SetAuthCookie(volunteer, model.RememberMe);
 
@@ -94,7 +94,7 @@ namespace Lifebyte.Web.Controllers
 
             model.Id = Guid.NewGuid();
             model.LastSignInDate = DateTime.Now;
-            model.Password = volunteerDataService.HashPassword(model.Password, model.Id);
+            model.Password = volunteerDataService.HashPassword(model.Password);
             model.CreateByVolunteerId = model.Id;
             model.CreateDate = DateTime.Now;
             model.LastModByVolunteerId = model.Id;

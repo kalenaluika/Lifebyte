@@ -40,14 +40,22 @@ namespace Lifebyte.Web.Models.Core.Interfaces
 
         /// <summary>
         /// We do not store plain text passwords in the database.
-        /// This is the algorithm to encrypt the password. 
+        /// We use BCrypt. 
         /// In order to be more SOLID we should put this into a special
         /// IVolunteerDataService interface that implements IDataService of type Volunteer.
         /// </summary>
         /// <param name="password"></param>
-        /// <param name="volunteerId"></param>
         /// <returns></returns>
-        string HashPassword(string password, Guid volunteerId);
+        /// <remarks>http://bcrypt.codeplex.com/</remarks>
+        string HashPassword(string password);
+
+        /// <summary>
+        /// Verifies that the attempted password matches a given hashed password.
+        /// </summary>
+        /// <param name="attemptedPassword">The attempted password.</param>
+        /// <param name="hashedPassword">The hashed password stored in the database.</param>        
+        /// <returns></returns>
+        bool VerifyPassword(string attemptedPassword, string hashedPassword);
 
         /// <summary>
         /// Returns the next available LB Number.
