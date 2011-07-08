@@ -25,7 +25,7 @@ namespace Lifebyte.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
         public int WorkFactor {
             get {
                 return ((int)(this["WorkFactor"]));

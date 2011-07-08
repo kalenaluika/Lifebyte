@@ -28,6 +28,8 @@ namespace Lifebyte.Web.Controllers
         {
             List<Recipient> model;
 
+            // TODO: This is too much for the controller. This should be in a specialized 
+            // IRecipientDataService that implements IDataService<Recipient>.
             if (!string.IsNullOrWhiteSpace(fname)
                 && !string.IsNullOrWhiteSpace(lname)
                 && !string.IsNullOrWhiteSpace(status))
